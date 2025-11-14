@@ -595,6 +595,11 @@
             gap: 10px;
             margin-top: 20px;
         }
+        
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -1063,7 +1068,7 @@
             XLSX.writeFile(wb, filename + '.xlsx');
         }
         
-        // GitHub集成功能 - 改进版
+        // GitHub集成功能 - 修复版
         function loadGithubConfig() {
             const configStr = localStorage.getItem(GITHUB_CONFIG_KEY);
             if (configStr) {
@@ -1126,7 +1131,8 @@
                 if (response.ok) {
                     return await response.json();
                 } else {
-                    throw new Error(`GitHub API错误: ${response.status} ${response.statusText}`);
+                    const errorData = await response.json().catch(() => ({ message: '未知错误' }));
+                    throw new Error(`GitHub API错误: ${response.status} - ${errorData.message || response.statusText}`);
                 }
             } catch (error) {
                 console.error('GitHub API请求失败:', error);
@@ -1162,7 +1168,7 @@
             }
         }
         
-        // 同步订单数据到GitHub - 普通用户只能上传自己的数据
+        // 同步订单数据到GitHub - 修复版
         async function syncToGithub() {
             if (currentTableData.length === 0) {
                 showToast('没有数据可同步', 'error');
@@ -1184,6 +1190,29 @@
                     timestamp: timestamp,
                     data: currentTableData
                 };
+                
+                // 检查orders目录是否存在，如果不存在则创建
+                try {
+                    await githubApiRequest(
+                        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders?ref=${githubConfig.branch}`
+                    );
+                } catch (error) {
+                    // 目录不存在，需要创建
+                    if (error.message.includes('404')) {
+                        // 创建orders目录
+                        await githubApiRequest(
+                            `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders/.gitkeep`,
+                            'PUT',
+                            {
+                                message: '创建orders目录',
+                                content: btoa(''),
+                                branch: githubConfig.branch
+                            }
+                        );
+                    } else {
+                        throw error;
+                    }
+                }
                 
                 const fileUrl = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${filename}`;
                 let sha = null;
@@ -1212,7 +1241,7 @@
             }
         }
         
-        // 从GitHub加载数据 - 管理员可以加载所有用户数据
+        // 从GitHub加载数据 - 修复版
         async function loadFromGithub() {
             if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
                 showToast('请先配置GitHub信息', 'error');
@@ -1225,22 +1254,38 @@
                 
                 let files = [];
                 
-                if (isAdmin) {
-                    // 管理员可以获取所有文件
+                // 检查orders目录是否存在
+                try {
                     const response = await githubApiRequest(
                         `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders?ref=${githubConfig.branch}`
                     );
                     files = response;
-                } else {
-                    // 普通用户只能获取自己的文件
-                    const response = await githubApiRequest(
-                        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders?ref=${githubConfig.branch}`
-                    );
-                    files = response.filter(file => file.name.includes(currentUser));
+                } catch (error) {
+                    if (error.message.includes('404')) {
+                        showToast('GitHub上尚未创建orders目录', 'error');
+                        return;
+                    } else {
+                        throw error;
+                    }
                 }
                 
                 if (files.length === 0) {
                     showToast('GitHub上没有找到订单数据', 'error');
+                    return;
+                }
+                
+                // 过滤文件，只保留JSON文件
+                files = files.filter(file => file.name.endsWith('.json') && file.name !== '.gitkeep');
+                
+                if (isAdmin) {
+                    // 管理员可以获取所有文件
+                } else {
+                    // 普通用户只能获取自己的文件
+                    files = files.filter(file => file.name.includes(currentUser));
+                }
+                
+                if (files.length === 0) {
+                    showToast('GitHub上没有找到符合条件的订单数据', 'error');
                     return;
                 }
                 
@@ -1259,7 +1304,7 @@
             }
         }
         
-        // 管理员加载所有用户数据
+        // 管理员加载所有用户数据 - 修复版
         async function loadAllFromGithub() {
             if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
                 showToast('请先配置GitHub信息', 'error');
@@ -1281,9 +1326,17 @@
                     return;
                 }
                 
+                // 过滤文件，只保留JSON文件
+                const files = response.filter(file => file.name.endsWith('.json') && file.name !== '.gitkeep');
+                
+                if (files.length === 0) {
+                    showToast('GitHub上没有找到订单数据', 'error');
+                    return;
+                }
+                
                 // 合并所有用户的数据
                 let allData = [];
-                for (const file of response) {
+                for (const file of files) {
                     try {
                         const fileContent = await githubApiRequest(file.download_url);
                         allData = allData.concat(fileContent.data);
@@ -1300,7 +1353,7 @@
             }
         }
         
-        // 同步用户数据到GitHub
+        // 同步用户数据到GitHub - 修复版
         async function syncUsersToGithub() {
             if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
                 showToast('请先配置GitHub信息', 'error');
@@ -1342,7 +1395,7 @@
             }
         }
         
-        // 从GitHub加载用户数据
+        // 从GitHub加载用户数据 - 修复版
         async function loadUsersFromGithub() {
             if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
                 showToast('请先配置GitHub信息', 'error');
@@ -1359,7 +1412,7 @@
                 const fileUrl = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${filename}?ref=${githubConfig.branch}`;
                 
                 const fileContent = await githubApiRequest(fileUrl);
-                const decodedContent = atob(fileContent.content);
+                const decodedContent = atob(fileContent.content.replace(/\s/g, ''));
                 const users = JSON.parse(decodedContent);
                 
                 // 保存到本地
@@ -1369,7 +1422,11 @@
                 renderUserList();
                 return users;
             } catch (error) {
-                showToast('从GitHub加载用户数据失败: ' + error.message, 'error');
+                if (error.message.includes('404')) {
+                    showToast('GitHub上尚未创建users.json文件', 'error');
+                } else {
+                    showToast('从GitHub加载用户数据失败: ' + error.message, 'error');
+                }
                 throw error;
             }
         }
@@ -1486,6 +1543,17 @@
             
             if (isAdmin) {
                 renderUserList();
+            }
+        }
+        
+        // 添加加载状态管理
+        function setLoadingState(element, isLoading) {
+            if (isLoading) {
+                element.classList.add('loading');
+                element.disabled = true;
+            } else {
+                element.classList.remove('loading');
+                element.disabled = false;
             }
         }
         
@@ -1622,12 +1690,32 @@
             showToast('Excel文件已生成并开始下载');
         });
         
-        // GitHub相关事件监听器
-        document.getElementById('testGithubBtn').addEventListener('click', testGithubConnection);
+        // GitHub相关事件监听器 - 修复版
+        document.getElementById('testGithubBtn').addEventListener('click', async function() {
+            setLoadingState(this, true);
+            await testGithubConnection();
+            setLoadingState(this, false);
+        });
+        
         document.getElementById('saveGithubConfigBtn').addEventListener('click', saveGithubConfig);
-        document.getElementById('syncToGithubBtn').addEventListener('click', syncToGithub);
-        document.getElementById('loadFromGithubBtn').addEventListener('click', loadFromGithub);
-        document.getElementById('loadAllFromGithubBtn').addEventListener('click', loadAllFromGithub);
+        
+        document.getElementById('syncToGithubBtn').addEventListener('click', async function() {
+            setLoadingState(this, true);
+            await syncToGithub();
+            setLoadingState(this, false);
+        });
+        
+        document.getElementById('loadFromGithubBtn').addEventListener('click', async function() {
+            setLoadingState(this, true);
+            await loadFromGithub();
+            setLoadingState(this, false);
+        });
+        
+        document.getElementById('loadAllFromGithubBtn').addEventListener('click', async function() {
+            setLoadingState(this, true);
+            await loadAllFromGithub();
+            setLoadingState(this, false);
+        });
         
         // 用户管理事件监听器
         document.getElementById('addUserBtn').addEventListener('click', function() {
@@ -1656,8 +1744,18 @@
             }
         });
         
-        document.getElementById('syncUsersToGithubBtn').addEventListener('click', syncUsersToGithub);
-        document.getElementById('loadUsersFromGithubBtn').addEventListener('click', loadUsersFromGithub);
+        document.getElementById('syncUsersToGithubBtn').addEventListener('click', async function() {
+            setLoadingState(this, true);
+            await syncUsersToGithub();
+            setLoadingState(this, false);
+        });
+        
+        document.getElementById('loadUsersFromGithubBtn').addEventListener('click', async function() {
+            setLoadingState(this, true);
+            await loadUsersFromGithub();
+            setLoadingState(this, false);
+        });
+        
         document.getElementById('refreshUsersBtn').addEventListener('click', function() {
             renderUserList();
             showToast('用户列表已刷新');
