@@ -1,0 +1,14 @@
+{
+  "timestamp": 1763137961207,
+  "user": "369369changer",
+  "orders": [
+    {
+      "id": 1,
+      "customer": "示例客户",
+      "phone": "13800138000",
+      "address": "示例地址",
+      "product": "大果",
+      "quantity": 1
+    }
+  ]
+}
