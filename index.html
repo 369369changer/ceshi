@@ -600,6 +600,16 @@
             opacity: 0.7;
             pointer-events: none;
         }
+        
+        .debug-info {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
@@ -781,6 +791,11 @@
                 <button id="loadAllFromGithubBtn" class="btn btn-primary admin-only">
                     <i class="fas fa-download"></i> 加载所有用户数据
                 </button>
+            </div>
+            
+            <div id="debugInfo" class="debug-info" style="display: none;">
+                <strong>调试信息：</strong>
+                <div id="debugContent"></div>
             </div>
         </div>
 
