@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>舍鲜果电商订单汇总工具</title>
+    <title>舍鲜果电商订单汇总工具 </title>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -557,59 +557,6 @@
         .admin-only {
             display: none;
         }
-        
-        .github-status {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .github-status.connected {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .github-status.disconnected {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .user-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr auto;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .user-form {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .user-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        
-        .debug-info {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 0.8rem;
-            color: #6c757d;
-        }
     </style>
 </head>
 <body>
@@ -684,15 +631,6 @@
                 <div class="stat-label">识别成功率</div>
             </div>
         </div>
-        
-        <div class="instructions">
-            <h3><i class="fas fa-info-circle"></i> 使用说明</h3>
-            <p>1. 在左侧文本框中粘贴收件人信息，每个收件人用 # 号分隔</p>
-            <p>2. 点击"提取信息"按钮，系统会自动识别姓名、电话、地址等信息</p>
-            <p>3. 提取完成后，可以保存数据、复制表格或导出Excel文件</p>
-            <p>4. 管理员可以使用GitHub功能同步数据到云端</p>
-        </div>
-
         <div class="main-content">
             <div class="card">
                 <div class="card-header">
@@ -748,10 +686,6 @@
         <div class="github-panel">
             <h3><i class="fab fa-github"></i> GitHub数据存储</h3>
             
-            <div id="githubStatus" class="github-status disconnected">
-                <i class="fas fa-exclamation-circle"></i> GitHub连接未配置
-            </div>
-            
             <div class="github-form">
                 <div class="form-group">
                     <label class="form-label" for="githubToken">GitHub访问令牌</label>
@@ -792,11 +726,6 @@
                     <i class="fas fa-download"></i> 加载所有用户数据
                 </button>
             </div>
-            
-            <div id="debugInfo" class="debug-info" style="display: none;">
-                <strong>调试信息：</strong>
-                <div id="debugContent"></div>
-            </div>
         </div>
 
         <!-- 用户管理面板 - 仅管理员可见 -->
@@ -804,10 +733,10 @@
             <h3><i class="fas fa-users-cog"></i> 用户管理</h3>
             <p style="color: var(--gray); margin-bottom: 20px;">管理员可以添加、删除用户，并同步用户数据到GitHub</p>
             
-            <div class="user-form">
+            <div class="github-form">
                 <div class="form-group">
-                    <label class="form-label" for="newUsername">新用户名</label>
-                    <input type="text" id="newUsername" class="form-input" placeholder="输入用户名">
+                    <label class="form-label" for="newUsername">用户名</label>
+                    <input type="text" id="newUsername" class="form-input" placeholder="输入新用户名">
                 </div>
                 
                 <div class="form-group">
@@ -822,40 +751,39 @@
                         <option value="admin">管理员</option>
                     </select>
                 </div>
+                
+                <div class="form-group">
+                    <label class="form-label" style="visibility: hidden;">添加用户</label>
+                    <button id="addUserBtn" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> 添加用户
+                    </button>
+                </div>
             </div>
             
-            <button id="addUserBtn" class="btn btn-primary">
-                <i class="fas fa-user-plus"></i> 添加用户
-            </button>
-            
-            <div class="user-actions">
+            <div class="github-actions">
                 <button id="syncUsersToGithubBtn" class="btn btn-primary">
-                    <i class="fas fa-sync"></i> 同步用户数据到GitHub
+                    <i class="fas fa-cloud-upload-alt"></i> 同步用户数据到GitHub
                 </button>
                 <button id="loadUsersFromGithubBtn" class="btn btn-primary">
-                    <i class="fas fa-download"></i> 从GitHub加载用户数据
+                    <i class="fas fa-cloud-download-alt"></i> 从GitHub加载用户数据
                 </button>
                 <button id="refreshUsersBtn" class="btn btn-primary">
-                    <i class="fas fa-redo"></i> 刷新用户列表
+                    <i class="fas fa-sync"></i> 刷新用户列表
                 </button>
             </div>
             
-            <h4 style="margin-top: 25px; margin-bottom: 10px;">用户列表</h4>
+            <h4 style="margin-top: 30px; margin-bottom: 15px;">用户列表</h4>
             <div class="user-list" id="userList">
-                <div class="user-item" style="justify-content: center; color: var(--gray);">
-                    加载中...
-                </div>
+                <!-- 用户列表将动态生成 -->
             </div>
         </div>
 
         <div class="footer">
-            <p>© 2023 舍鲜果电商订单汇总工具 | 多人协作版 v2.0</p>
-            <p>本工具仅限授权用户使用，未经许可禁止传播</p>
+            <p>舍鲜果电商订单汇总工具 &copy; 2025 | 多人协作版 专为懒人电商出品</p>
         </div>
     </div>
 
-    <!-- 提示消息 -->
-    <div id="toast" class="toast"></div>
+    <div class="toast" id="toast"></div>
 
     <script>
         // 系统配置
@@ -871,927 +799,667 @@
         let processedCount = 0;
         let githubConfig = {};
         let currentUserRole = 'user';
-        
-        // 工具函数
+        let currentUsername = ''; // 当前登录用户名
+
+        // 小工具
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
+            if (!toast) return;
             toast.textContent = message;
             toast.className = `toast ${type}`;
             toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
-        
+
+        function escapeHtml(str) {
+            if (str === undefined || str === null) return '';
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
         function updateStats() {
-            document.getElementById('totalOrders').textContent = processedCount;
-            document.getElementById('processedToday').textContent = currentTableData.length;
-            document.getElementById('timeSaved').textContent = Math.round(currentTableData.length * 2.5);
-            document.getElementById('successRate').textContent = currentTableData.length > 0 ? '100%' : '0%';
+            const totalOrdersEl = document.getElementById('totalOrders');
+            const processedTodayEl = document.getElementById('processedToday');
+            const timeSavedEl = document.getElementById('timeSaved');
+            const successRateEl = document.getElementById('successRate');
+            if (totalOrdersEl) totalOrdersEl.textContent = processedCount;
+            if (processedTodayEl) processedTodayEl.textContent = currentTableData.length;
+            if (timeSavedEl) timeSavedEl.textContent = Math.round(currentTableData.length * 2.5);
+            if (successRateEl) successRateEl.textContent = currentTableData.length > 0 ? '100%' : '0%';
         }
-        
+
         function cleanAddress(address) {
             return address.replace(/\s*\d+\s*(盒|个|件|箱)\s*$/, '').trim();
         }
-        
-        // 信息提取功能
+
+        // 信息提取
         function extractInfo(recipient) {
-            let text = recipient.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
-            
+            let raw = recipient || '';
+            const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+            let text = raw.replace(/\r/g, '').replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+
             let extension = '';
             const extensionMatch = text.match(/\[(\d+)\]/);
             if (extensionMatch) {
                 extension = `[${extensionMatch[1]}]`;
-                text = text.replace(/\[\d+\]/, '');
+                text = text.replace(/\[\d+\]/, '').trim();
             }
-            
+
             let specification = '';
             const specMatch = text.match(/(大果|中果|小果)/);
-            if (specMatch) {
-                specification = specMatch[1];
-            }
-            
-            let phone = '';
-            const phoneMatch = text.match(/(\d{11})(-\d+)?/);
+            if (specMatch) specification = specMatch[1];
+
+            // 优先在单行内找11位手机号或7-11位
+            let phoneMatch = text.match(/(\d{7,11})(-\d+)?/);
             if (phoneMatch) {
-                phone = phoneMatch[1];
-                
-                if (phoneMatch[2] && !extension) {
-                    extension = `[${phoneMatch[2].substring(1)}]`;
-                }
-                
-                const phoneIndex = text.indexOf(phoneMatch[0]);
-                let beforePhone = text.substring(0, phoneIndex).trim();
-                let afterPhone = text.substring(phoneIndex + phoneMatch[0].length).trim();
-                
-                let name = beforePhone;
-                name = name.replace(/[,，、]/g, '').trim();
-                
-                let address = afterPhone;
-                address = address.replace(/[,，、]/g, ' ').trim();
-                
+                const phone = phoneMatch[1];
+                let extFromPhone = phoneMatch[2] ? phoneMatch[2].replace(/^-/, '') : '';
+                if (extFromPhone && !extension) extension = `[${extFromPhone}]`;
+
+                const idx = text.indexOf(phoneMatch[0]);
+                let before = text.substring(0, idx).trim();
+                let after = text.substring(idx + phoneMatch[0].length).trim();
+
+                let name = before.replace(/[,，、]/g, '').trim();
+                if (extension) name = name + extension;
+
+                let address = after.replace(/[,，、]/g, ' ').trim();
+
                 let quantity = '';
-                const quantityMatch = text.match(/(\d+)\s*(盒|个|件|箱)/);
-                if (quantityMatch) {
-                    quantity = quantityMatch[1];
+                const qMatch = text.match(/(\d+)\s*(盒|个|件|箱)/);
+                if (qMatch) {
+                    quantity = qMatch[1];
                     address = cleanAddress(address);
                 }
-                
-                if (extension) {
-                    name += extension;
-                }
-                
-                return {
-                    specification: specification,
-                    quantity: quantity,
-                    slash1: '',
-                    slash2: '',
-                    name: name,
-                    phone: phone,
-                    address: address,
-                    remark: ''
-                };
+
+                return { specification, quantity, slash1: '', slash2: '', name, phone, address, remark: '' };
             }
-            
-            const lines = recipient.split('\n').map(line => line.trim()).filter(line => line);
-            if (lines.length >= 3) {
-                let nameLine = lines[0];
-                let phoneLine = lines[1];
-                let addressLine = lines[2];
-                
-                const nameMatch = nameLine.match(/^(.+?)(?:\[(\d+)\])?$/);
-                if (nameMatch) {
-                    nameLine = nameMatch[1];
-                    if (nameMatch[2] && !extension) {
-                        extension = `[${nameMatch[2]}]`;
-                    }
+
+            // 尝试按多行解析
+            if (lines.length >= 2) {
+                let nameLine = lines[0] || '';
+                let phoneLine = lines.find(l => /\d{7,11}/.test(l)) || lines[1] || '';
+                let addressLine = lines.find(l => !/\d{7,11}/.test(l) && l !== nameLine) || '';
+
+                const nm = nameLine.match(/^(.+?)(?:\[(\d+)\])?$/);
+                if (nm) {
+                    nameLine = nm[1].trim();
+                    if (nm[2] && !extension) extension = `[${nm[2]}]`;
                 }
-                
-                const phoneMatch = phoneLine.match(/^(\d+)(?:-*\[(\d+)\])?$/);
-                if (phoneMatch) {
-                    phoneLine = phoneMatch[1];
-                    if (phoneMatch[2] && !extension) {
-                        extension = `[${phoneMatch[2]}]`;
-                    }
+
+                const pm = (phoneLine || '').match(/(\d{7,11})(?:-*\[(\d+)\])?/);
+                if (pm) {
+                    phoneLine = pm[1];
+                    if (pm[2] && !extension) extension = `[${pm[2]}]`;
+                } else {
+                    const anyPhone = text.match(/\d{7,11}/);
+                    if (anyPhone) phoneLine = anyPhone[0];
                 }
-                
-                const addressMatch = addressLine.match(/^(.+?)(?:\[(\d+)\])?$/);
-                if (addressMatch) {
-                    addressLine = addressMatch[1];
-                    if (addressMatch[2] && !extension) {
-                        extension = `[${addressMatch[2]}]`;
-                    }
+
+                const am = (addressLine || '').match(/^(.+?)(?:\[(\d+)\])?$/);
+                if (am) {
+                    addressLine = am[1].trim();
+                    if (am[2] && !extension) extension = `[${am[2]}]`;
                 }
-                
+
                 let quantity = '';
-                if (lines.length > 3) {
-                    const quantityMatch = lines[3].match(/(\d+)\s*(盒|个|件|箱)/);
-                    if (quantityMatch) {
-                        quantity = quantityMatch[1];
+                const ql = lines.find(l => /(\d+)\s*(盒|个|件|箱)/.test(l));
+                if (ql) {
+                    const qm = ql.match(/(\d+)\s*(盒|个|件|箱)/);
+                    if (qm) {
+                        quantity = qm[1];
+                        addressLine = cleanAddress(addressLine);
                     }
                 } else {
-                    const quantityMatch = addressLine.match(/(\d+)\s*(盒|个|件|箱)/);
-                    if (quantityMatch) {
-                        quantity = quantityMatch[1];
+                    const qm2 = addressLine.match(/(\d+)\s*(盒|个|件|箱)/);
+                    if (qm2) {
+                        quantity = qm2[1];
                         addressLine = cleanAddress(addressLine);
                     }
                 }
-                
+
                 if (!specification) {
-                    const specMatch = addressLine.match(/(大果|中果|小果)/);
-                    if (specMatch) {
-                        specification = specMatch[1];
-                    addressLine = cleanAddress(addressLine);
+                    const sm = addressLine.match(/(大果|中果|小果)/);
+                    if (sm) {
+                        specification = sm[1];
+                        addressLine = cleanAddress(addressLine);
                     }
                 }
-                
-                const fullName = nameLine + extension;
-                
-                return {
-                    specification: specification,
-                    quantity: quantity,
-                    slash1: '',
-                    slash2: '',
-                    name: fullName,
-                    phone: phoneLine,
-                    address: addressLine,
-                    remark: ''
-                };
+
+                const fullName = (nameLine + (extension || '')).trim();
+                return { specification, quantity, slash1: '', slash2: '', name: fullName, phone: phoneLine || '', address: addressLine || '', remark: '' };
             }
-            
-            return {
-                specification: '',
-                quantity: '',
-                slash1: '',
-                slash2: '',
-                name: text,
-                phone: '',
-                address: '',
-                remark: '解析失败'
-            };
+
+            return { specification: '', quantity: '', slash1: '', slash2: '', name: text || raw, phone: '', address: '', remark: '解析失败' };
         }
-        
+
         function generateTable(data) {
             const tableContainer = document.getElementById('tableContainer');
-            
-            if (data.length === 0) {
+            if (!tableContainer) return;
+            if (!Array.isArray(data) || data.length === 0) {
                 tableContainer.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>未提取到有效信息</p></div>';
                 return;
             }
-            
-            let tableHTML = '<table><thead><tr>';
-            tableHTML += '<th>规格</th><th>数量</th><th>/</th><th>/</th><th>姓名</th><th>电话</th><th>地址</th><th>备注</th>';
-            tableHTML += '</tr></thead><tbody>';
-            
+
+            let html = '<table><thead><tr>';
+            html += '<th>规格</th><th>数量</th><th>/</th><th>/</th><th>姓名</th><th>电话</th><th>地址</th><th>备注</th>';
+            html += '</tr></thead><tbody>';
             data.forEach(item => {
-                tableHTML += `<tr>
-                    <td>${item.specification}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.slash1}</td>
-                    <td>${item.slash2}</td>
-                    <td>${item.name}</td>
-                    <td>${item.phone}</td>
-                    <td>${item.address}</td>
-                    <td>${item.remark}</td>
+                html += `<tr>
+                    <td>${escapeHtml(item.specification)}</td>
+                    <td>${escapeHtml(item.quantity)}</td>
+                    <td>${escapeHtml(item.slash1)}</td>
+                    <td>${escapeHtml(item.slash2)}</td>
+                    <td>${escapeHtml(item.name)}</td>
+                    <td>${escapeHtml(item.phone)}</td>
+                    <td>${escapeHtml(item.address)}</td>
+                    <td>${escapeHtml(item.remark)}</td>
                 </tr>`;
             });
-            
-            tableHTML += '</tbody></table>';
-            tableContainer.innerHTML = tableHTML;
+            html += '</tbody></table>';
+            tableContainer.innerHTML = html;
         }
-        
+
         function exportToExcel(data, filename) {
+            if (typeof XLSX === 'undefined') {
+                showToast('未找到 XLSX 库，无法导出', 'error');
+                return;
+            }
             const wb = XLSX.utils.book_new();
             const wsData = [['规格', '数量', '/', '/', '姓名', '电话', '地址', '备注']];
-            
-            data.forEach(item => {
-                wsData.push([
-                    item.specification,
-                    item.quantity,
-                    item.slash1,
-                    item.slash2,
-                    item.name,
-                    item.phone,
-                    item.address,
-                    item.remark
-                ]);
-            });
-            
+            data.forEach(item => wsData.push([item.specification || '', item.quantity || '', item.slash1 || '', item.slash2 || '', item.name || '', item.phone || '', item.address || '', item.remark || '']));
             const ws = XLSX.utils.aoa_to_sheet(wsData);
             XLSX.utils.book_append_sheet(wb, ws, '订单信息');
-            XLSX.writeFile(wb, filename + '.xlsx');
+            XLSX.writeFile(wb, (filename || 'orders') + '.xlsx');
         }
-        
-        // GitHub集成功能 - 修复版
+
+        // GitHub 支持
         function loadGithubConfig() {
-            const configStr = localStorage.getItem(GITHUB_CONFIG_KEY);
-            if (configStr) {
-                githubConfig = JSON.parse(configStr);
-                document.getElementById('githubToken').value = githubConfig.token || '';
-                document.getElementById('githubRepo').value = githubConfig.repo || 'your-username/fresh-fruit-orders';
-                document.getElementById('githubBranch').value = githubConfig.branch || 'main';
-                document.getElementById('githubOwner').value = githubConfig.owner || '';
-                
-                // 更新GitHub状态显示
-                const githubStatus = document.getElementById('githubStatus');
-                if (githubConfig.token && githubConfig.repo && githubConfig.owner) {
-                    githubStatus.className = 'github-status connected';
-                    githubStatus.innerHTML = '<i class="fas fa-check-circle"></i> GitHub配置已保存';
-                } else {
-                    githubStatus.className = 'github-status disconnected';
-                    githubStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> GitHub连接未配置';
-                }
+            const cfg = localStorage.getItem(GITHUB_CONFIG_KEY);
+            try {
+                githubConfig = cfg ? JSON.parse(cfg) : {};
+            } catch (e) {
+                githubConfig = {};
             }
+            const tokenEl = document.getElementById('githubToken');
+            const repoEl = document.getElementById('githubRepo');
+            const branchEl = document.getElementById('githubBranch');
+            const ownerEl = document.getElementById('githubOwner');
+            if (tokenEl) tokenEl.value = githubConfig.token || '';
+            if (repoEl) repoEl.value = githubConfig.repo || 'your-username/fresh-fruit-orders';
+            if (branchEl) branchEl.value = githubConfig.branch || 'main';
+            if (ownerEl) ownerEl.value = githubConfig.owner || '';
         }
-        
+
         function saveGithubConfig() {
-            githubConfig = {
-                token: document.getElementById('githubToken').value,
-                repo: document.getElementById('githubRepo').value,
-                branch: document.getElementById('githubBranch').value,
-                owner: document.getElementById('githubOwner').value
-            };
-            
-            localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(githubConfig));
-            
-            // 更新GitHub状态显示
-            const githubStatus = document.getElementById('githubStatus');
-            if (githubConfig.token && githubConfig.repo && githubConfig.owner) {
-                githubStatus.className = 'github-status connected';
-                githubStatus.innerHTML = '<i class="fas fa-check-circle"></i> GitHub配置已保存';
+            const tokenEl = document.getElementById('githubToken');
+            const repoEl = document.getElementById('githubRepo');
+            const branchEl = document.getElementById('githubBranch');
+            const ownerEl = document.getElementById('githubOwner');
+            const token = tokenEl ? tokenEl.value.trim() : '';
+            let repoVal = repoEl ? repoEl.value.trim() : '';
+            const branch = branchEl ? branchEl.value.trim() || 'main' : 'main';
+            let owner = ownerEl ? ownerEl.value.trim() : '';
+
+            if (repoVal && repoVal.includes('/')) {
+                const parts = repoVal.split('/');
+                owner = parts[0];
+                repoVal = parts[1];
             }
-            
+
+            githubConfig = { token, repo: repoVal, branch, owner };
+            localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(githubConfig));
             showToast('GitHub配置已保存');
         }
-        
+
         async function githubApiRequest(url, method = 'GET', body = null) {
-            const headers = {
-                'Authorization': `token ${githubConfig.token}`,
-                'Accept': 'application/vnd.github.v3+json'
-            };
-            
-            const options = {
-                method,
-                headers
-            };
-            
+            const headers = { 'Accept': 'application/vnd.github.v3+json' };
+            if (githubConfig && githubConfig.token) headers['Authorization'] = `token ${githubConfig.token}`;
+            const options = { method, headers };
             if (body) {
                 options.body = JSON.stringify(body);
                 headers['Content-Type'] = 'application/json';
             }
-            
-            try {
-                const response = await fetch(url, options);
-                if (response.ok) {
-                    return await response.json();
-                } else {
-                    const errorData = await response.json().catch(() => ({ message: '未知错误' }));
-                    throw new Error(`GitHub API错误: ${response.status} - ${errorData.message || response.statusText}`);
-                }
-            } catch (error) {
-                console.error('GitHub API请求失败:', error);
-                throw error;
+            const resp = await fetch(url, options);
+            const text = await resp.text();
+            let data;
+            try { data = text ? JSON.parse(text) : {}; } catch (e) { data = { raw: text }; }
+            if (!resp.ok) {
+                const msg = data && data.message ? data.message : `HTTP ${resp.status}`;
+                throw new Error(msg);
             }
+            return data;
         }
-        
+
         async function testGithubConnection() {
+            loadGithubConfig();
             if (!githubConfig.token) {
-                showToast('请输入GitHub访问令牌', 'error');
-                return;
+                showToast('请先填写并保存GitHub令牌', 'error');
+                return false;
             }
-            
             try {
-                const userData = await githubApiRequest('https://api.github.com/user');
-                showToast(`连接成功！欢迎，${userData.login}`);
-                
-                // 更新GitHub状态显示
-                const githubStatus = document.getElementById('githubStatus');
-                githubStatus.className = 'github-status connected';
-                githubStatus.innerHTML = `<i class="fas fa-check-circle"></i> 已连接到GitHub: ${userData.login}`;
-                
+                const user = await githubApiRequest('https://api.github.com/user');
+                showToast(`连接成功：${user.login || '已认证'}`);
                 return true;
-            } catch (error) {
-                showToast('GitHub连接失败: ' + error.message, 'error');
-                
-                // 更新GitHub状态显示
-                const githubStatus = document.getElementById('githubStatus');
-                githubStatus.className = 'github-status disconnected';
-                githubStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> GitHub连接失败';
-                
+            } catch (err) {
+                showToast('连接失败：' + (err.message || err), 'error');
                 return false;
             }
         }
-        
-        // 同步订单数据到GitHub - 修复版
+
         async function syncToGithub() {
-            if (currentTableData.length === 0) {
-                showToast('没有数据可同步', 'error');
+            if (!Array.isArray(currentTableData) || currentTableData.length === 0) {
+                showToast('没有要同步的数据', 'error');
                 return;
             }
-            
-            if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
-                showToast('请先配置GitHub信息', 'error');
+            loadGithubConfig();
+            if (!githubConfig || !githubConfig.repo || !githubConfig.owner) {
+                showToast('请先填写并保存仓库信息（owner 和 repo）', 'error');
                 return;
             }
-            
+            const user = currentUsername || localStorage.getItem('loggedInUser') || 'unknown';
+            const now = Date.now();
+            const formatted = new Date(now).toISOString().replace(/[:.]/g, '-');
+            const filename = `orders/${user}_${formatted}.json`;
+            const payload = { user, timestamp: now, data: currentTableData };
+            const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+            const fileUrl = `https://api.github.com/repos/${encodeURIComponent(githubConfig.owner)}/${encodeURIComponent(githubConfig.repo)}/contents/${encodeURIComponent(filename)}`;
+
             try {
-                const currentUser = localStorage.getItem('loggedInUser');
-                const timestamp = new Date().getTime();
-                const filename = `orders/${currentUser}_${timestamp}.json`;
-                
-                const data = {
-                    user: currentUser,
-                    timestamp: timestamp,
-                    data: currentTableData
-                };
-                
-                // 检查orders目录是否存在，如果不存在则创建
-                try {
-                    await githubApiRequest(
-                        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders?ref=${githubConfig.branch}`
-                    );
-                } catch (error) {
-                    // 目录不存在，需要创建
-                    if (error.message.includes('404')) {
-                        // 创建orders目录
-                        await githubApiRequest(
-                            `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders/.gitkeep`,
-                            'PUT',
-                            {
-                                message: '创建orders目录',
-                                content: btoa(''),
-                                branch: githubConfig.branch
-                            }
-                        );
-                    } else {
-                        throw error;
-                    }
-                }
-                
-                const fileUrl = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${filename}`;
+                // 无需预先获取 sha（新文件情况常见），但尝试获取以便覆盖
                 let sha = null;
-                
                 try {
-                    const existingFile = await githubApiRequest(`${fileUrl}?ref=${githubConfig.branch}`);
-                    sha = existingFile.sha;
-                } catch (e) {
-                    // 文件不存在，这是新文件
-                }
-                
-                const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-                
-                const response = await githubApiRequest(fileUrl, 'PUT', {
-                    message: `同步订单数据 - ${currentUser} - ${new Date(timestamp).toLocaleString()}`,
-                    content: content,
-                    branch: githubConfig.branch,
-                    sha: sha
-                });
-                
-                showToast('数据已成功同步到GitHub');
-                return response;
-            } catch (error) {
-                showToast('同步失败: ' + error.message, 'error');
-                throw error;
+                    const existing = await githubApiRequest(`${fileUrl}?ref=${githubConfig.branch}`);
+                    if (existing && existing.sha) sha = existing.sha;
+                } catch (e) { /* ignore not found */ }
+
+                const body = { message: `Add orders ${user} ${formatted}`, content: contentBase64, branch: githubConfig.branch || 'main' };
+                if (sha) body.sha = sha;
+                const resp = await githubApiRequest(fileUrl, 'PUT', body);
+                showToast('同步到GitHub成功');
+                return resp;
+            } catch (err) {
+                showToast('同步失败：' + (err.message || err), 'error');
+                throw err;
             }
         }
-        
-        // 从GitHub加载数据 - 修复版
+
+        // 从 GitHub 加载（默认拉最近一次包含当前用户的文件；管理员可获取全部）
         async function loadFromGithub() {
-            if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
-                showToast('请先配置GitHub信息', 'error');
+            loadGithubConfig();
+            if (!githubConfig || !githubConfig.repo || !githubConfig.owner) {
+                showToast('请先填写并保存仓库信息（owner 和 repo）', 'error');
                 return;
             }
-            
             try {
-                const currentUser = localStorage.getItem('loggedInUser');
+                const currentUser = currentUsername || localStorage.getItem('loggedInUser') || '';
                 const isAdmin = currentUserRole === 'admin';
-                
-                let files = [];
-                
-                // 检查orders目录是否存在
-                try {
-                    const response = await githubApiRequest(
-                        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders?ref=${githubConfig.branch}`
-                    );
-                    files = response;
-                } catch (error) {
-                    if (error.message.includes('404')) {
-                        showToast('GitHub上尚未创建orders目录', 'error');
-                        return;
-                    } else {
-                        throw error;
-                    }
-                }
-                
-                if (files.length === 0) {
+                const listUrl = `https://api.github.com/repos/${encodeURIComponent(githubConfig.owner)}/${encodeURIComponent(githubConfig.repo)}/contents/orders?ref=${githubConfig.branch || 'main'}`;
+                const files = await githubApiRequest(listUrl);
+                if (!Array.isArray(files) || files.length === 0) {
                     showToast('GitHub上没有找到订单数据', 'error');
                     return;
                 }
-                
-                // 过滤文件，只保留JSON文件
-                files = files.filter(file => file.name.endsWith('.json') && file.name !== '.gitkeep');
-                
-                if (isAdmin) {
-                    // 管理员可以获取所有文件
-                } else {
-                    // 普通用户只能获取自己的文件
-                    files = files.filter(file => file.name.includes(currentUser));
+
+                // 逐个读取文件并解析我们保存的 timestamp 字段，过滤普通用户视图
+                const candidates = [];
+                for (const f of files) {
+                    try {
+                        // 使用 download_url 更直接获取文件内容
+                        if (!f.download_url) continue;
+                        const fileRaw = await fetch(f.download_url);
+                        if (!fileRaw.ok) continue;
+                        const fileJson = await fileRaw.json();
+                        // 支持两种格式：直接数组或包含 {data: [...], timestamp}
+                        if (Array.isArray(fileJson)) {
+                            // 旧格式，尽量 infer timestamp from name
+                            candidates.push({ file: f, parsed: { data: fileJson, timestamp: extractTimestampFromName(f.name) } });
+                        } else if (fileJson && fileJson.data) {
+                            candidates.push({ file: f, parsed: { data: fileJson.data, timestamp: fileJson.timestamp || extractTimestampFromName(f.name) } });
+                        }
+                    } catch (err) {
+                        console.error('读取文件失败', f.name, err);
+                    }
                 }
-                
-                if (files.length === 0) {
-                    showToast('GitHub上没有找到符合条件的订单数据', 'error');
+
+                const filtered = isAdmin ? candidates : candidates.filter(c => (c.parsed && c.parsed.data && fNameIncludesUser(c.file.name, currentUser)));
+                // choose latest by parsed.timestamp
+                const sorted = candidates.sort((a, b) => (b.parsed.timestamp || 0) - (a.parsed.timestamp || 0));
+                const latest = sorted[0];
+                if (!latest) {
+                    showToast('未能找到合适的文件', 'error');
                     return;
                 }
-                
-                // 获取最新文件
-                const latestFile = files.sort((a, b) => 
-                    new Date(b.name) - new Date(a.name)
-                )[0];
-                
-                const fileContent = await githubApiRequest(latestFile.download_url);
-                currentTableData = fileContent.data;
-                
+                currentTableData = Array.isArray(latest.parsed.data) ? latest.parsed.data : [];
                 generateTable(currentTableData);
                 showToast(`从GitHub加载了 ${currentTableData.length} 条订单数据`);
-            } catch (error) {
-                showToast('从GitHub加载数据失败: ' + error.message, 'error');
+            } catch (err) {
+                showToast('从GitHub加载数据失败: ' + (err.message || err), 'error');
             }
         }
-        
-        // 管理员加载所有用户数据 - 修复版
+
+        // 管理员加载所有用户数据（合并）
         async function loadAllFromGithub() {
-            if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
-                showToast('请先配置GitHub信息', 'error');
+            loadGithubConfig();
+            if (!githubConfig || !githubConfig.repo || !githubConfig.owner) {
+                showToast('请先填写并保存仓库信息（owner 和 repo）', 'error');
                 return;
             }
-            
             if (currentUserRole !== 'admin') {
                 showToast('只有管理员可以执行此操作', 'error');
                 return;
             }
-            
             try {
-                const response = await githubApiRequest(
-                    `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/orders?ref=${githubConfig.branch}`
-                );
-                
-                if (response.length === 0) {
+                const listUrl = `https://api.github.com/repos/${encodeURIComponent(githubConfig.owner)}/${encodeURIComponent(githubConfig.repo)}/contents/orders?ref=${githubConfig.branch || 'main'}`;
+                const files = await githubApiRequest(listUrl);
+                if (!Array.isArray(files) || files.length === 0) {
                     showToast('GitHub上没有找到订单数据', 'error');
                     return;
                 }
-                
-                // 过滤文件，只保留JSON文件
-                const files = response.filter(file => file.name.endsWith('.json') && file.name !== '.gitkeep');
-                
-                if (files.length === 0) {
-                    showToast('GitHub上没有找到订单数据', 'error');
-                    return;
-                }
-                
-                // 合并所有用户的数据
-                let allData = [];
-                for (const file of files) {
+                let all = [];
+                for (const f of files) {
                     try {
-                        const fileContent = await githubApiRequest(file.download_url);
-                        allData = allData.concat(fileContent.data);
-                    } catch (error) {
-                        console.error(`加载文件 ${file.name} 失败:`, error);
+                        if (!f.download_url) continue;
+                        const resp = await fetch(f.download_url);
+                        if (!resp.ok) continue;
+                        const json = await resp.json();
+                        if (Array.isArray(json)) all = all.concat(json);
+                        else if (json && json.data) all = all.concat(json.data);
+                    } catch (err) {
+                        console.error('加载文件失败', f.name, err);
                     }
                 }
-                
-                currentTableData = allData;
+                currentTableData = all;
                 generateTable(currentTableData);
                 showToast(`从GitHub加载了所有用户数据，共 ${currentTableData.length} 条订单`);
-            } catch (error) {
-                showToast('从GitHub加载所有数据失败: ' + error.message, 'error');
+            } catch (err) {
+                showToast('从GitHub加载所有数据失败: ' + (err.message || err), 'error');
             }
         }
-        
-        // 同步用户数据到GitHub - 修复版
+
+        function extractTimestampFromName(name) {
+            // 尝试从文件名提取 ISO 或时间戳段
+            if (!name) return 0;
+            const mIso = name.match(/(\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2})/);
+            if (mIso) {
+                try {
+                    const iso = mIso[1].replace(/-/g, ':').replace('T', 'T').replace(':', '-'); // best-effort fallback
+                } catch (e) {}
+            }
+            const mNum = name.match(/(\d{13,})/);
+            if (mNum) return parseInt(mNum[1], 10);
+            const mDate = name.match(/(\d{8}_\d{6})/);
+            if (mDate) {
+                const s = mDate[1];
+                const y = s.slice(0,4), mo = s.slice(4,6), d = s.slice(6,8), h = s.slice(9,11), mi = s.slice(11,13), se = s.slice(13,15);
+                const t = Date.parse(`${y}-${mo}-${d}T${h}:${mi}:${se}`);
+                return isNaN(t) ? 0 : t;
+            }
+            return 0;
+        }
+
+        function fNameIncludesUser(name, user) {
+            if (!name || !user) return false;
+            return name.indexOf(user) !== -1;
+        }
+
+        // 用户数据同步
         async function syncUsersToGithub() {
-            if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
-                showToast('请先配置GitHub信息', 'error');
+            loadGithubConfig();
+            if (!githubConfig || !githubConfig.repo || !githubConfig.owner) {
+                showToast('请先填写并保存仓库信息（owner 和 repo）', 'error');
                 return;
             }
-            
             if (currentUserRole !== 'admin') {
                 showToast('只有管理员可以执行此操作', 'error');
                 return;
             }
-            
             try {
                 const users = loadUsers();
                 const filename = `users.json`;
-                const fileUrl = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${filename}`;
+                const fileUrl = `https://api.github.com/repos/${encodeURIComponent(githubConfig.owner)}/${encodeURIComponent(githubConfig.repo)}/contents/${filename}`;
                 let sha = null;
-                
                 try {
-                    const existingFile = await githubApiRequest(`${fileUrl}?ref=${githubConfig.branch}`);
-                    sha = existingFile.sha;
-                } catch (e) {
-                    // 文件不存在，这是新文件
-                }
-                
+                    const existing = await githubApiRequest(`${fileUrl}?ref=${githubConfig.branch}`);
+                    if (existing && existing.sha) sha = existing.sha;
+                } catch (e) {}
                 const content = btoa(unescape(encodeURIComponent(JSON.stringify(users, null, 2))));
-                
-                const response = await githubApiRequest(fileUrl, 'PUT', {
-                    message: `同步用户数据 - ${new Date().toLocaleString()}`,
-                    content: content,
-                    branch: githubConfig.branch,
-                    sha: sha
-                });
-                
+                const body = { message: `同步用户数据 - ${new Date().toLocaleString()}`, content, branch: githubConfig.branch || 'main' };
+                if (sha) body.sha = sha;
+                await githubApiRequest(fileUrl, 'PUT', body);
                 showToast('用户数据已成功同步到GitHub');
-                return response;
-            } catch (error) {
-                showToast('同步用户数据失败: ' + error.message, 'error');
-                throw error;
+            } catch (err) {
+                showToast('同步用户数据失败: ' + (err.message || err), 'error');
+                throw err;
             }
         }
-        
-        // 从GitHub加载用户数据 - 修复版
+
         async function loadUsersFromGithub() {
-            if (!githubConfig.token || !githubConfig.repo || !githubConfig.owner) {
-                showToast('请先配置GitHub信息', 'error');
+            loadGithubConfig();
+            if (!githubConfig || !githubConfig.repo || !githubConfig.owner) {
+                showToast('请先填写并保存仓库信息（owner 和 repo）', 'error');
                 return;
             }
-            
             if (currentUserRole !== 'admin') {
                 showToast('只有管理员可以执行此操作', 'error');
                 return;
             }
-            
             try {
                 const filename = `users.json`;
-                const fileUrl = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${filename}?ref=${githubConfig.branch}`;
-                
+                const fileUrl = `https://api.github.com/repos/${encodeURIComponent(githubConfig.owner)}/${encodeURIComponent(githubConfig.repo)}/contents/${filename}?ref=${githubConfig.branch || 'main'}`;
                 const fileContent = await githubApiRequest(fileUrl);
-                const decodedContent = atob(fileContent.content.replace(/\s/g, ''));
-                const users = JSON.parse(decodedContent);
-                
-                // 保存到本地
+                if (!fileContent || !fileContent.content) throw new Error('未获取到用户文件内容');
+                const decoded = atob(fileContent.content.replace(/\n/g,''));
+                const users = JSON.parse(decoded);
                 saveUsers(users);
-                
-                showToast('用户数据已从GitHub加载并更新本地存储');
                 renderUserList();
+                showToast('用户数据已从GitHub加载并更新本地存储');
                 return users;
-            } catch (error) {
-                if (error.message.includes('404')) {
-                    showToast('GitHub上尚未创建users.json文件', 'error');
-                } else {
-                    showToast('从GitHub加载用户数据失败: ' + error.message, 'error');
-                }
-                throw error;
+            } catch (err) {
+                showToast('从GitHub加载用户数据失败: ' + (err.message || err), 'error');
+                throw err;
             }
         }
-        
-        // 用户管理功能
+
+        // 本地用户管理
         function loadUsers() {
-            const usersStr = localStorage.getItem(USERS_CONFIG_KEY);
-            if (usersStr) {
-                return JSON.parse(usersStr);
-            } else {
-                // 首次使用，保存初始用户
-                localStorage.setItem(USERS_CONFIG_KEY, JSON.stringify(AUTHORIZED_USERS));
-                return AUTHORIZED_USERS;
+            const s = localStorage.getItem(USERS_CONFIG_KEY);
+            if (s) {
+                try { return JSON.parse(s); } catch (e) {}
             }
+            localStorage.setItem(USERS_CONFIG_KEY, JSON.stringify(AUTHORIZED_USERS));
+            return AUTHORIZED_USERS.slice();
         }
-        
+
         function saveUsers(users) {
             localStorage.setItem(USERS_CONFIG_KEY, JSON.stringify(users));
         }
-        
+
         function addUser(username, password, role) {
             const users = loadUsers();
-            
-            // 检查用户是否已存在
-            if (users.some(user => user.username === username)) {
-                return { success: false, message: '用户名已存在' };
-            }
-            
-            // 添加新用户
+            if (users.some(u => u.username === username)) return { success: false, message: '用户名已存在' };
             users.push({ username, password, role });
             saveUsers(users);
-            
             return { success: true, message: '用户添加成功' };
         }
-        
+
         function deleteUser(username) {
             const users = loadUsers();
-            
-            // 防止删除当前登录用户
             const currentUser = localStorage.getItem('loggedInUser');
-            if (username === currentUser) {
-                return { success: false, message: '不能删除当前登录用户' };
-            }
-            
-            // 防止删除最后一个管理员
-            const adminUsers = users.filter(user => user.role === 'admin');
-            if (adminUsers.length === 1 && adminUsers[0].username === username) {
-                return { success: false, message: '必须至少保留一个管理员账户' };
-            }
-            
-            const filteredUsers = users.filter(user => user.username !== username);
-            saveUsers(filteredUsers);
-            
+            if (username === currentUser) return { success: false, message: '不能删除当前登录用户' };
+            const adminUsers = users.filter(u => u.role === 'admin');
+            if (adminUsers.length === 1 && adminUsers[0].username === username) return { success: false, message: '必须至少保留一个管理员账户' };
+            const filtered = users.filter(u => u.username !== username);
+            saveUsers(filtered);
             return { success: true, message: '用户删除成功' };
         }
-        
+
         function renderUserList() {
             const userList = document.getElementById('userList');
             const users = loadUsers();
-            
-            if (users.length === 0) {
+            if (!userList) return;
+            if (!users || users.length === 0) {
                 userList.innerHTML = '<div class="user-item" style="justify-content: center; color: var(--gray);">暂无用户</div>';
                 return;
             }
-            
-            let userListHTML = '';
+            let html = '';
             users.forEach(user => {
-                userListHTML += `
-                    <div class="user-item">
-                        <div class="user-item-info">
-                            <div class="user-avatar" style="width: 24px; height: 24px; font-size: 0.7rem;">
-                                ${user.username.charAt(0).toUpperCase()}
-                            </div>
-                            <span>${user.username}</span>
-                            <span class="user-item-role" style="background: ${user.role === 'admin' ? 'var(--primary)' : 'var(--gray)'}">
-                                ${user.role === 'admin' ? '管理员' : '普通用户'}
-                            </span>
-                        </div>
-                        <div class="user-item-actions">
-                            <button class="btn btn-small btn-danger delete-user-btn" data-username="${user.username}">
-                                <i class="fas fa-trash"></i> 删除
-                            </button>
-                        </div>
+                html += `<div class="user-item">
+                    <div class="user-item-info">
+                        <div class="user-avatar" style="width: 24px; height: 24px; font-size: 0.7rem;">${escapeHtml(user.username.charAt(0).toUpperCase())}</div>
+                        <span>${escapeHtml(user.username)}</span>
+                        <span class="user-item-role" style="background: ${user.role === 'admin' ? 'var(--primary)' : 'var(--gray)'}">${user.role === 'admin' ? '管理员' : '普通用户'}</span>
                     </div>
-                `;
+                    <div class="user-item-actions">
+                        <button class="btn btn-small btn-danger delete-user-btn" data-username="${escapeHtml(user.username)}"><i class="fas fa-trash"></i> 删除</button>
+                    </div>
+                </div>`;
             });
-            
-            userList.innerHTML = userListHTML;
-            
-            // 添加删除按钮事件监听
+            userList.innerHTML = html;
             document.querySelectorAll('.delete-user-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const username = this.getAttribute('data-username');
-                    const result = deleteUser(username);
-                    
-                    if (result.success) {
-                        showToast(result.message);
-                        renderUserList();
-                    } else {
-                        showToast(result.message, 'error');
-                    }
+                    const res = deleteUser(username);
+                    if (res.success) { showToast(res.message); renderUserList(); } else showToast(res.message, 'error');
                 });
             });
         }
-        
+
         function updateUserInterface() {
             const isAdmin = currentUserRole === 'admin';
-            
-            // 显示/隐藏管理员功能
-            const adminElements = document.querySelectorAll('.admin-only');
-            adminElements.forEach(el => {
-                el.style.display = isAdmin ? 'block' : 'none';
-            });
-            
-            if (isAdmin) {
-                renderUserList();
-            }
+            document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'block' : 'none');
+            if (isAdmin) renderUserList();
         }
-        
-        // 添加加载状态管理
-        function setLoadingState(element, isLoading) {
-            if (isLoading) {
-                element.classList.add('loading');
-                element.disabled = true;
-            } else {
-                element.classList.remove('loading');
-                element.disabled = false;
-            }
-        }
-        
-        // 事件监听器
+
+        // 事件绑定
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('loginError');
-            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const err = document.getElementById('loginError');
             const users = loadUsers();
             const user = users.find(u => u.username === username && u.password === password);
-            
             if (user) {
                 localStorage.setItem('loggedInUser', username);
                 localStorage.setItem('userRole', user.role);
                 currentUserRole = user.role;
-                errorDiv.style.display = 'none';
-                
+                currentUsername = username;
+                if (err) err.style.display = 'none';
                 document.getElementById('loginContainer').classList.add('hidden');
                 document.getElementById('appContainer').classList.remove('hidden');
-                
                 document.getElementById('userName').textContent = username;
-                document.getElementById('userAvatar').innerHTML = username.charAt(0).toUpperCase();
+                document.getElementById('userAvatar').innerHTML = escapeHtml(username.charAt(0).toUpperCase());
                 document.getElementById('userRole').textContent = user.role === 'admin' ? '管理员' : '普通用户';
-                
                 updateUserInterface();
                 loadGithubConfig();
-                
                 showToast(`欢迎回来，${username}！`);
             } else {
-                errorDiv.style.display = 'block';
+                if (err) err.style.display = 'block';
                 document.getElementById('password').value = '';
             }
         });
-        
+
         document.getElementById('logoutBtn').addEventListener('click', function() {
             localStorage.removeItem('loggedInUser');
             localStorage.removeItem('userRole');
+            currentUserRole = 'user';
+            currentUsername = '';
             document.getElementById('loginContainer').classList.remove('hidden');
             document.getElementById('appContainer').classList.add('hidden');
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            document.getElementById('loginError').style.display = 'none';
+            const loginError = document.getElementById('loginError');
+            if (loginError) loginError.style.display = 'none';
         });
-        
+
         document.getElementById('extractBtn').addEventListener('click', function() {
-            const inputText = document.getElementById('inputText').value.trim();
-            if (!inputText) {
-                showToast('请输入收件人信息', 'error');
-                return;
-            }
-            
-            const recipients = inputText.split('#').map(r => r.trim()).filter(r => r);
+            const input = document.getElementById('inputText').value.trim();
+            if (!input) { showToast('请输入收件人信息', 'error'); return; }
+            const recipients = input.split('#').map(r => r.trim()).filter(Boolean);
             currentTableData = [];
-            
-            recipients.forEach(recipient => {
-                const extractedInfo = extractInfo(recipient);
-                currentTableData.push(extractedInfo);
-            });
-            
+            recipients.forEach(r => currentTableData.push(extractInfo(r)));
             generateTable(currentTableData);
             processedCount += currentTableData.length;
             updateStats();
-            
-            if (currentTableData.length > 0) {
-                showToast(`成功提取 ${currentTableData.length} 条订单信息`);
-            } else {
-                showToast('未提取到有效信息，请检查输入格式', 'error');
-            }
+            if (currentTableData.length > 0) showToast(`成功提取 ${currentTableData.length} 条订单信息`);
+            else showToast('未提取到有效信息，请检查输入格式', 'error');
         });
-        
+
         document.getElementById('saveBtn').addEventListener('click', function() {
-            if (currentTableData.length === 0) {
-                showToast('没有数据可保存', 'error');
-                return;
-            }
-            
-            const allData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            const timestamp = new Date().getTime();
-            const expiryTime = timestamp + (3 * 24 * 60 * 60 * 1000);
-            const currentUser = localStorage.getItem('loggedInUser');
-            
-            const newData = {
-                id: timestamp,
-                username: currentUser,
-                data: currentTableData,
-                timestamp: timestamp,
-                expiry: expiryTime
-            };
-            
-            allData.push(newData);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(allData));
-            
+            if (!currentTableData.length) { showToast('没有数据可保存', 'error'); return; }
+            const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            const ts = Date.now();
+            const expiry = ts + 3 * 24 * 60 * 60 * 1000;
+            const user = currentUsername || localStorage.getItem('loggedInUser') || 'unknown';
+            const newData = { id: ts, username: user, data: currentTableData, timestamp: ts, expiry };
+            all.push(newData);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
             showToast(`数据已保存（${currentTableData.length} 条）`);
         });
-        
+
         document.getElementById('copyBtn').addEventListener('click', function() {
-            if (currentTableData.length === 0) {
-                showToast('没有表格数据可复制', 'error');
-                return;
-            }
-            
-            let csvContent = '规格,数量,/,/,姓名,电话,地址,备注\n';
-            
-            currentTableData.forEach(item => {
-                csvContent += `${item.specification},${item.quantity},${item.slash1},${item.slash2},${item.name},${item.phone},${item.address},${item.remark}\n`;
-            });
-            
-            navigator.clipboard.writeText(csvContent).then(() => {
-                showToast('表格数据已复制到剪贴板');
-            }).catch(() => {
-                const textArea = document.createElement('textarea');
-                textArea.value = csvContent;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showToast('表格数据已复制到剪贴板');
+            if (!currentTableData.length) { showToast('没有表格数据可复制', 'error'); return; }
+            let csv = '规格,数量,/,/,姓名,电话,地址,备注\n';
+            currentTableData.forEach(i => csv += `${i.specification || ''},${i.quantity || ''},${i.slash1 || ''},${i.slash2 || ''},${i.name || ''},${i.phone || ''},${i.address || ''},${i.remark || ''}\n`);
+            navigator.clipboard.writeText(csv).then(() => showToast('表格数据已复制到剪贴板')).catch(() => {
+                const ta = document.createElement('textarea'); ta.value = csv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('表格数据已复制到剪贴板');
             });
         });
-        
+
         document.getElementById('exportBtn').addEventListener('click', function() {
-            if (currentTableData.length === 0) {
-                showToast('没有表格数据可导出', 'error');
-                return;
-            }
-            
-            const date = new Date();
-            const filename = `舍鲜果订单信息_${date.getFullYear()}${(date.getMonth()+1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-            
+            if (!currentTableData.length) { showToast('没有表格数据可导出', 'error'); return; }
+            const d = new Date();
+            const filename = `舍鲜果订单信息_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
             exportToExcel(currentTableData, filename);
             showToast('Excel文件已生成并开始下载');
         });
-        
-        // GitHub相关事件监听器 - 修复版
-        document.getElementById('testGithubBtn').addEventListener('click', async function() {
-            setLoadingState(this, true);
-            await testGithubConnection();
-            setLoadingState(this, false);
-        });
-        
+
+        // GitHub 事件
+        document.getElementById('testGithubBtn').addEventListener('click', testGithubConnection);
         document.getElementById('saveGithubConfigBtn').addEventListener('click', saveGithubConfig);
-        
-        document.getElementById('syncToGithubBtn').addEventListener('click', async function() {
-            setLoadingState(this, true);
-            await syncToGithub();
-            setLoadingState(this, false);
-        });
-        
-        document.getElementById('loadFromGithubBtn').addEventListener('click', async function() {
-            setLoadingState(this, true);
-            await loadFromGithub();
-            setLoadingState(this, false);
-        });
-        
-        document.getElementById('loadAllFromGithubBtn').addEventListener('click', async function() {
-            setLoadingState(this, true);
-            await loadAllFromGithub();
-            setLoadingState(this, false);
-        });
-        
-        // 用户管理事件监听器
+        document.getElementById('syncToGithubBtn').addEventListener('click', syncToGithub);
+        document.getElementById('loadFromGithubBtn').addEventListener('click', loadFromGithub);
+        document.getElementById('loadAllFromGithubBtn').addEventListener('click', loadAllFromGithub);
+
+        // 用户管理事件
         document.getElementById('addUserBtn').addEventListener('click', function() {
             const username = document.getElementById('newUsername').value.trim();
             const password = document.getElementById('newPassword').value.trim();
             const role = document.getElementById('userRoleSelect').value;
-            
-            if (!username || !password) {
-                showToast('请输入用户名和密码', 'error');
-                return;
-            }
-            
-            const result = addUser(username, password, role);
-            if (result.success) {
-                showToast(result.message);
+            if (!username || !password) { showToast('请输入用户名和密码', 'error'); return; }
+            const res = addUser(username, password, role);
+            if (res.success) {
+                showToast(res.message);
                 document.getElementById('newUsername').value = '';
                 document.getElementById('newPassword').value = '';
                 renderUserList();
-                
-                // 提示管理员同步用户数据到GitHub
-                if (currentUserRole === 'admin') {
-                    showToast('用户添加成功，请点击"同步用户数据到GitHub"按钮将更改同步到GitHub', 'info');
-                }
-            } else {
-                showToast(result.message, 'error');
-            }
+                if (currentUserRole === 'admin') showToast('用户添加成功，请点击"同步用户数据到GitHub"按钮将更改同步到GitHub', 'info');
+            } else showToast(res.message, 'error');
         });
-        
-        document.getElementById('syncUsersToGithubBtn').addEventListener('click', async function() {
-            setLoadingState(this, true);
-            await syncUsersToGithub();
-            setLoadingState(this, false);
-        });
-        
-        document.getElementById('loadUsersFromGithubBtn').addEventListener('click', async function() {
-            setLoadingState(this, true);
-            await loadUsersFromGithub();
-            setLoadingState(this, false);
-        });
-        
-        document.getElementById('refreshUsersBtn').addEventListener('click', function() {
-            renderUserList();
-            showToast('用户列表已刷新');
-        });
-        
-        // 页面加载时检查登录状态
+
+        document.getElementById('syncUsersToGithubBtn').addEventListener('click', syncUsersToGithub);
+        document.getElementById('loadUsersFromGithubBtn').addEventListener('click', loadUsersFromGithub);
+        document.getElementById('refreshUsersBtn').addEventListener('click', function() { renderUserList(); showToast('用户列表已刷新'); });
+
+        // 页面加载检查登录状态
         window.addEventListener('load', function() {
             const loggedInUser = localStorage.getItem('loggedInUser');
             const userRole = localStorage.getItem('userRole');
-            
             if (loggedInUser) {
+                currentUsername = loggedInUser;
                 currentUserRole = userRole || 'user';
                 document.getElementById('loginContainer').classList.add('hidden');
                 document.getElementById('appContainer').classList.remove('hidden');
                 document.getElementById('userName').textContent = loggedInUser;
-                document.getElementById('userAvatar').innerHTML = loggedInUser.charAt(0).toUpperCase();
+                document.getElementById('userAvatar').innerHTML = escapeHtml(loggedInUser.charAt(0).toUpperCase());
                 document.getElementById('userRole').textContent = currentUserRole === 'admin' ? '管理员' : '普通用户';
                 updateUserInterface();
                 loadGithubConfig();
             }
-            
             updateStats();
         });
     </script>
