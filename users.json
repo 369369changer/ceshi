@@ -5,8 +5,13 @@
     "role": "admin"
   },
   {
+    "username": "沈文浩",
+    "password": "1234",
+    "role": "user"
+  },
+  {
     "username": "马凯",
-    "password": "makai123",
+    "password": "1234",
     "role": "user"
   }
 ]
