@@ -2221,7 +2221,8 @@
             <div class="navbar-logo">电商ERP系统</div>
             <div class="navbar-menu">
                 <a href="#dashboard" id="dashboardLink">仪表盘</a>
-                <a href="#orders" id="ordersLink">订单管理</a>
+                <a href="#shop-management" id="shopManagementLink">店铺管理</a>
+                <a href="#order-management" id="orderManagementLink">订单管理</a>
                 <a href="#products" id="productsLink">商品管理</a>
                 <a href="https://erp.huice.com/#/app/order/fenxiao/pending-order" target="_blank">旺店通</a>
             </div>
@@ -2320,17 +2321,141 @@
             </div>
         </div>
         
-        <div class="paste-section">
-            <h2>2. 粘贴订单信息</h2>
-            <textarea id="pasteArea" placeholder="请粘贴订单信息，支持多个订单批量粘贴..."></textarea>
-            <div class="button-container">
-                <button id="extractButton">提取订单信息</button>
-                <button id="clearButton">清空</button>
-                <button id="exportButton">导出Excel</button>
-                <button id="importButton">导入Excel</button>
-                <input type="file" id="excelFileInput" accept=".xlsx,.xls" style="display: none;">
-                <button id="saveButton">保存订单</button>
-                <button id="loadButton">加载订单</button>
+        <!-- 店铺管理模块 -->
+        <div id="shopManagementSection" style="display: none; margin-top: 30px;">
+            <div class="header">
+                <h1>店铺管理</h1>
+            </div>
+            
+            <div class="form-section">
+                <h2>1. 添加店铺</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="shopPlatformSelect">选择平台</label>
+                        <select id="shopPlatformSelect" class="filter-select">
+                            <option value="">请选择平台</option>
+                            <option value="taobao">淘宝/天猫</option>
+                            <option value="jd">京东</option>
+                            <option value="pdd">拼多多</option>
+                            <option value="xhs">小红书</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="shopName">店铺名称</label>
+                        <input type="text" id="shopName" placeholder="输入店铺名称">
+                    </div>
+                </div>
+                
+                <h3>2. API配置</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="shopAppId">App ID / Client ID</label>
+                        <input type="text" id="shopAppId" placeholder="输入App ID或Client ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopAppSecret">App Secret / Client Secret</label>
+                        <input type="password" id="shopAppSecret" placeholder="输入App Secret或Client Secret">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopAccessToken">Access Token</label>
+                        <input type="text" id="shopAccessToken" placeholder="输入Access Token">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopId">店铺ID</label>
+                        <input type="text" id="shopId" placeholder="输入店铺ID">
+                    </div>
+                </div>
+                
+                <div class="button-container" style="margin-top: 20px;">
+                    <button id="bindShopButton">绑定店铺</button>
+                    <button id="clearShopFormButton">清空表单</button>
+                </div>
+            </div>
+            
+            <div class="form-section" style="margin-top: 40px;">
+                <h2>3. 已绑定店铺</h2>
+                <div id="shopList" class="order-list">
+                    <!-- 店铺列表将动态添加 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 订单管理模块 -->
+        <div id="orderManagementSection" style="display: none; margin-top: 30px;">
+            <div class="header">
+                <h1>订单管理</h1>
+            </div>
+            
+            <div class="form-section">
+                <h2>1. 订单抓取设置</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="orderPlatformSelect">选择平台</label>
+                        <select id="orderPlatformSelect" class="filter-select">
+                            <option value="">所有平台</option>
+                            <option value="taobao">淘宝/天猫</option>
+                            <option value="jd">京东</option>
+                            <option value="pdd">拼多多</option>
+                            <option value="xhs">小红书</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderShopSelect">选择店铺</label>
+                        <select id="orderShopSelect" class="filter-select">
+                            <option value="">所有店铺</option>
+                            <!-- 店铺选项将动态添加 -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderStartDate">开始日期</label>
+                        <input type="date" id="orderStartDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="orderEndDate">结束日期</label>
+                        <input type="date" id="orderEndDate">
+                    </div>
+                </div>
+                
+                <div class="button-container" style="margin-top: 20px;">
+                    <button id="fetchOrdersButton">抓取订单</button>
+                    <button id="fetchAllOrdersButton">抓取所有平台</button>
+                </div>
+            </div>
+            
+            <div class="form-section" style="margin-top: 40px;">
+                <h2>2. 订单列表</h2>
+                <div id="orderList" class="order-list">
+                    <!-- 订单列表将动态添加 -->
+                </div>
+            </div>
+            
+            <div class="form-section" style="margin-top: 40px;">
+                <h2>3. 订单操作</h2>
+                <div class="button-container">
+                    <button id="exportOrdersButton">导出Excel</button>
+                    <button id="saveOrdersButton">保存到系统</button>
+                    <button id="clearOrdersButton">清空订单</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 粘贴订单信息模块 -->
+        <div id="pasteOrdersSection" style="margin-top: 30px;">
+            <div class="header">
+                <h1>粘贴订单信息</h1>
+            </div>
+            
+            <div class="paste-section">
+                <textarea id="pasteArea" placeholder="请粘贴订单信息，支持多个订单批量粘贴..."></textarea>
+                <div class="button-container">
+                    <button id="extractButton">提取订单信息</button>
+                    <button id="clearButton">清空</button>
+                    <button id="exportButton">导出Excel</button>
+                    <button id="importButton">导入Excel</button>
+                    <input type="file" id="excelFileInput" accept=".xlsx,.xls" style="display: none;">
+                    <button id="saveButton">保存订单</button>
+                    <button id="loadButton">加载订单</button>
+                </div>
             </div>
         </div>
         
@@ -2341,6 +2466,7 @@
                     <h2>用户管理</h2>
                     <span class="close-button">&times;</span>
                 </div>
+                <div id="notification" class="notification" style="display: none;"></div>
                 <div class="modal-body">
                     <div class="user-form">
                         <h3>添加用户</h3>
@@ -2359,10 +2485,32 @@
                             <button id="addUserButton">添加用户</button>
                             <button id="syncToGitHubButton" style="flex: 1;">同步到GitHub</button>
                         </div>
-                        <div class="form-group" style="margin-top: 15px;">
-                            <label for="githubToken">GitHub Token</label>
-                            <input type="password" id="githubToken" name="githubToken" placeholder="输入GitHub Personal Access Token">
-                            <small style="display: block; margin-top: 5px; color: #666;">需要具有repo权限的Personal Access Token</small>
+                        <div style="margin-top: 20px; padding: 15px; background: #ffffff; border-radius: 8px; border: 1px solid #e0e0e0;">
+                            <h4 style="margin-bottom: 15px; color: #1565c0; font-weight: 700;">GitHub同步设置</h4>
+                            <div class="form-grid" style="grid-template-columns: 1fr; gap: 10px;">
+                                <div class="form-group">
+                                    <label for="githubOwner" style="color: #4a5568; font-weight: 600;">仓库拥有者</label>
+                                    <input type="text" id="githubOwner" name="githubOwner" placeholder="GitHub用户名" value="369369changer" style="color: #333;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="githubRepo" style="color: #4a5568; font-weight: 600;">仓库名称</label>
+                                    <input type="text" id="githubRepo" name="githubRepo" placeholder="GitHub仓库名称" value="ceshi" style="color: #333;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="githubBranch" style="color: #4a5568; font-weight: 600;">分支名称</label>
+                                    <input type="text" id="githubBranch" name="githubBranch" placeholder="GitHub分支名称" value="main" style="color: #333;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="githubToken" style="color: #4a5568; font-weight: 600;">GitHub Token</label>
+                                    <input type="password" id="githubToken" name="githubToken" placeholder="输入GitHub Personal Access Token" value="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" style="color: #333;">
+                                    <small style="display: block; margin-top: 5px; color: #666;">需要具有repo权限的Personal Access Token</small>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                                <button id="saveGitHubSettings" style="flex: 1;">保存设置</button>
+                                <button id="loadGitHubSettings" style="flex: 1;">加载设置</button>
+                                <button id="pullFromGitHubButton" style="flex: 1;">从GitHub拉取</button>
+                            </div>
                         </div>
                     </div>
                     <div class="user-list">
@@ -2378,6 +2526,31 @@
                                 <!-- 用户列表将动态添加 -->
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 修改用户模态框 -->
+        <div id="editUserModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>修改用户</h2>
+                    <span class="close-button">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="user-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editUsername">用户名</label>
+                                <input type="text" id="editUsername" name="editUsername" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editPassword">密码</label>
+                                <input type="password" id="editPassword" name="editPassword" placeholder="留空表示不修改密码">
+                            </div>
+                        </div>
+                        <button id="saveEditButton">保存修改</button>
                     </div>
                 </div>
             </div>
@@ -2495,6 +2668,7 @@
         let currentUserId = 1;
         let users = [{ username: 'admin', password: '123456' }];
         let currentUser = '';
+        let shops = JSON.parse(localStorage.getItem('erpShops')) || [];
         
         // 提取统计数据
         let extractStats = {
@@ -3368,6 +3542,8 @@
             watchOrderChanges();
             // 启动实时数据更新
             startRealTimeUpdates();
+            // 启动定时自动拉取任务
+            startAutoFetchTask();
             // 更新仪表板
             updateDashboard();
         }
@@ -3935,6 +4111,7 @@
                     <td>${user.username}</td>
                     <td>
                         <div class="action-buttons">
+                            <button class="edit-btn" onclick="editUser('${user.username}')">修改</button>
                             ${user.username !== 'admin' ? `<button class="delete-btn" onclick="deleteUser('${user.username}')">删除</button>` : '<span>不可删除</span>'}
                         </div>
                     </td>
@@ -3943,39 +4120,304 @@
             });
         }
         
-        // 同步用户数据到GitHub
-        async function syncToGitHub() {
-            const token = document.getElementById('githubToken').value;
-            if (!token) {
-                showNotification('notification', '请输入GitHub Personal Access Token', 'error');
+        // 保存GitHub设置到本地存储
+        function saveGitHubSettings() {
+            try {
+                const settings = {
+                    owner: document.getElementById('githubOwner').value,
+                    repo: document.getElementById('githubRepo').value,
+                    branch: document.getElementById('githubBranch').value,
+                    token: document.getElementById('githubToken').value
+                };
+                
+                localStorage.setItem('githubSettings', JSON.stringify(settings));
+                showNotification('notification', 'GitHub设置保存成功', 'success');
+                console.log('GitHub设置保存成功:', settings);
+            } catch (error) {
+                console.error('保存GitHub设置失败:', error);
+                showNotification('notification', '保存GitHub设置失败', 'error');
+            }
+        }
+        
+        // 从本地存储加载GitHub设置
+        function loadGitHubSettings() {
+            try {
+                const savedSettings = localStorage.getItem('githubSettings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    document.getElementById('githubOwner').value = settings.owner || '';
+                    document.getElementById('githubRepo').value = settings.repo || '';
+                    document.getElementById('githubBranch').value = settings.branch || 'main';
+                    document.getElementById('githubToken').value = settings.token || '';
+                    showNotification('notification', 'GitHub设置加载成功', 'success');
+                    console.log('GitHub设置加载成功:', settings);
+                } else {
+                    showNotification('notification', '没有找到保存的GitHub设置', 'info');
+                }
+            } catch (error) {
+                console.error('加载GitHub设置失败:', error);
+                showNotification('notification', '加载GitHub设置失败', 'error');
+            }
+        }
+        
+        // 从GitHub拉取用户数据
+        async function pullFromGitHub() {
+            console.log('开始从GitHub拉取数据...');
+            
+            // 获取GitHub设置（优先使用输入框值，其次使用本地存储，最后使用默认值）
+            let token = document.getElementById('githubToken').value;
+            let owner = document.getElementById('githubOwner').value;
+            let repo = document.getElementById('githubRepo').value;
+            
+            // 如果输入框为空，尝试从本地存储加载
+            if (!token || !owner || !repo) {
+                try {
+                    const savedSettings = localStorage.getItem('githubSettings');
+                    if (savedSettings) {
+                        const settings = JSON.parse(savedSettings);
+                        token = token || settings.token;
+                        owner = owner || settings.owner;
+                        repo = repo || settings.repo;
+                        console.log('从本地存储加载GitHub设置:', { token, owner, repo });
+                    }
+                } catch (e) {
+                    console.error('从本地存储加载设置失败:', e);
+                }
+            }
+            
+            // 如果仍然为空，使用默认值
+            if (!token) token = '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';
+            if (!owner) owner = '369369changer';
+            if (!repo) repo = 'ceshi';
+            
+            console.log('拉取参数:', { token, owner, repo });
+            
+            if (!token || !owner || !repo) {
+                showNotification('notification', 'GitHub设置不完整', 'error');
                 return;
             }
             
             try {
-                showNotification('notification', '正在同步到GitHub...', 'info');
+                showNotification('notification', '正在从GitHub拉取数据...', 'info');
+                console.log('显示拉取中通知');
                 
-                // 这里需要替换为你的GitHub仓库信息
-                const owner = 'your-username'; // 替换为你的GitHub用户名
-                const repo = 'erp-system'; // 替换为你的仓库名称
-                const path = 'users.json';
+                // 清理仓库名称，确保不包含用户名
+                const cleanRepo = repo.includes('/') ? repo.split('/')[1] : repo;
+                console.log('清理后的仓库名称:', cleanRepo);
                 
-                // 1. 获取当前文件的SHA（用于更新文件）
-                const getResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                // 获取文件信息
+                const getResponse = await fetch(`https://api.github.com/repos/${owner}/${cleanRepo}/contents/users.json`, {
                     headers: {
                         'Authorization': `token ${token}`,
                         'Accept': 'application/vnd.github.v3+json'
                     }
                 });
                 
+                console.log('获取文件信息响应:', getResponse);
+                
                 if (!getResponse.ok) {
-                    throw new Error('获取文件信息失败');
+                    // 尝试获取详细的错误信息
+                    try {
+                        const errorData = await getResponse.json();
+                        console.error('获取文件信息错误:', errorData);
+                        throw new Error(`获取文件信息失败: ${getResponse.status} ${getResponse.statusText} - ${errorData.message || ''}`);
+                    } catch (e) {
+                        console.error('解析错误信息失败:', e);
+                        throw new Error(`获取文件信息失败: ${getResponse.status} ${getResponse.statusText}`);
+                    }
+                }
+                
+                const data = await getResponse.json();
+                console.log('获取文件数据:', data);
+                
+                // 解码base64内容，处理UTF-8字符
+                function base64DecodeUnicode(str) {
+                    return decodeURIComponent(escape(atob(str)));
+                }
+                
+                const content = base64DecodeUnicode(data.content);
+                console.log('解码后的内容:', content);
+                
+                const parsedData = JSON.parse(content);
+                users = parsedData.users || [];
+                
+                // 确保admin用户存在
+                const adminUser = users.find(user => user.username === 'admin');
+                if (!adminUser) {
+                    // 如果admin用户不存在，创建一个
+                    users.unshift({ username: 'admin', password: '123456' });
+                    console.log('已创建admin用户，密码为123456');
+                }
+                
+                renderUserList();
+                showNotification('notification', '从GitHub拉取数据成功', 'success');
+                console.log('从GitHub拉取数据成功:', users);
+            } catch (error) {
+                console.error('从GitHub拉取数据失败:', error);
+                showNotification('notification', '从GitHub拉取数据失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 打开修改用户模态框
+        function editUser(username) {
+            const user = users.find(u => u.username === username);
+            if (!user) {
+                showNotification('notification', '用户不存在', 'error');
+                return;
+            }
+            
+            // 如果是修改admin用户，需要验证密码
+            if (username === 'admin') {
+                const verifyPassword = prompt('请输入验证密码进行验证:');
+                if (!verifyPassword) {
+                    return;
+                }
+                
+                // 验证固定的验证密码
+                const adminVerifyPassword = '369369';
+                if (verifyPassword !== adminVerifyPassword) {
+                    showNotification('notification', '验证密码失败，无法修改admin用户', 'error');
+                    return;
+                }
+            }
+            
+            document.getElementById('editUsername').value = user.username;
+            document.getElementById('editPassword').value = '';
+            
+            const modal = document.getElementById('editUserModal');
+            modal.style.display = 'block';
+            
+            // 保存当前编辑的用户名
+            modal.dataset.username = username;
+        }
+        
+        // 关闭修改用户模态框
+        function closeEditUserModal() {
+            const modal = document.getElementById('editUserModal');
+            modal.style.display = 'none';
+        }
+        
+        // 保存修改
+        function saveEdit() {
+            const modal = document.getElementById('editUserModal');
+            const oldUsername = modal.dataset.username;
+            const newUsername = document.getElementById('editUsername').value;
+            const newPassword = document.getElementById('editPassword').value;
+            
+            if (!newUsername) {
+                showNotification('notification', '用户名不能为空', 'error');
+                return;
+            }
+            
+            const userIndex = users.findIndex(u => u.username === oldUsername);
+            if (userIndex === -1) {
+                showNotification('notification', '用户不存在', 'error');
+                return;
+            }
+            
+            // 检查用户名是否已存在
+            if (newUsername !== oldUsername && users.some(u => u.username === newUsername)) {
+                showNotification('notification', '用户名已存在', 'error');
+                return;
+            }
+            
+            // 更新用户信息
+            users[userIndex].username = newUsername;
+            if (newPassword) {
+                users[userIndex].password = newPassword;
+            }
+            
+            renderUserList();
+            closeEditUserModal();
+            showNotification('notification', '用户修改成功', 'success');
+        }
+        
+        // 同步用户数据到GitHub
+        async function syncToGitHub() {
+            console.log('开始同步到GitHub...');
+            
+            // 获取GitHub设置（优先使用输入框值，其次使用本地存储，最后使用默认值）
+            let token = document.getElementById('githubToken').value;
+            let owner = document.getElementById('githubOwner').value;
+            let repo = document.getElementById('githubRepo').value;
+            let branch = document.getElementById('githubBranch').value;
+            
+            // 如果输入框为空，尝试从本地存储加载
+            if (!token || !owner || !repo || !branch) {
+                try {
+                    const savedSettings = localStorage.getItem('githubSettings');
+                    if (savedSettings) {
+                        const settings = JSON.parse(savedSettings);
+                        token = token || settings.token;
+                        owner = owner || settings.owner;
+                        repo = repo || settings.repo;
+                        branch = branch || settings.branch;
+                        console.log('从本地存储加载GitHub设置:', { token, owner, repo, branch });
+                    }
+                } catch (e) {
+                    console.error('从本地存储加载设置失败:', e);
+                }
+            }
+            
+            // 如果仍然为空，使用默认值
+            if (!token) token = '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';
+            if (!owner) owner = '369369changer';
+            if (!repo) repo = 'ceshi';
+            if (!branch) branch = 'main';
+            
+            console.log('同步参数:', { token, owner, repo, branch });
+            
+            // 验证参数
+            if (!token || !owner || !repo) {
+                showNotification('notification', 'GitHub设置不完整', 'error');
+                return;
+            }
+            
+            try {
+                showNotification('notification', '正在同步到GitHub...', 'info');
+                console.log('显示同步中通知');
+                
+                // GitHub仓库信息
+                const path = 'users.json';
+                
+                // 清理仓库名称，确保不包含用户名
+                const cleanRepo = repo.includes('/') ? repo.split('/')[1] : repo;
+                console.log('清理后的仓库名称:', cleanRepo);
+                
+                // 1. 获取当前文件的SHA（用于更新文件）
+                const getResponse = await fetch(`https://api.github.com/repos/${owner}/${cleanRepo}/contents/${path}`, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                console.log('获取文件信息响应:', getResponse);
+                
+                if (!getResponse.ok) {
+                    // 尝试获取详细的错误信息
+                    try {
+                        const errorData = await getResponse.json();
+                        console.error('获取文件信息错误:', errorData);
+                        throw new Error(`获取文件信息失败: ${getResponse.status} ${getResponse.statusText} - ${errorData.message || ''}`);
+                    } catch (e) {
+                        console.error('解析错误信息失败:', e);
+                        throw new Error(`获取文件信息失败: ${getResponse.status} ${getResponse.statusText}`);
+                    }
                 }
                 
                 const getdata = await getResponse.json();
                 const sha = getdata.sha;
                 
                 // 2. 更新文件
-                const updateResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                // 使用更可靠的Base64编码方法，处理中文字符
+                function base64EncodeUnicode(str) {
+                    return btoa(unescape(encodeURIComponent(str)));
+                }
+                
+                const content = base64EncodeUnicode(JSON.stringify({ users: users }, null, 2));
+                
+                const updateResponse = await fetch(`https://api.github.com/repos/${owner}/${cleanRepo}/contents/${path}`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `token ${token}`,
@@ -3983,21 +4425,48 @@
                     },
                     body: JSON.stringify({
                         message: '更新用户数据',
-                        content: btoa(JSON.stringify({ users: users }, null, 2)),
+                        content: content,
                         sha: sha
                     })
                 });
                 
                 if (!updateResponse.ok) {
-                    throw new Error('更新文件失败');
+                    // 尝试获取详细的错误信息
+                    try {
+                        const errorData = await updateResponse.json();
+                        console.error('更新文件错误:', errorData);
+                        throw new Error(`更新文件失败: ${updateResponse.status} ${updateResponse.statusText} - ${errorData.message || ''}`);
+                    } catch (e) {
+                        console.error('解析错误信息失败:', e);
+                        throw new Error(`更新文件失败: ${updateResponse.status} ${updateResponse.statusText}`);
+                    }
                 }
                 
-                showNotification('notification', '同步到GitHub成功', 'success');
+                // 显示成功通知
+                const successMessage = '同步到GitHub成功';
+                showNotification('notification', successMessage, 'success');
                 console.log('用户数据同步到GitHub成功');
+                
+                // 确保通知元素可见
+                const notificationElement = document.getElementById('notification');
+                if (notificationElement) {
+                    notificationElement.style.display = 'block';
+                    notificationElement.style.opacity = '1';
+                    console.log('成功通知已显示:', successMessage);
+                }
                 
             } catch (error) {
                 console.error('同步到GitHub失败:', error);
-                showNotification('notification', '同步到GitHub失败: ' + error.message, 'error');
+                const errorMessage = '同步到GitHub失败: ' + error.message;
+                showNotification('notification', errorMessage, 'error');
+                
+                // 确保错误通知元素可见
+                const notificationElement = document.getElementById('notification');
+                if (notificationElement) {
+                    notificationElement.style.display = 'block';
+                    notificationElement.style.opacity = '1';
+                    console.log('错误通知已显示:', errorMessage);
+                }
             }
         }
         
@@ -4008,32 +4477,185 @@
         
         // 显示通知
         function showNotification(elementId, message, type) {
-            const notification = document.getElementById(elementId);
+            // 查找通知元素
+            let notification = document.getElementById(elementId);
+            
+            // 如果找不到元素，尝试在模态框中查找
+            if (!notification) {
+                const modal = document.getElementById('userManagementModal');
+                if (modal) {
+                    notification = modal.querySelector('#notification');
+                }
+            }
+            
+            // 如果还是找不到元素，创建一个临时通知
+            if (!notification) {
+                notification = document.createElement('div');
+                notification.id = elementId;
+                notification.className = `notification ${type}`;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    max-width: 300px;
+                    text-align: center;
+                `;
+                document.body.appendChild(notification);
+            }
+            
+            // 设置通知内容和样式
             notification.textContent = message;
             notification.className = `notification ${type}`;
             notification.style.display = 'block';
+            notification.style.opacity = '1';
+            notification.style.transition = 'all 0.3s ease';
+            
+            console.log('显示通知:', { elementId, message, type });
             
             // 3秒后隐藏
             setTimeout(() => {
-                notification.style.display = 'none';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
             }, 3000);
         }
         
         // 登录功能
-        function login() {
+        async function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // 使用新的用户验证方式
+            // 首先尝试使用本地数据验证
             if (validateUser(username, password)) {
                 currentUser = username;
                 document.getElementById('loginContainer').style.display = 'none';
                 document.getElementById('mainContainer').style.display = 'block';
                 document.querySelector('.navbar').style.display = 'block';
                 document.querySelector('.navbar-user span').textContent = `欢迎，${username}`;
+                
+                // 只有admin登录时才显示用户管理按钮
+                const userManagementButton = document.getElementById('userManagementButton');
+                if (userManagementButton) {
+                    userManagementButton.style.display = username === 'admin' ? 'block' : 'none';
+                }
+                
                 showNotification('notification', '登录成功', 'success');
-            } else {
-                showNotification('loginNotification', '用户名或密码错误', 'error');
+                
+                // 登录成功后尝试从GitHub拉取最新数据
+                try {
+                    await loadGitHubUsers();
+                } catch (error) {
+                    console.log('登录后拉取GitHub数据失败:', error);
+                    // 不影响登录成功状态
+                }
+                
+                return;
+            }
+            
+            // 本地验证失败，尝试从GitHub拉取最新数据后重新验证
+            showNotification('loginNotification', '正在从GitHub验证用户信息...', 'info');
+            
+            try {
+                await loadGitHubUsers();
+                
+                // 再次验证用户
+                if (validateUser(username, password)) {
+                    currentUser = username;
+                    document.getElementById('loginContainer').style.display = 'none';
+                    document.getElementById('mainContainer').style.display = 'block';
+                    document.querySelector('.navbar').style.display = 'block';
+                    document.querySelector('.navbar-user span').textContent = `欢迎，${username}`;
+                    
+                    // 只有admin登录时才显示用户管理按钮
+                    const userManagementButton = document.getElementById('userManagementButton');
+                    if (userManagementButton) {
+                        userManagementButton.style.display = username === 'admin' ? 'block' : 'none';
+                    }
+                    
+                    showNotification('notification', '登录成功', 'success');
+                } else {
+                    showNotification('loginNotification', '用户名或密码错误', 'error');
+                }
+            } catch (error) {
+                console.error('从GitHub验证用户失败:', error);
+                showNotification('loginNotification', '登录失败，请检查网络连接', 'error');
+            }
+        }
+        
+        // 从GitHub加载用户数据
+        async function loadGitHubUsers() {
+            try {
+                // 获取GitHub设置（优先使用本地存储，其次使用默认值）
+                let settings;
+                try {
+                    // 尝试从本地存储加载
+                    const savedSettings = localStorage.getItem('githubSettings');
+                    if (savedSettings) {
+                        settings = JSON.parse(savedSettings);
+                        console.log('从本地存储加载GitHub设置:', settings);
+                    } else {
+                        // 使用默认值
+                        settings = {
+                            token: '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',
+                            owner: '369369changer',
+                            repo: 'ceshi',
+                            branch: 'main'
+                        };
+                        console.log('使用默认GitHub设置:', settings);
+                    }
+                } catch (e) {
+                    // 如果解析失败，使用默认值
+                    settings = {
+                        token: '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',
+                        owner: '369369changer',
+                        repo: 'ceshi',
+                        branch: 'main'
+                    };
+                    console.log('解析本地设置失败，使用默认GitHub设置:', settings);
+                }
+                
+                const { token, owner, repo } = settings;
+                
+                // 验证参数
+                if (!token || !owner || !repo) {
+                    throw new Error('GitHub设置不完整');
+                }
+                
+                // 清理仓库名称
+                const cleanRepo = repo.includes('/') ? repo.split('/')[1] : repo;
+                
+                // 获取文件信息
+                const getResponse = await fetch(`https://api.github.com/repos/${owner}/${cleanRepo}/contents/users.json`, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!getResponse.ok) {
+                    throw new Error('获取GitHub文件失败');
+                }
+                
+                const data = await getResponse.json();
+                
+                // 解码base64内容，处理UTF-8字符
+                function base64DecodeUnicode(str) {
+                    return decodeURIComponent(escape(atob(str)));
+                }
+                
+                const content = base64DecodeUnicode(data.content);
+                const parsedData = JSON.parse(content);
+                users = parsedData.users || [];
+                
+                console.log('从GitHub成功加载用户数据:', users);
+            } catch (error) {
+                console.error('从GitHub加载用户数据失败:', error);
+                throw error;
             }
         }
         
@@ -5120,15 +5742,1247 @@
             reader.readAsArrayBuffer(file);
         }
         
+        // 多平台订单集成功能
+        
+        // 打开平台订单模态框
+        function openPlatformOrdersModal() {
+            const modal = document.getElementById('platformOrdersModal');
+            modal.style.display = 'block';
+        }
+        
+        // 关闭平台订单模态框
+        function closePlatformOrdersModal() {
+            const modal = document.getElementById('platformOrdersModal');
+            modal.style.display = 'none';
+        }
+        
+        // 保存API配置
+        function saveApiSettings() {
+            try {
+                const platform = document.getElementById('platformSelect').value;
+                if (!platform) {
+                    showNotification('notification', '请选择平台', 'error');
+                    return;
+                }
+                
+                const appId = document.getElementById('appId').value;
+                const appSecret = document.getElementById('appSecret').value;
+                const accessToken = document.getElementById('accessToken').value;
+                const shopId = document.getElementById('shopId').value;
+                
+                // 根据平台验证必要参数
+                let missingParams = [];
+                switch (platform) {
+                    case 'taobao':
+                        if (!appId) missingParams.push('App ID');
+                        if (!appSecret) missingParams.push('App Secret');
+                        if (!accessToken) missingParams.push('Access Token');
+                        break;
+                    case 'jd':
+                        if (!appId) missingParams.push('App ID');
+                        if (!appSecret) missingParams.push('App Secret');
+                        break;
+                    case 'pdd':
+                        if (!appId) missingParams.push('Client ID');
+                        if (!appSecret) missingParams.push('Client Secret');
+                        if (!accessToken) missingParams.push('Access Token');
+                        break;
+                    case 'xhs':
+                        if (!appId) missingParams.push('Client ID');
+                        if (!appSecret) missingParams.push('Client Secret');
+                        if (!accessToken) missingParams.push('Access Token');
+                        break;
+                }
+                
+                if (missingParams.length > 0) {
+                    showNotification('notification', `请填写必要参数: ${missingParams.join(', ')}`, 'error');
+                    return;
+                }
+                
+                const settings = {
+                    platform: platform,
+                    appId: appId,
+                    appSecret: appSecret,
+                    accessToken: accessToken,
+                    shopId: shopId
+                };
+                
+                localStorage.setItem(`apiSettings_${platform}`, JSON.stringify(settings));
+                showNotification('notification', `API配置保存成功`, 'success');
+                console.log('API配置保存成功:', settings);
+            } catch (error) {
+                console.error('保存API配置失败:', error);
+                showNotification('notification', '保存API配置失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 加载API配置
+        function loadApiSettings() {
+            try {
+                const platform = document.getElementById('platformSelect').value;
+                if (!platform) {
+                    showNotification('notification', '请选择平台', 'error');
+                    return;
+                }
+                
+                const savedSettings = localStorage.getItem(`apiSettings_${platform}`);
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    document.getElementById('appId').value = settings.appId || '';
+                    document.getElementById('appSecret').value = settings.appSecret || '';
+                    document.getElementById('accessToken').value = settings.accessToken || '';
+                    document.getElementById('shopId').value = settings.shopId || '';
+                    showNotification('notification', 'API配置加载成功', 'success');
+                    console.log('API配置加载成功:', settings);
+                } else {
+                    showNotification('notification', '没有找到保存的API配置', 'info');
+                    // 清空输入框
+                    document.getElementById('appId').value = '';
+                    document.getElementById('appSecret').value = '';
+                    document.getElementById('accessToken').value = '';
+                    document.getElementById('shopId').value = '';
+                }
+            } catch (error) {
+                console.error('加载API配置失败:', error);
+                showNotification('notification', '加载API配置失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 拉取平台订单
+        async function fetchPlatformOrders() {
+            try {
+                const platform = document.getElementById('platformSelect').value;
+                if (!platform) {
+                    showNotification('notification', '请选择平台', 'error');
+                    return;
+                }
+                
+                const startDate = document.getElementById('startDate').value;
+                const endDate = document.getElementById('endDate').value;
+                const orderStatus = document.getElementById('orderStatus').value;
+                
+                if (!startDate || !endDate) {
+                    showNotification('notification', '请选择开始和结束日期', 'error');
+                    return;
+                }
+                
+                // 显示拉取中提示
+                const fetchResult = document.getElementById('fetchResult');
+                fetchResult.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100px;"><div class="loading"></div><span style="margin-left: 10px;">正在拉取订单，请稍候...</span></div>';
+                
+                // 根据平台调用不同的API
+                let orders = [];
+                switch (platform) {
+                    case 'taobao':
+                        orders = await fetchTaobaoOrders(startDate, endDate, orderStatus);
+                        break;
+                    case 'jd':
+                        orders = await fetchJdOrders(startDate, endDate, orderStatus);
+                        break;
+                    case 'pdd':
+                        orders = await fetchPddOrders(startDate, endDate, orderStatus);
+                        break;
+                    case 'xhs':
+                        orders = await fetchXhsOrders(startDate, endDate, orderStatus);
+                        break;
+                    default:
+                        showNotification('notification', '不支持的平台', 'error');
+                        return;
+                }
+                
+                // 显示拉取结果
+                if (orders.length === 0) {
+                    fetchResult.innerHTML = '未拉取到订单数据';
+                } else {
+                    let resultHTML = `<p>成功拉取 ${orders.length} 个订单：</p><ul>`;
+                    orders.forEach(order => {
+                        resultHTML += `<li>${order.platformOrderId} - ${order.recipientName} - ${order.productName}</li>`;
+                    });
+                    resultHTML += '</ul><button onclick="importPlatformOrders()" style="margin-top: 10px;">导入到系统</button>';
+                    fetchResult.innerHTML = resultHTML;
+                    
+                    // 保存拉取的订单到临时存储
+                    localStorage.setItem('tempPlatformOrders', JSON.stringify(orders));
+                }
+                
+                showNotification('notification', `成功从${getPlatformName(platform)}拉取 ${orders.length} 个订单`, 'success');
+                
+            } catch (error) {
+                console.error('拉取平台订单失败:', error);
+                showNotification('notification', '拉取平台订单失败: ' + error.message, 'error');
+                document.getElementById('fetchResult').innerHTML = '拉取失败: ' + error.message;
+            }
+        }
+        
+        // 拉取淘宝/天猫订单
+        async function fetchTaobaoOrders(startDate, endDate, orderStatus) {
+            try {
+                // 获取API配置
+                const apiSettings = JSON.parse(localStorage.getItem('apiSettings_taobao') || '{}');
+                
+                // 检查配置
+                if (!apiSettings.appId || !apiSettings.appSecret || !apiSettings.accessToken) {
+                    throw new Error('请先配置淘宝API参数');
+                }
+                
+                console.log('开始拉取淘宝订单:', { startDate, endDate, orderStatus });
+                
+                // 实际API调用代码
+                // 这里是API调用的框架结构，实际项目中需要替换为真实的API调用
+                /*
+                const response = await fetch('https://eco.taobao.com/router/rest', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        method: 'taobao.trade.fullinfo.get',
+                        app_key: apiSettings.appId,
+                        format: 'json',
+                        v: '2.0',
+                        sign_method: 'md5',
+                        timestamp: new Date().toISOString().replace(/T/, ' ').substring(0, 19),
+                        fields: 'tid,title,buyer_nick,receiver_name,receiver_mobile,receiver_state,receiver_city,receiver_district,receiver_address,orders',
+                        session: apiSettings.accessToken,
+                        // 其他参数...
+                    })
+                });
+                
+                const data = await response.json();
+                // 处理响应数据
+                const orders = processTaobaoOrderData(data);
+                */
+                
+                // 模拟API调用结果
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // 模拟数据
+                const orders = [
+                    {
+                        platformOrderId: 'TB' + Date.now() + '001',
+                        recipientName: '张三',
+                        recipientPhone: '13800138001',
+                        recipientAddress: '北京市朝阳区某某街道123号',
+                        productName: 'iPhone 15 Pro',
+                        productQuantity: 1,
+                        orderSource: '淘宝'
+                    },
+                    {
+                        platformOrderId: 'TB' + Date.now() + '002',
+                        recipientName: '李四',
+                        recipientPhone: '13900139002',
+                        recipientAddress: '上海市浦东新区某某路456号',
+                        productName: 'MacBook Air M3',
+                        productQuantity: 1,
+                        orderSource: '淘宝'
+                    }
+                ];
+                
+                return orders;
+                
+            } catch (error) {
+                console.error('拉取淘宝订单失败:', error);
+                throw error;
+            }
+        }
+        
+        // 拉取京东订单
+        async function fetchJdOrders(startDate, endDate, orderStatus) {
+            try {
+                // 获取API配置
+                const apiSettings = JSON.parse(localStorage.getItem('apiSettings_jd') || '{}');
+                
+                // 检查配置
+                if (!apiSettings.appId || !apiSettings.appSecret) {
+                    throw new Error('请先配置京东API参数');
+                }
+                
+                console.log('开始拉取京东订单:', { startDate, endDate, orderStatus });
+                
+                // 实际API调用代码
+                // 这里是API调用的框架结构，实际项目中需要替换为真实的API调用
+                /*
+                const timestamp = new Date().getTime();
+                const sign = generateJdSign(apiSettings.appId, apiSettings.appSecret, timestamp);
+                
+                const response = await fetch('https://api.jd.com/routerjson', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        method: 'jingdong.trade.order.get',
+                        app_key: apiSettings.appId,
+                        timestamp: timestamp,
+                        format: 'json',
+                        v: '2.0',
+                        sign: sign,
+                        其他参数...
+                    })
+                });
+                
+                const data = await response.json();
+                // 处理响应数据
+                const orders = processJdOrderData(data);
+                */
+                
+                // 模拟API调用结果
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // 模拟数据
+                const orders = [
+                    {
+                        platformOrderId: 'JD' + Date.now() + '001',
+                        recipientName: '王五',
+                        recipientPhone: '13700137003',
+                        recipientAddress: '广州市天河区某某大道789号',
+                        productName: '华为 Mate 60 Pro',
+                        productQuantity: 1,
+                        orderSource: '京东'
+                    }
+                ];
+                
+                return orders;
+                
+            } catch (error) {
+                console.error('拉取京东订单失败:', error);
+                throw error;
+            }
+        }
+        
+        // 拉取拼多多订单
+        async function fetchPddOrders(startDate, endDate, orderStatus) {
+            try {
+                // 获取API配置
+                const apiSettings = JSON.parse(localStorage.getItem('apiSettings_pdd') || '{}');
+                
+                // 检查配置
+                if (!apiSettings.clientId || !apiSettings.clientSecret) {
+                    throw new Error('请先配置拼多多API参数');
+                }
+                
+                console.log('开始拉取拼多多订单:', { startDate, endDate, orderStatus });
+                
+                // 实际API调用代码
+                // 这里是API调用的框架结构，实际项目中需要替换为真实的API调用
+                /*
+                const timestamp = Math.floor(Date.now() / 1000);
+                const sign = generatePddSign(apiSettings.clientId, apiSettings.clientSecret, timestamp);
+                
+                const response = await fetch('https://gw-api.pinduoduo.com/api/router', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        client_id: apiSettings.clientId,
+                        timestamp: timestamp,
+                        sign: sign,
+                        type: 'pdd.order.list.get',
+                        data_type: 'JSON',
+                        version: 'V1',
+                        access_token: apiSettings.accessToken,
+                        其他参数...
+                    })
+                });
+                
+                const data = await response.json();
+                // 处理响应数据
+                const orders = processPddOrderData(data);
+                */
+                
+                // 模拟API调用结果
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // 模拟数据
+                const orders = [
+                    {
+                        platformOrderId: 'PDD' + Date.now() + '001',
+                        recipientName: '赵六',
+                        recipientPhone: '13600136004',
+                        recipientAddress: '深圳市南山区某某路321号',
+                        productName: '小米 14 Ultra',
+                        productQuantity: 1,
+                        orderSource: '拼多多'
+                    },
+                    {
+                        platformOrderId: 'PDD' + Date.now() + '002',
+                        recipientName: '钱七',
+                        recipientPhone: '13500135005',
+                        recipientAddress: '杭州市西湖区某某街654号',
+                        productName: 'AirPods Pro 2',
+                        productQuantity: 2,
+                        orderSource: '拼多多'
+                    }
+                ];
+                
+                return orders;
+                
+            } catch (error) {
+                console.error('拉取拼多多订单失败:', error);
+                throw error;
+            }
+        }
+        
+        // 拉取小红书订单
+        async function fetchXhsOrders(startDate, endDate, orderStatus) {
+            try {
+                // 获取API配置
+                const apiSettings = JSON.parse(localStorage.getItem('apiSettings_xhs') || '{}');
+                
+                // 检查配置
+                if (!apiSettings.clientId || !apiSettings.clientSecret || !apiSettings.accessToken) {
+                    throw new Error('请先配置小红书API参数');
+                }
+                
+                console.log('开始拉取小红书订单:', { startDate, endDate, orderStatus });
+                
+                // 实际API调用代码
+                // 这里是API调用的框架结构，实际项目中需要替换为真实的API调用
+                /*
+                const response = await fetch('https://api.xiaohongshu.com/order/list', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${apiSettings.accessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    params: {
+                        start_date: startDate,
+                        end_date: endDate,
+                        status: orderStatus,
+                        // 其他参数...
+                    }
+                });
+                
+                const data = await response.json();
+                // 处理响应数据
+                const orders = processXhsOrderData(data);
+                */
+                
+                // 模拟API调用结果
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // 模拟数据
+                const orders = [
+                    {
+                        platformOrderId: 'XHS' + Date.now() + '001',
+                        recipientName: '孙八',
+                        recipientPhone: '13400134006',
+                        recipientAddress: '成都市锦江区某某路987号',
+                        productName: 'SK-II 神仙水',
+                        productQuantity: 1,
+                        orderSource: '小红书'
+                    }
+                ];
+                
+                return orders;
+                
+            } catch (error) {
+                console.error('拉取小红书订单失败:', error);
+                throw error;
+            }
+        }
+        
+        // 生成京东签名
+        function generateJdSign(appId, appSecret, timestamp) {
+            // 实际项目中需要实现真实的签名生成逻辑
+            return 'mock_sign';
+        }
+        
+        // 生成拼多多签名
+        function generatePddSign(clientId, clientSecret, timestamp) {
+            // 实际项目中需要实现真实的签名生成逻辑
+            return 'mock_sign';
+        }
+        
+        // 处理淘宝订单数据
+        function processTaobaoOrderData(data) {
+            // 实际项目中需要实现真实的数据处理逻辑
+            return [];
+        }
+        
+        // 处理京东订单数据
+        function processJdOrderData(data) {
+            // 实际项目中需要实现真实的数据处理逻辑
+            return [];
+        }
+        
+        // 处理拼多多订单数据
+        function processPddOrderData(data) {
+            // 实际项目中需要实现真实的数据处理逻辑
+            return [];
+        }
+        
+        // 处理小红书订单数据
+        function processXhsOrderData(data) {
+            // 实际项目中需要实现真实的数据处理逻辑
+            return [];
+        }
+        
+        // 获取平台名称
+        function getPlatformName(platform) {
+            const platformNames = {
+                taobao: '淘宝/天猫',
+                jd: '京东',
+                pdd: '拼多多',
+                xhs: '小红书'
+            };
+            return platformNames[platform] || platform;
+        }
+        
+        // 导入平台订单到系统
+        function importPlatformOrders() {
+            try {
+                const tempOrders = localStorage.getItem('tempPlatformOrders');
+                if (!tempOrders) {
+                    showNotification('notification', '没有可导入的平台订单', 'error');
+                    return;
+                }
+                
+                const platformOrders = JSON.parse(tempOrders);
+                
+                // 转换为系统订单格式
+                const systemOrders = platformOrders.map(order => {
+                    return {
+                        id: Date.now() + Math.floor(Math.random() * 1000),
+                        platformOrderId: order.platformOrderId,
+                        recipientName: order.recipientName,
+                        recipientPhone: order.recipientPhone,
+                        recipientAddress: order.recipientAddress,
+                        distributorCode: '250501002', // 默认商家编码
+                        barcode: '',
+                        productQuantity: order.productQuantity,
+                        productPrice: '',
+                        subtotal: '',
+                        shippingFee: '',
+                        shop: currentUser || '',
+                        buyerMessage: '',
+                        customerServiceNote: '',
+                        buyerNickname: '',
+                        anchorId: '',
+                        anchorName: '',
+                        salesperson: '',
+                        paymentType: '',
+                        collectionAmount: '',
+                        supplierExpress: '',
+                        orderSource: order.orderSource,
+                        province: extractProvince(order.recipientAddress)
+                    };
+                });
+                
+                // 添加到系统订单列表
+                orders = [...orders, ...systemOrders];
+                
+                // 渲染订单表单
+                renderOrderForms();
+                
+                // 更新仪表板
+                updateDashboard();
+                
+                showNotification('notification', `成功导入 ${systemOrders.length} 个平台订单`, 'success');
+                
+                // 关闭模态框
+                closePlatformOrdersModal();
+                
+            } catch (error) {
+                console.error('导入平台订单失败:', error);
+                showNotification('notification', '导入平台订单失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 打开自动拉取设置模态框
+        function openAutoFetchModal() {
+            const modal = document.getElementById('autoFetchModal');
+            modal.style.display = 'block';
+            loadAutoFetchSettings();
+        }
+        
+        // 关闭自动拉取设置模态框
+        function closeAutoFetchModal() {
+            const modal = document.getElementById('autoFetchModal');
+            modal.style.display = 'none';
+        }
+        
+        // 保存自动拉取设置
+        function saveAutoFetchSettings() {
+            try {
+                const settings = {
+                    enabled: document.getElementById('autoFetchEnabled').checked,
+                    interval: document.getElementById('fetchInterval').value,
+                    time: document.getElementById('fetchTime').value,
+                    autoImport: document.getElementById('autoImportEnabled').checked
+                };
+                
+                localStorage.setItem('autoFetchSettings', JSON.stringify(settings));
+                showNotification('notification', '自动拉取设置保存成功', 'success');
+                
+                // 如果启用了自动拉取，启动定时任务
+                if (settings.enabled) {
+                    startAutoFetchTask();
+                } else {
+                    stopAutoFetchTask();
+                }
+                
+                closeAutoFetchModal();
+            } catch (error) {
+                console.error('保存自动拉取设置失败:', error);
+                showNotification('notification', '保存自动拉取设置失败', 'error');
+            }
+        }
+        
+        // 加载自动拉取设置
+        function loadAutoFetchSettings() {
+            try {
+                const savedSettings = localStorage.getItem('autoFetchSettings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    document.getElementById('autoFetchEnabled').checked = settings.enabled || false;
+                    document.getElementById('fetchInterval').value = settings.interval || '60';
+                    document.getElementById('fetchTime').value = settings.time || '';
+                    document.getElementById('autoImportEnabled').checked = settings.autoImport || false;
+                }
+            } catch (error) {
+                console.error('加载自动拉取设置失败:', error);
+            }
+        }
+        
+        // 定时自动拉取任务
+        let autoFetchInterval = null;
+        
+        // 启动自动拉取任务
+        function startAutoFetchTask() {
+            // 清除之前的任务
+            stopAutoFetchTask();
+            
+            // 获取设置
+            const savedSettings = localStorage.getItem('autoFetchSettings');
+            if (!savedSettings) return;
+            
+            const settings = JSON.parse(savedSettings);
+            if (!settings.enabled) return;
+            
+            // 计算间隔时间（分钟转换为毫秒）
+            const intervalMs = parseInt(settings.interval) * 60 * 1000;
+            
+            console.log('启动自动拉取任务，间隔:', intervalMs, '毫秒');
+            
+            // 设置定时任务
+            autoFetchInterval = setInterval(async () => {
+                console.log('执行自动拉取任务');
+                await autoFetchOrders();
+            }, intervalMs);
+            
+            showNotification('notification', '自动拉取任务已启动', 'success');
+        }
+        
+        // 停止自动拉取任务
+        function stopAutoFetchTask() {
+            if (autoFetchInterval) {
+                clearInterval(autoFetchInterval);
+                autoFetchInterval = null;
+                console.log('停止自动拉取任务');
+            }
+        }
+        
+        // 自动拉取订单
+        async function autoFetchOrders() {
+            try {
+                // 获取所有已配置的平台
+                const platforms = ['taobao', 'jd', 'pdd', 'xhs'];
+                let successCount = 0;
+                let totalCount = 0;
+                
+                for (const platform of platforms) {
+                    // 检查平台是否有配置
+                    const apiSettings = localStorage.getItem(`apiSettings_${platform}`);
+                    if (!apiSettings) continue;
+                    
+                    totalCount++;
+                    console.log(`自动拉取 ${platform} 订单`);
+                    
+                    try {
+                        // 设置当前平台
+                        document.getElementById('platformSelect').value = platform;
+                        
+                        // 设置默认日期（最近7天）
+                        const endDate = new Date();
+                        const startDate = new Date();
+                        startDate.setDate(startDate.getDate() - 7);
+                        
+                        document.getElementById('startDate').value = startDate.toISOString().split('T')[0];
+                        document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
+                        
+                        // 拉取订单
+                        await fetchPlatformOrders();
+                        
+                        // 检查是否需要自动导入
+                        const autoFetchSettings = localStorage.getItem('autoFetchSettings');
+                        if (autoFetchSettings) {
+                            const settings = JSON.parse(autoFetchSettings);
+                            if (settings.autoImport) {
+                                importPlatformOrders();
+                            }
+                        }
+                        
+                        successCount++;
+                    } catch (platformError) {
+                        console.error(`拉取 ${platform} 订单失败:`, platformError);
+                        showNotification('notification', `拉取${getPlatformName(platform)}订单失败: ${platformError.message}`, 'error');
+                    }
+                    
+                    // 等待1秒，避免请求过快
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+                
+                if (totalCount > 0) {
+                    showNotification('notification', `自动拉取完成：成功 ${successCount} 个平台，失败 ${totalCount - successCount} 个平台`, successCount === totalCount ? 'success' : 'warning');
+                }
+            } catch (error) {
+                console.error('自动拉取订单失败:', error);
+                showNotification('notification', '自动拉取订单失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 拉取所有平台订单
+        async function fetchAllOrders() {
+            try {
+                // 显示拉取中提示
+                const fetchResult = document.getElementById('fetchResult');
+                fetchResult.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100px;"><div class="loading"></div><span style="margin-left: 10px;">正在拉取所有平台订单，请稍候...</span></div>';
+                
+                // 获取所有已配置的平台
+                const platforms = ['taobao', 'jd', 'pdd', 'xhs'];
+                let successCount = 0;
+                let totalCount = 0;
+                let allOrders = [];
+                
+                for (const platform of platforms) {
+                    // 检查平台是否有配置
+                    const apiSettings = localStorage.getItem(`apiSettings_${platform}`);
+                    if (!apiSettings) continue;
+                    
+                    totalCount++;
+                    console.log(`拉取 ${platform} 订单`);
+                    
+                    try {
+                        // 设置当前平台
+                        document.getElementById('platformSelect').value = platform;
+                        
+                        // 使用当前设置的日期范围
+                        const startDate = document.getElementById('startDate').value;
+                        const endDate = document.getElementById('endDate').value;
+                        
+                        // 如果没有设置日期，使用最近7天
+                        const currentEndDate = endDate || new Date().toISOString().split('T')[0];
+                        const currentStartDate = startDate || new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+                        
+                        document.getElementById('startDate').value = currentStartDate;
+                        document.getElementById('endDate').value = currentEndDate;
+                        
+                        // 拉取订单
+                        const platformOrders = await fetchPlatformOrdersForAll(platform, currentStartDate, currentEndDate);
+                        allOrders = [...allOrders, ...platformOrders];
+                        
+                        successCount++;
+                    } catch (platformError) {
+                        console.error(`拉取 ${platform} 订单失败:`, platformError);
+                        showNotification('notification', `拉取${getPlatformName(platform)}订单失败: ${platformError.message}`, 'error');
+                    }
+                    
+                    // 等待1秒，避免请求过快
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+                
+                // 显示拉取结果
+                if (allOrders.length === 0) {
+                    fetchResult.innerHTML = '未拉取到订单数据';
+                } else {
+                    let resultHTML = `<p>成功从 ${successCount} 个平台拉取 ${allOrders.length} 个订单：</p><ul>`;
+                    allOrders.slice(0, 10).forEach(order => {
+                        resultHTML += `<li>${order.platformOrderId} - ${order.recipientName} - ${order.productName}</li>`;
+                    });
+                    if (allOrders.length > 10) {
+                        resultHTML += `<li>...</li>`;
+                    }
+                    resultHTML += '</ul><button onclick="importAllPlatformOrders()" style="margin-top: 10px;">导入到系统</button>';
+                    fetchResult.innerHTML = resultHTML;
+                    
+                    // 保存拉取的订单到临时存储
+                    localStorage.setItem('tempAllPlatformOrders', JSON.stringify(allOrders));
+                }
+                
+                if (totalCount > 0) {
+                    showNotification('notification', `拉取所有平台完成：成功 ${successCount} 个平台，失败 ${totalCount - successCount} 个平台`, successCount === totalCount ? 'success' : 'warning');
+                } else {
+                    showNotification('notification', '没有已配置的平台', 'info');
+                    fetchResult.innerHTML = '没有已配置的平台';
+                }
+            } catch (error) {
+                console.error('拉取所有平台订单失败:', error);
+                showNotification('notification', '拉取所有平台订单失败: ' + error.message, 'error');
+                document.getElementById('fetchResult').innerHTML = '拉取失败: ' + error.message;
+            }
+        }
+        
+        // 为批量拉取获取平台订单
+        async function fetchPlatformOrdersForAll(platform, startDate, endDate) {
+            try {
+                // 根据平台调用不同的API
+                switch (platform) {
+                    case 'taobao':
+                        return await fetchTaobaoOrders(startDate, endDate);
+                    case 'jd':
+                        return await fetchJdOrders(startDate, endDate);
+                    case 'pdd':
+                        return await fetchPddOrders(startDate, endDate);
+                    case 'xhs':
+                        return await fetchXhsOrders(startDate, endDate);
+                    default:
+                        return [];
+                }
+            } catch (error) {
+                console.error(`拉取 ${platform} 订单失败:`, error);
+                throw error;
+            }
+        }
+        
+        // 导入所有平台订单到系统
+        function importAllPlatformOrders() {
+            try {
+                const tempOrders = localStorage.getItem('tempAllPlatformOrders');
+                if (!tempOrders) {
+                    showNotification('notification', '没有可导入的平台订单', 'error');
+                    return;
+                }
+                
+                const platformOrders = JSON.parse(tempOrders);
+                
+                // 转换为系统订单格式
+                const systemOrders = platformOrders.map(order => {
+                    return {
+                        id: Date.now() + Math.floor(Math.random() * 1000),
+                        platformOrderId: order.platformOrderId,
+                        recipientName: order.recipientName,
+                        recipientPhone: order.recipientPhone,
+                        recipientAddress: order.recipientAddress,
+                        distributorCode: '250501002', // 默认商家编码
+                        barcode: '',
+                        productQuantity: order.productQuantity,
+                        productPrice: '',
+                        subtotal: '',
+                        shippingFee: '',
+                        shop: currentUser || '',
+                        buyerMessage: '',
+                        customerServiceNote: '',
+                        buyerNickname: '',
+                        anchorId: '',
+                        anchorName: '',
+                        salesperson: '',
+                        paymentType: '',
+                        collectionAmount: '',
+                        supplierExpress: '',
+                        orderSource: order.orderSource,
+                        province: extractProvince(order.recipientAddress)
+                    };
+                });
+                
+                // 添加到系统订单列表
+                orders = [...orders, ...systemOrders];
+                
+                // 渲染订单表单
+                renderOrderForms();
+                
+                // 更新仪表板
+                updateDashboard();
+                
+                showNotification('notification', `成功导入 ${systemOrders.length} 个平台订单`, 'success');
+                
+            } catch (error) {
+                console.error('导入平台订单失败:', error);
+                showNotification('notification', '导入平台订单失败: ' + error.message, 'error');
+            }
+        }
+        
+        // 平台订单状态映射
+        const platformStatusMap = {
+            taobao: {
+                'TRADE_NO_CREATE_PAY': '待付款',
+                'TRADE_CLOSED': '已关闭',
+                'TRADE_SUCCESS': '已完成',
+                'TRADE_FINISHED': '已完成',
+                'WAIT_BUYER_PAY': '待付款',
+                'WAIT_SELLER_SEND_GOODS': '待发货',
+                'WAIT_BUYER_CONFIRM_GOODS': '待收货'
+            },
+            jd: {
+                '0': '待付款',
+                '1': '待发货',
+                '2': '待收货',
+                '3': '已完成',
+                '4': '已取消',
+                '5': '已退款'
+            },
+            pdd: {
+                '0': '待付款',
+                '1': '待发货',
+                '2': '待收货',
+                '3': '已完成',
+                '4': '已取消'
+            },
+            xhs: {
+                'pending_payment': '待付款',
+                'pending_delivery': '待发货',
+                'pending_receipt': '待收货',
+                'completed': '已完成',
+                'cancelled': '已取消'
+            }
+        };
+        
+        // 获取平台订单状态
+        function getPlatformOrderStatus(platform, statusCode) {
+            const platformMap = platformStatusMap[platform] || {};
+            return platformMap[statusCode] || statusCode;
+        }
+        
+        // 店铺管理功能
+        
+        // 绑定店铺
+        function bindShop() {
+            const platform = document.getElementById('shopPlatformSelect').value;
+            const shopName = document.getElementById('shopName').value;
+            const appId = document.getElementById('shopAppId').value;
+            const appSecret = document.getElementById('shopAppSecret').value;
+            const accessToken = document.getElementById('shopAccessToken').value;
+            const shopId = document.getElementById('shopId').value;
+            
+            if (!platform) {
+                showNotification('notification', '请选择平台', 'error');
+                return;
+            }
+            
+            if (!shopName) {
+                showNotification('notification', '请输入店铺名称', 'error');
+                return;
+            }
+            
+            // 根据平台验证必要参数
+            let missingParams = [];
+            switch (platform) {
+                case 'taobao':
+                    if (!appId) missingParams.push('App ID');
+                    if (!appSecret) missingParams.push('App Secret');
+                    if (!accessToken) missingParams.push('Access Token');
+                    break;
+                case 'jd':
+                    if (!appId) missingParams.push('App ID');
+                    if (!appSecret) missingParams.push('App Secret');
+                    break;
+                case 'pdd':
+                    if (!appId) missingParams.push('Client ID');
+                    if (!appSecret) missingParams.push('Client Secret');
+                    if (!accessToken) missingParams.push('Access Token');
+                    break;
+                case 'xhs':
+                    if (!appId) missingParams.push('Client ID');
+                    if (!appSecret) missingParams.push('Client Secret');
+                    if (!accessToken) missingParams.push('Access Token');
+                    break;
+            }
+            
+            if (missingParams.length > 0) {
+                showNotification('notification', `请填写必要参数: ${missingParams.join(', ')}`, 'error');
+                return;
+            }
+            
+            // 创建新店铺
+            const newShop = {
+                id: Date.now() + Math.floor(Math.random() * 1000),
+                platform: platform,
+                platformName: getPlatformName(platform),
+                shopName: shopName,
+                appId: appId,
+                appSecret: appSecret,
+                accessToken: accessToken,
+                shopId: shopId,
+                createdAt: new Date().toISOString()
+            };
+            
+            // 添加到店铺列表
+            shops.push(newShop);
+            
+            // 保存到本地存储
+            localStorage.setItem('erpShops', JSON.stringify(shops));
+            
+            // 渲染店铺列表
+            renderShopList();
+            
+            // 清空表单
+            clearShopForm();
+            
+            showNotification('notification', `店铺绑定成功: ${shopName} (${getPlatformName(platform)})`, 'success');
+        }
+        
+        // 渲染店铺列表
+        function renderShopList() {
+            const shopList = document.getElementById('shopList');
+            
+            if (!shopList) return;
+            
+            if (shops.length === 0) {
+                shopList.innerHTML = '<p>暂无绑定的店铺</p>';
+                return;
+            }
+            
+            let html = `
+                <div class="order-summary">
+                    <h3>已绑定店铺 (共 ${shops.length} 个)</h3>
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>平台</th>
+                                <th>店铺名称</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            shops.forEach((shop, index) => {
+                html += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${shop.platformName}</td>
+                        <td>${shop.shopName}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit-btn" onclick="editShop(${shop.id})">编辑</button>
+                                <button class="delete-btn" onclick="deleteShop(${shop.id})">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            shopList.innerHTML = html;
+        }
+        
+        // 清空店铺表单
+        function clearShopForm() {
+            document.getElementById('shopPlatformSelect').value = '';
+            document.getElementById('shopName').value = '';
+            document.getElementById('shopAppId').value = '';
+            document.getElementById('shopAppSecret').value = '';
+            document.getElementById('shopAccessToken').value = '';
+            document.getElementById('shopId').value = '';
+        }
+        
+        // 编辑店铺
+        function editShop(shopId) {
+            const shop = shops.find(s => s.id === shopId);
+            if (!shop) return;
+            
+            // 填充表单
+            document.getElementById('shopPlatformSelect').value = shop.platform;
+            document.getElementById('shopName').value = shop.shopName;
+            document.getElementById('shopAppId').value = shop.appId;
+            document.getElementById('shopAppSecret').value = shop.appSecret;
+            document.getElementById('shopAccessToken').value = shop.accessToken;
+            document.getElementById('shopId').value = shop.shopId;
+            
+            // 删除原店铺
+            shops = shops.filter(s => s.id !== shopId);
+            localStorage.setItem('erpShops', JSON.stringify(shops));
+            renderShopList();
+            
+            showNotification('notification', `编辑店铺: ${shop.shopName}`, 'info');
+        }
+        
+        // 删除店铺
+        function deleteShop(shopId) {
+            if (confirm('确定要删除这个店铺吗？')) {
+                const shop = shops.find(s => s.id === shopId);
+                if (shop) {
+                    shops = shops.filter(s => s.id !== shopId);
+                    localStorage.setItem('erpShops', JSON.stringify(shops));
+                    renderShopList();
+                    showNotification('notification', `店铺已删除: ${shop.shopName}`, 'success');
+                }
+            }
+        }
+        
+        // 订单管理功能
+        
+        // 抓取订单
+        function fetchOrders() {
+            const platform = document.getElementById('orderPlatformSelect').value;
+            const shopId = document.getElementById('orderShopSelect').value;
+            const startDate = document.getElementById('orderStartDate').value;
+            const endDate = document.getElementById('orderEndDate').value;
+            
+            if (!startDate || !endDate) {
+                showNotification('notification', '请选择开始和结束日期', 'error');
+                return;
+            }
+            
+            showNotification('notification', `正在抓取订单...`, 'warning');
+            
+            // 模拟抓取过程
+            setTimeout(() => {
+                // 模拟抓取结果
+                const mockOrders = [
+                    {
+                        id: Date.now() + 1,
+                        platformOrderId: 'ORDER' + Date.now() + '001',
+                        recipientName: '张三',
+                        recipientPhone: '13800138001',
+                        recipientAddress: '北京市朝阳区某某街道123号',
+                        distributorCode: '250501002',
+                        productQuantity: 1,
+                        orderSource: platform ? getPlatformName(platform) : '淘宝'
+                    },
+                    {
+                        id: Date.now() + 2,
+                        platformOrderId: 'ORDER' + Date.now() + '002',
+                        recipientName: '李四',
+                        recipientPhone: '13900139002',
+                        recipientAddress: '上海市浦东新区某某路456号',
+                        distributorCode: '250501002',
+                        productQuantity: 2,
+                        orderSource: platform ? getPlatformName(platform) : '淘宝'
+                    }
+                ];
+                
+                // 添加到订单列表
+                orders = [...orders, ...mockOrders];
+                
+                // 渲染订单表单
+                renderOrderForms();
+                
+                // 更新仪表板
+                updateDashboard();
+                
+                showNotification('notification', `订单抓取成功，新增 ${mockOrders.length} 个订单`, 'success');
+            }, 1000);
+        }
+        
+        // 抓取所有平台订单
+        function fetchAllOrders() {
+            showNotification('notification', `正在抓取所有平台订单...`, 'warning');
+            
+            // 模拟抓取过程
+            setTimeout(() => {
+                // 模拟抓取结果
+                const mockOrders = [
+                    {
+                        id: Date.now() + 1,
+                        platformOrderId: 'TB' + Date.now() + '001',
+                        recipientName: '张三',
+                        recipientPhone: '13800138001',
+                        recipientAddress: '北京市朝阳区某某街道123号',
+                        distributorCode: '250501002',
+                        productQuantity: 1,
+                        orderSource: '淘宝'
+                    },
+                    {
+                        id: Date.now() + 2,
+                        platformOrderId: 'JD' + Date.now() + '001',
+                        recipientName: '李四',
+                        recipientPhone: '13900139002',
+                        recipientAddress: '上海市浦东新区某某路456号',
+                        distributorCode: '250501002',
+                        productQuantity: 2,
+                        orderSource: '京东'
+                    },
+                    {
+                        id: Date.now() + 3,
+                        platformOrderId: 'PDD' + Date.now() + '001',
+                        recipientName: '王五',
+                        recipientPhone: '13700137003',
+                        recipientAddress: '广州市天河区某某大道789号',
+                        distributorCode: '250501002',
+                        productQuantity: 1,
+                        orderSource: '拼多多'
+                    }
+                ];
+                
+                // 添加到订单列表
+                orders = [...orders, ...mockOrders];
+                
+                // 渲染订单表单
+                renderOrderForms();
+                
+                // 更新仪表板
+                updateDashboard();
+                
+                showNotification('notification', `所有平台订单抓取成功，新增 ${mockOrders.length} 个订单`, 'success');
+            }, 2000);
+        }
+        
+        // 导出订单
+        function exportOrders() {
+            if (orders.length === 0) {
+                showNotification('notification', '没有订单数据可导出', 'error');
+                return;
+            }
+            
+            // 使用现有的导出Excel功能
+            exportToExcel();
+        }
+        
+        // 保存订单到系统
+        function saveOrdersToSystem() {
+            if (orders.length === 0) {
+                showNotification('notification', '没有订单数据可保存', 'error');
+                return;
+            }
+            
+            // 使用现有的保存订单功能
+            saveOrders();
+        }
+        
+        // 清空订单
+        function clearOrders() {
+            if (confirm('确定要清空所有订单吗？')) {
+                orders = [];
+                renderOrderForms();
+                updateDashboard();
+                showNotification('notification', '订单已清空', 'success');
+            }
+        }
+        
+        // 更新店铺选择下拉框
+        function updateShopSelect() {
+            const shopSelect = document.getElementById('orderShopSelect');
+            if (!shopSelect) return;
+            
+            // 清空现有选项
+            shopSelect.innerHTML = '<option value="">所有店铺</option>';
+            
+            // 添加店铺选项
+            shops.forEach(shop => {
+                const option = document.createElement('option');
+                option.value = shop.id;
+                option.textContent = `${shop.platformName} - ${shop.shopName}`;
+                shopSelect.appendChild(option);
+            });
+        }
+        
         // 事件监听
         document.addEventListener('DOMContentLoaded', function() {
             // 初始化系统
             init();
             
             // 登录表单提交
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
-                login();
+                await login();
             });
             
             // 退出登录
@@ -5164,6 +7018,9 @@
             // 加载订单
             document.getElementById('loadButton').addEventListener('click', loadOrders);
             
+            // 平台订单
+            document.getElementById('platformOrdersButton').addEventListener('click', openPlatformOrdersModal);
+            
             // 用户管理
             document.getElementById('userManagementButton').addEventListener('click', openUserManagement);
             
@@ -5175,18 +7032,47 @@
             // 导航栏链接功能
             document.getElementById('dashboardLink').addEventListener('click', function(e) {
                 e.preventDefault();
+                // 显示仪表盘区域，隐藏其他区域
+                document.getElementById('shopManagementSection').style.display = 'none';
+                document.getElementById('orderManagementSection').style.display = 'none';
+                document.querySelector('.dashboard-section').style.display = 'block';
+                document.getElementById('pasteOrdersSection').style.display = 'block';
                 // 滚动到仪表盘区域
                 document.querySelector('.dashboard-section').scrollIntoView({ behavior: 'smooth' });
                 // 更新面包屑导航
                 document.querySelector('.breadcrumb span:last-child').textContent = '仪表盘';
             });
             
-            document.getElementById('ordersLink').addEventListener('click', function(e) {
+            // 店铺管理链接
+            document.getElementById('shopManagementLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                // 滚动到订单信息区域
-                document.getElementById('orderList').scrollIntoView({ behavior: 'smooth' });
+                // 显示店铺管理区域，隐藏其他区域
+                document.querySelector('.dashboard-section').style.display = 'none';
+                document.getElementById('orderManagementSection').style.display = 'none';
+                document.getElementById('pasteOrdersSection').style.display = 'none';
+                document.getElementById('shopManagementSection').style.display = 'block';
+                // 滚动到店铺管理区域
+                document.getElementById('shopManagementSection').scrollIntoView({ behavior: 'smooth' });
+                // 更新面包屑导航
+                document.querySelector('.breadcrumb span:last-child').textContent = '店铺管理';
+                // 渲染店铺列表
+                renderShopList();
+            });
+            
+            // 订单管理链接
+            document.getElementById('orderManagementLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 显示订单管理区域，隐藏其他区域
+                document.querySelector('.dashboard-section').style.display = 'none';
+                document.getElementById('shopManagementSection').style.display = 'none';
+                document.getElementById('pasteOrdersSection').style.display = 'none';
+                document.getElementById('orderManagementSection').style.display = 'block';
+                // 滚动到订单管理区域
+                document.getElementById('orderManagementSection').scrollIntoView({ behavior: 'smooth' });
                 // 更新面包屑导航
                 document.querySelector('.breadcrumb span:last-child').textContent = '订单管理';
+                // 更新店铺选择下拉框
+                updateShopSelect();
             });
             
             document.getElementById('productsLink').addEventListener('click', function(e) {
@@ -5206,6 +7092,145 @@
             // 同步到GitHub
             document.getElementById('syncToGitHubButton').addEventListener('click', syncToGitHub);
             
+            // 保存GitHub设置
+            document.getElementById('saveGitHubSettings').addEventListener('click', saveGitHubSettings);
+            
+            // 加载GitHub设置
+            document.getElementById('loadGitHubSettings').addEventListener('click', loadGitHubSettings);
+            
+            // 页面加载时自动加载GitHub设置
+            window.addEventListener('load', function() {
+                // 延迟加载，确保DOM已经完全加载
+                setTimeout(loadGitHubSettings, 500);
+            });
+            
+            // 从GitHub拉取数据
+            document.getElementById('pullFromGitHubButton').addEventListener('click', pullFromGitHub);
+            
+            // 修改用户模态框
+            const editModal = document.getElementById('editUserModal');
+            if (editModal) {
+                // 关闭按钮
+                const closeButton = editModal.querySelector('.close-button');
+                if (closeButton) {
+                    closeButton.addEventListener('click', closeEditUserModal);
+                }
+                
+                // 保存修改按钮
+                const saveButton = editModal.querySelector('#saveEditButton');
+                if (saveButton) {
+                    saveButton.addEventListener('click', saveEdit);
+                }
+            }
+            
+            // 平台订单模态框
+            const platformModal = document.getElementById('platformOrdersModal');
+            if (platformModal) {
+                // 关闭按钮
+                const closeButton = platformModal.querySelector('.close-button');
+                if (closeButton) {
+                    closeButton.addEventListener('click', closePlatformOrdersModal);
+                }
+                
+                // 保存API配置
+                const saveApiButton = platformModal.querySelector('#saveApiSettings');
+                if (saveApiButton) {
+                    saveApiButton.addEventListener('click', saveApiSettings);
+                }
+                
+                // 加载API配置
+                const loadApiButton = platformModal.querySelector('#loadApiSettings');
+                if (loadApiButton) {
+                    loadApiButton.addEventListener('click', loadApiSettings);
+                }
+                
+                // 拉取订单
+                const fetchButton = platformModal.querySelector('#fetchOrdersButton');
+                if (fetchButton) {
+                    fetchButton.addEventListener('click', fetchPlatformOrders);
+                }
+                
+                // 拉取所有平台订单
+                const fetchAllButton = platformModal.querySelector('#fetchAllOrdersButton');
+                if (fetchAllButton) {
+                    fetchAllButton.addEventListener('click', fetchAllOrders);
+                }
+                
+                // 自动拉取设置
+                const autoFetchButton = platformModal.querySelector('#autoFetchSettings');
+                if (autoFetchButton) {
+                    autoFetchButton.addEventListener('click', openAutoFetchModal);
+                }
+            }
+            
+            // 自动拉取设置模态框
+            const autoFetchModal = document.getElementById('autoFetchModal');
+            if (autoFetchModal) {
+                // 关闭按钮
+                const closeButton = autoFetchModal.querySelector('.close-button');
+                if (closeButton) {
+                    closeButton.addEventListener('click', closeAutoFetchModal);
+                }
+                
+                // 保存设置
+                const saveButton = autoFetchModal.querySelector('#saveAutoFetchSettings');
+                if (saveButton) {
+                    saveButton.addEventListener('click', saveAutoFetchSettings);
+                }
+                
+                // 取消按钮
+                const cancelButton = autoFetchModal.querySelector('#cancelAutoFetchSettings');
+                if (cancelButton) {
+                    cancelButton.addEventListener('click', closeAutoFetchModal);
+                }
+            }
+            
+            // 店铺管理按钮事件
+            
+            // 绑定店铺按钮
+            const bindShopButton = document.getElementById('bindShopButton');
+            if (bindShopButton) {
+                bindShopButton.addEventListener('click', bindShop);
+            }
+            
+            // 清空店铺表单按钮
+            const clearShopFormButton = document.getElementById('clearShopFormButton');
+            if (clearShopFormButton) {
+                clearShopFormButton.addEventListener('click', clearShopForm);
+            }
+            
+            // 订单管理按钮事件
+            
+            // 抓取订单按钮
+            const fetchOrdersButton = document.getElementById('fetchOrdersButton');
+            if (fetchOrdersButton) {
+                fetchOrdersButton.addEventListener('click', fetchOrders);
+            }
+            
+            // 抓取所有平台订单按钮
+            const fetchAllOrdersButton = document.getElementById('fetchAllOrdersButton');
+            if (fetchAllOrdersButton) {
+                fetchAllOrdersButton.addEventListener('click', fetchAllOrders);
+            }
+            
+            // 导出订单按钮
+            const exportOrdersButton = document.getElementById('exportOrdersButton');
+            if (exportOrdersButton) {
+                exportOrdersButton.addEventListener('click', exportOrders);
+            }
+            
+            // 保存订单到系统按钮
+            const saveOrdersButton = document.getElementById('saveOrdersButton');
+            if (saveOrdersButton) {
+                saveOrdersButton.addEventListener('click', saveOrdersToSystem);
+            }
+            
+            // 清空订单按钮
+            const clearOrdersButton = document.getElementById('clearOrdersButton');
+            if (clearOrdersButton) {
+                clearOrdersButton.addEventListener('click', clearOrders);
+            }
+            
             // 监听粘贴事件
             document.getElementById('pasteArea').addEventListener('paste', function() {
                 // 粘贴后可以自动提取，或者等待用户点击按钮
@@ -5213,11 +7238,22 @@
             
             // 点击模态框外部关闭
             window.addEventListener('click', function(event) {
-                const modal = document.getElementById('userManagementModal');
-                if (event.target === modal) {
+                const userModal = document.getElementById('userManagementModal');
+                if (event.target === userModal) {
                     closeUserManagement();
                 }
+                
+                const platformModal = document.getElementById('platformOrdersModal');
+                if (event.target === platformModal) {
+                    closePlatformOrdersModal();
+                }
             });
+            
+            // 平台选择变化时更新店铺选择
+            const orderPlatformSelect = document.getElementById('orderPlatformSelect');
+            if (orderPlatformSelect) {
+                orderPlatformSelect.addEventListener('change', updateShopSelect);
+            }
         });
     </script>
 </body>
