@@ -2355,7 +2355,15 @@
                             <div id="passwordStrength" class="password-strength" style="margin-top: 5px; font-size: 12px;"></div>
                         </div>
                         </div>
-                        <button id="addUserButton">添加用户</button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button id="addUserButton">添加用户</button>
+                            <button id="syncToGitHubButton" style="flex: 1;">同步到GitHub</button>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label for="githubToken">GitHub Token</label>
+                            <input type="password" id="githubToken" name="githubToken" placeholder="输入GitHub Personal Access Token">
+                            <small style="display: block; margin-top: 5px; color: #666;">需要具有repo权限的Personal Access Token</small>
+                        </div>
                     </div>
                     <div class="user-list">
                         <h3>用户列表</h3>
@@ -3935,6 +3943,64 @@
             });
         }
         
+        // 同步用户数据到GitHub
+        async function syncToGitHub() {
+            const token = document.getElementById('githubToken').value;
+            if (!token) {
+                showNotification('notification', '请输入GitHub Personal Access Token', 'error');
+                return;
+            }
+            
+            try {
+                showNotification('notification', '正在同步到GitHub...', 'info');
+                
+                // 这里需要替换为你的GitHub仓库信息
+                const owner = 'your-username'; // 替换为你的GitHub用户名
+                const repo = 'erp-system'; // 替换为你的仓库名称
+                const path = 'users.json';
+                
+                // 1. 获取当前文件的SHA（用于更新文件）
+                const getResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!getResponse.ok) {
+                    throw new Error('获取文件信息失败');
+                }
+                
+                const getdata = await getResponse.json();
+                const sha = getdata.sha;
+                
+                // 2. 更新文件
+                const updateResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: '更新用户数据',
+                        content: btoa(JSON.stringify({ users: users }, null, 2)),
+                        sha: sha
+                    })
+                });
+                
+                if (!updateResponse.ok) {
+                    throw new Error('更新文件失败');
+                }
+                
+                showNotification('notification', '同步到GitHub成功', 'success');
+                console.log('用户数据同步到GitHub成功');
+                
+            } catch (error) {
+                console.error('同步到GitHub失败:', error);
+                showNotification('notification', '同步到GitHub失败: ' + error.message, 'error');
+            }
+        }
+        
         // 验证用户登录
         function validateUser(username, password) {
             return users.some(user => user.username === username && user.password === password);
@@ -5136,6 +5202,9 @@
             
             // 添加用户
             document.getElementById('addUserButton').addEventListener('click', addUser);
+            
+            // 同步到GitHub
+            document.getElementById('syncToGitHubButton').addEventListener('click', syncToGitHub);
             
             // 监听粘贴事件
             document.getElementById('pasteArea').addEventListener('paste', function() {
