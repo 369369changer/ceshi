@@ -535,44 +535,6 @@
             width: 140px;
         }
         
-        /* 移动端按钮布局优化 */
-        @media (max-width: 768px) {
-            .button-container {
-                margin-top: 16px;
-                gap: 12px;
-            }
-            
-            .button-container button {
-                flex: 1 1 calc(50% - 6px); /* 每行显示2个按钮，减去间距 */
-                min-width: 120px;
-                max-width: none;
-                width: auto;
-                padding: 12px 16px;
-                font-size: 14px;
-            }
-            
-            button {
-                padding: 12px 16px;
-                font-size: 14px;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            }
-        }
-        
-        /* 小屏幕移动端进一步优化 */
-        @media (max-width: 480px) {
-            .button-container {
-                gap: 10px;
-            }
-            
-            .button-container button {
-                flex: 1 1 calc(50% - 5px); /* 每行显示2个按钮，减去间距 */
-                min-width: 100px;
-                font-size: 13px;
-                padding: 10px 12px;
-            }
-        }
-        
         /* 按钮微交互效果 */
         button {
             padding: 14px 24px;
@@ -1398,17 +1360,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(33, 150, 243, 0.3);
-        }
-        
-        .modal-header h2 {
-            margin: 0;
-            color: #2196f3;
-            font-size: 22px;
-            font-weight: 700;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(33, 150, 243, 0.2);
         }
         
         .modal-header h3 {
@@ -1416,24 +1370,22 @@
             color: #2196f3;
             font-size: 18px;
             font-weight: 700;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .close-button {
             background: none;
             border: none;
             color: #999;
-            font-size: 28px;
+            font-size: 24px;
             cursor: pointer;
             padding: 0;
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             transition: all 0.2s ease;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .close-button:hover {
@@ -1444,97 +1396,53 @@
         .modal-body {
             max-height: 60vh;
             overflow-y: auto;
-            margin-bottom: 24px;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #e0e0e0;
-        }
-        
-        .preview-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
-            overflow: hidden;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .preview-table th,
-        .preview-table td {
-            border: 1px solid rgba(33, 150, 243, 0.2);
-            padding: 12px 16px;
-            text-align: left;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        .preview-table th {
-            background: linear-gradient(135deg, rgba(33, 150, 243, 0.2) 0%, rgba(17, 82, 147, 0.3) 100%);
-            font-weight: 700;
-            color: #2196f3;
-            font-size: 15px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-        
-        .preview-table td {
-            color: #2196f3;
-            background-color: rgba(255, 255, 255, 0.01);
-        }
-        
-        .preview-table tr:hover {
-            background-color: rgba(33, 150, 243, 0.1);
-        }
-        
-        .preview-table tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.02);
+            margin-bottom: 20px;
         }
         
         .modal-footer {
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(33, 150, 243, 0.2);
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
         }
         
         .save-button {
             background-color: #2196f3;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
         
         .save-button:hover {
             background-color: #1976d2;
-            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
         }
         
         .modal-footer .close-button {
-            background-color: rgba(255,255,255,0.1);
-            color: #e0e0e0;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
             width: auto;
             height: auto;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .modal-footer .close-button:hover {
-            background-color: rgba(255,255,255,0.15);
-            color: #fff;
+            background-color: #e0e0e0;
         }
         
         /* 模态弹窗表单样式 */
         .modal-body .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 15px;
         }
         
         .modal-body .form-group {
@@ -1543,30 +1451,23 @@
         
         .modal-body .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #e0e0e0;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
         }
         
         .modal-body .form-group input,
         .modal-body .form-group select,
         .modal-body .form-group textarea {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid rgba(33, 150, 243, 0.2);
-            border-radius: 8px;
-            background-color: rgba(255,255,255,0.05);
-            color: #e0e0e0;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fff;
+            color: #333;
             font-size: 14px;
-            transition: all 0.3s ease;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .modal-body .form-group input::placeholder,
-        .modal-body .form-group textarea::placeholder {
-            color: rgba(255,255,255,0.4);
+            transition: all 0.2s ease;
         }
         
         .modal-body .form-group input:focus,
@@ -1574,13 +1475,12 @@
         .modal-body .form-group textarea:focus {
             outline: none;
             border-color: #2196f3;
-            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
         }
         
         .modal-body .required {
             color: #f44336;
-            font-size: 14px;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
         }
         
         .order-details h4 {
@@ -1991,16 +1891,15 @@
         }
         
         .modal-content {
-            background: #1a1f2e;
+            background: #ffffff;
             padding: 30px;
-            border: 1px solid rgba(33, 150, 243, 0.3);
+            border: none;
             border-radius: 12px;
             width: 90%;
             max-width: 600px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             animation: modalSlideIn 0.3s ease-out;
             position: relative;
-            color: #e0e0e0;
         }
         
         @keyframes modalSlideIn {
@@ -2029,38 +1928,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(33, 150, 243, 0.3);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
         }
         
         .modal-header h2 {
-            color: #2196f3;
-            font-size: 22px;
-            font-weight: 700;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
         }
         
         .close-button {
-            background: none;
-            border: none;
             color: #999;
+            float: right;
             font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            padding: 0;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
         }
         
         .close-button:hover {
-            color: #fff;
-            background-color: rgba(255,255,255,0.1);
+            color: #333;
+            transform: rotate(90deg);
         }
         
         .user-form {
@@ -2790,7 +2680,6 @@
                 <div class="navbar-menu">
                     <a href="#dashboard" id="dashboardLink" class="active">仪表盘</a>
                     <a href="#products" id="productsLink">商品管理</a>
-                    <a href="#shops" id="shopsLink">店铺管理</a>
                     <a href="https://erp.huice.com/#/app/order/fenxiao/pending-order" target="_blank">旺店通</a>
                 </div>
                 <div class="navbar-user">
@@ -3058,219 +2947,6 @@
             </div>
         </div>
         
-        <!-- 店铺管理模态框 -->
-        <div id="shopManagementModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>店铺管理</h2>
-                    <span class="close-button">&times;</span>
-                </div>
-                <div id="shopManagementNotification" class="notification" style="display: none;"></div>
-                <div class="modal-body">
-                    <!-- 标签页导航 -->
-                    <div style="margin-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
-                        <div style="display: flex; gap: 10px;">
-                            <button onclick="switchShopTab('add')" class="shop-tab-button active" style="padding: 10px 20px; border: none; background: #2196f3; color: white; border-radius: 8px 8px 0 0; cursor: pointer;">添加店铺</button>
-                            <button onclick="switchShopTab('list')" class="shop-tab-button" style="padding: 10px 20px; border: none; background: #f5f5f5; color: #333; border-radius: 8px 8px 0 0; cursor: pointer;">店铺列表</button>
-                            <button onclick="switchShopTab('config')" class="shop-tab-button" style="padding: 10px 20px; border: none; background: #f5f5f5; color: #333; border-radius: 8px 8px 0 0; cursor: pointer;">配置管理</button>
-                        </div>
-                    </div>
-                    
-                    <!-- 添加店铺标签页 -->
-                    <div id="shopAddTab" class="shop-tab-content">
-                        <div class="shop-form">
-                            <h3>添加店铺</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="shopName">店铺名称</label>
-                                    <input type="text" id="shopName" name="shopName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="shopCode">店铺编码</label>
-                                    <input type="text" id="shopCode" name="shopCode">
-                                </div>
-                                <div class="form-group">
-                                    <label for="platform">所属平台</label>
-                                    <select id="platform" name="platform">
-                                        <option value="淘宝">淘宝</option>
-                                        <option value="京东">京东</option>
-                                        <option value="拼多多">拼多多</option>
-                                        <option value="小红书">小红书</option>
-                                        <option value="其他">其他</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="shopStatus">店铺状态</label>
-                                    <select id="shopStatus" name="shopStatus">
-                                        <option value="active">启用</option>
-                                        <option value="inactive">禁用</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 10px; margin-top: 15px;">
-                                <button id="addShopButton">添加店铺</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 店铺列表标签页 -->
-                    <div id="shopListTab" class="shop-tab-content" style="display: none;">
-                        <div class="shop-list">
-                            <h3>店铺列表</h3>
-                            <table class="shops-table">
-                                <thead>
-                                    <tr>
-                                        <th>店铺名称</th>
-                                        <th>店铺编码</th>
-                                        <th>所属平台</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="shopsTableBody">
-                                    <!-- 店铺列表将动态添加 -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- 配置管理标签页 -->
-                    <div id="shopConfigTab" class="shop-tab-content" style="display: none;">
-                        <div class="card">
-                            <h3>店铺配置管理</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="shopApiVersion">API版本</label>
-                                    <select id="shopApiVersion">
-                                        <option value="v1">v1</option>
-                                        <option value="v2">v2</option>
-                                        <option value="v3">v3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="shopEnvironment">环境</label>
-                                    <select id="shopEnvironment">
-                                        <option value="production">生产环境</option>
-                                        <option value="sandbox">测试环境</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="shopRetryCount">重试次数</label>
-                                    <input type="number" id="shopRetryCount" min="1" max="10" value="3">
-                                </div>
-                                <div class="form-group">
-                                    <label for="shopTimeout">超时设置(ms)</label>
-                                    <input type="number" id="shopTimeout" min="1000" max="60000" value="30000">
-                                </div>
-                                <div class="form-group">
-                                    <label for="shopLogLevel">日志级别</label>
-                                    <select id="shopLogLevel">
-                                        <option value="debug">Debug</option>
-                                        <option value="info">Info</option>
-                                        <option value="warn">Warn</option>
-                                        <option value="error">Error</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 10px; margin-top: 15px;">
-                                <button id="saveShopConfig">保存配置</button>
-                                <button id="loadShopConfig">加载配置</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 编辑店铺模态框 -->
-        <div id="editShopModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>修改店铺</h2>
-                    <span class="close-button">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <div class="shop-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="editShopName">店铺名称</label>
-                                <input type="text" id="editShopName" name="editShopName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editShopCode">店铺编码</label>
-                                <input type="text" id="editShopCode" name="editShopCode" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editPlatform">所属平台</label>
-                                <select id="editPlatform" name="editPlatform">
-                                    <option value="淘宝">淘宝</option>
-                                    <option value="京东">京东</option>
-                                    <option value="拼多多">拼多多</option>
-                                    <option value="小红书">小红书</option>
-                                    <option value="其他">其他</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="editShopStatus">店铺状态</label>
-                                <select id="editShopStatus" name="editShopStatus">
-                                    <option value="active">启用</option>
-                                    <option value="inactive">禁用</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button id="saveShopEditButton">保存修改</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 自动拉取设置模态框 -->
-        <div id="autoFetchModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>自动拉取设置</h2>
-                    <button class="close-button" onclick="closeAutoFetchModal()">×</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" id="autoFetchEnabled"> 启用自动拉取
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label for="autoFetchInterval">拉取间隔（分钟）：</label>
-                        <input type="number" id="autoFetchInterval" min="1" max="1440" value="30">
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" id="autoImportEnabled"> 自动导入到系统
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>拉取平台：</label>
-                        <div style="margin-top: 8px;">
-                            <label style="margin-right: 16px;">
-                                <input type="checkbox" id="fetchTaobao" checked> 淘宝/天猫
-                            </label>
-                            <label style="margin-right: 16px;">
-                                <input type="checkbox" id="fetchJd" checked> 京东
-                            </label>
-                            <label style="margin-right: 16px;">
-                                <input type="checkbox" id="fetchPdd" checked> 拼多多
-                            </label>
-                            <label>
-                                <input type="checkbox" id="fetchXhs" checked> 小红书
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="cancelAutoFetchSettings" class="close-button">取消</button>
-                    <button id="saveAutoFetchSettings" class="save-button">保存设置</button>
-                </div>
-            </div>
-        </div>
-        
         <div id="notification" class="notification" style="display: none;"></div>
         
 
@@ -3285,115 +2961,9 @@
             <div style="margin-bottom: 30px;">
                 <h3>订单列表</h3>
                 <div class="table-responsive">
-                    <!-- 批量操作栏 -->
-                    <!-- 搜索和筛选区域 -->
-                    <div class="search-filter-section" style="margin-bottom: 32px; padding: 24px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        <h3 style="margin-top: 0; margin-bottom: 24px; color: #1565c0;">搜索和筛选</h3>
-                        
-                        <!-- 搜索容器 -->
-                        <div class="search-container" style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
-                            <div class="search-input-wrapper" style="flex: 1; min-width: 300px;">
-                                <input type="text" id="searchInput" class="search-input" placeholder="输入订单号、客户姓名、电话等关键词" style="width: 100%; padding: 16px 20px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 12px; font-size: 14px; background: rgba(255, 255, 255, 0.05); color: #333;">
-                            </div>
-                            
-                            <div class="search-options" style="display: flex; gap: 12px; align-items: center;">
-                                <select id="searchField" class="search-field-select" style="padding: 10px 16px; border: 1px solid rgba(33, 150, 243, 0.2); border-radius: 8px; font-size: 14px; background: #ffffff; color: #333;">
-                                    <option value="all">全部字段</option>
-                                    <option value="orderId">订单号</option>
-                                    <option value="customerName">客户姓名</option>
-                                    <option value="customerPhone">联系电话</option>
-                                    <option value="productCode">商品编码</option>
-                                    <option value="shop">店铺</option>
-                                </select>
-                                
-                                <button onclick="searchOrders()" class="search-button" style="padding: 16px 24px; border: none; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: white; box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);">搜索</button>
-                                
-                                <button onclick="clearSearch()" class="clear-search-button" style="padding: 16px 24px; border: none; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); color: white; box-shadow: 0 6px 16px rgba(149, 165, 166, 0.3);">清空</button>
-                            </div>
-                        </div>
-                        
-                        <!-- 筛选容器 -->
-                        <div class="filter-container" style="background: #ffffff; border: 1px solid rgba(33, 150, 243, 0.2); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);">
-                            <h4 style="margin-top: 0; margin-bottom: 20px; color: #2196f3;">筛选条件</h4>
-                            
-                            <div class="filter-row" style="display: flex; gap: 20px; flex-wrap: wrap;">
-                                <div class="filter-group" style="flex: 1; min-width: 200px;">
-                                    <label style="font-size: 14px; font-weight: 600; color: #444;">订单状态:</label>
-                                    <select id="statusFilter" class="filter-select" style="padding: 14px 18px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 10px; font-size: 14px; background: #ffffff; color: #333;">
-                                        <option value="all">全部状态</option>
-                                        <option value="待处理">待处理</option>
-                                        <option value="处理中">处理中</option>
-                                        <option value="已完成">已完成</option>
-                                        <option value="已取消">已取消</option>
-                                        <option value="已退款">已退款</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="filter-group" style="flex: 1; min-width: 200px;">
-                                    <label style="font-size: 14px; font-weight: 600; color: #444;">订单来源:</label>
-                                    <select id="sourceFilter" class="filter-select" style="padding: 14px 18px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 10px; font-size: 14px; background: #ffffff; color: #333;">
-                                        <option value="all">全部来源</option>
-                                        <option value="淘宝/天猫">淘宝/天猫</option>
-                                        <option value="京东">京东</option>
-                                        <option value="拼多多">拼多多</option>
-                                        <option value="小红书">小红书</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="filter-group" style="flex: 1; min-width: 200px;">
-                                    <label style="font-size: 14px; font-weight: 600; color: #444;">开始日期:</label>
-                                    <input type="date" id="dateFrom" class="filter-date" style="padding: 14px 18px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 10px; font-size: 14px; background: #ffffff; color: #333;">
-                                </div>
-                                
-                                <div class="filter-group" style="flex: 1; min-width: 200px;">
-                                    <label style="font-size: 14px; font-weight: 600; color: #444;">结束日期:</label>
-                                    <input type="date" id="dateTo" class="filter-date" style="padding: 14px 18px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 10px; font-size: 14px; background: #ffffff; color: #333;">
-                                </div>
-                                
-                                <div class="filter-group" style="flex: 1; min-width: 200px;">
-                                    <label style="font-size: 14px; font-weight: 600; color: #444;">最小金额:</label>
-                                    <input type="number" id="amountMin" class="filter-amount" placeholder="0" style="padding: 14px 18px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 10px; font-size: 14px; background: #ffffff; color: #333;">
-                                </div>
-                                
-                                <div class="filter-group" style="flex: 1; min-width: 200px;">
-                                    <label style="font-size: 14px; font-weight: 600; color: #444;">最大金额:</label>
-                                    <input type="number" id="amountMax" class="filter-amount" placeholder="不限" style="padding: 14px 18px; border: 2px solid rgba(33, 150, 243, 0.2); border-radius: 10px; font-size: 14px; background: #ffffff; color: #333;">
-                                </div>
-                                
-                                <div class="filter-buttons" style="display: flex; gap: 12px; align-items: flex-end; min-width: 200px;">
-                                    <button onclick="filterOrders()" class="filter-button" style="padding: 14px 24px; border: none; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: white; box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);">筛选</button>
-                                    <button onclick="resetFilter()" class="reset-filter-button" style="padding: 14px 24px; border: none; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; box-shadow: 0 6px 16px rgba(243, 156, 18, 0.4);">重置</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 搜索历史 -->
-                        <div class="search-history" style="margin-top: 20px; padding: 20px; border: 1px solid rgba(33, 150, 243, 0.2); border-radius: 12px; background: #ffffff;">
-                            <h4 style="margin-bottom: 12px; color: #2196f3; font-size: 16px; font-weight: 700;">搜索历史</h4>
-                            <div id="searchHistory" class="search-history-tags" style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                <!-- 搜索历史标签将动态添加 -->
-                            </div>
-                            <button onclick="clearSearchHistory()" style="margin-top: 12px; padding: 8px 16px; background: #666; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600;">清空历史</button>
-                        </div>
-                    </div>
-                    
-                    <!-- 批量操作栏 -->
-                    <div id="batchOperations" class="batch-operations" style="display: none; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e0e0e0;">
-                        <div class="batch-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="margin: 0; color: #1565c0;">批量操作</h3>
-                            <button id="batchCancelButton" class="batch-cancel-button" style="padding: 8px 16px; font-size: 14px; font-weight: 600; border: none; border-radius: 8px; background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); color: white; cursor: pointer; transition: all 0.3s ease;">取消选择</button>
-                        </div>
-                        <div class="batch-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
-                            <button id="batchDeleteButton" class="batch-button delete" style="padding: 12px 20px; font-size: 14px; font-weight: 600; border: none; border-radius: 8px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex: 1; min-width: 120px;">批量删除</button>
-                            <button id="batchExportButton" class="batch-button export" style="padding: 12px 20px; font-size: 14px; font-weight: 600; border: none; border-radius: 8px; background: linear-gradient(135deg, #27ae60 0%, #229954 100%); color: white; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex: 1; min-width: 120px;">批量导出</button>
-                            <button id="batchStatusButton" class="batch-button status" style="padding: 12px 20px; font-size: 14px; font-weight: 600; border: none; border-radius: 8px; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex: 1; min-width: 120px;">批量修改状态</button>
-                        </div>
-                    </div>
-                    
                     <table class="orders-table" id="ordersListTable">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" onclick="toggleSelectAll(this)" style="margin: 0;"></th>
                                 <th>序列</th>
                                 <th>订单号</th>
                                 <th>客户姓名</th>
@@ -3406,7 +2976,6 @@
                                 <th>小计</th>
                                 <th>运费</th>
                                 <th>店铺</th>
-                                <th>状态</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -3438,100 +3007,99 @@
                         <td>1盒</td>
                         <td>250501002</td>
                         <td>31.5</td>
-                        <td><button type="button" onclick="editSpec('1盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('1盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>随机6盒</td>
                         <td>250423006</td>
                         <td>150</td>
-                        <td><button type="button" onclick="editSpec('随机6盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('随机6盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>随机4盒</td>
                         <td>250423004</td>
                         <td>100</td>
-                        <td><button type="button" onclick="editSpec('随机4盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('随机4盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>随机8盒</td>
                         <td>250423102</td>
                         <td>200</td>
-                        <td><button type="button" onclick="editSpec('随机8盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('随机8盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>随机2盒</td>
                         <td>250421002</td>
                         <td>50</td>
-                        <td><button type="button" onclick="editSpec('随机2盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('随机2盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>大果2盒</td>
                         <td>250416360</td>
                         <td>54</td>
-                        <td><button type="button" onclick="editSpec('大果2盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('大果2盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>中果2盒</td>
                         <td>250416340</td>
                         <td>52</td>
-                        <td><button type="button" onclick="editSpec('中果2盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('中果2盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>小果2盒</td>
                         <td>250416351</td>
                         <td>50</td>
-                        <td><button type="button" onclick="editSpec('小果2盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('小果2盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>大果4盒</td>
                         <td>250416348</td>
                         <td>158</td>
-                        <td><button type="button" onclick="editSpec('大果4盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('大果4盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>中果4盒</td>
                         <td>250416349</td>
                         <td>154</td>
-                        <td><button type="button" onclick="editSpec('中果4盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('中果4盒')" class="edit-button">编辑</button></td>
                     </tr>
                     <tr>
                         <td>小果4盒</td>
                         <td>250416357</td>
                         <td>150</td>
-                        <td><button type="button" onclick="editSpec('小果4盒')" class="edit-button">编辑</button></td>
+                        <td><button onclick="editSpec('小果4盒')" class="edit-button">编辑</button></td>
                     </tr>
                 </tbody>
             </table>
             
-        </div>
-    </div>
-    
-    <!-- 规格编辑模态弹窗 -->
-    <div id="specEditModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>编辑规格</h3>
-                <button class="close-button" onclick="closeSpecEditModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="editSpecName">规格名称</label>
-                        <input type="text" id="editSpecName" readonly>
+            <!-- 规格编辑模态弹窗 -->
+            <div id="specEditModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>编辑规格</h3>
+                        <button class="close-button" onclick="closeSpecEditModal()">&times;</button>
                     </div>
-                    <div class="form-group">
-                        <label for="editDistributorCode">商家编码</label>
-                        <input type="text" id="editDistributorCode" required>
+                    <div class="modal-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editSpecName">规格名称</label>
+                                <input type="text" id="editSpecName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDistributorCode">商家编码</label>
+                                <input type="text" id="editDistributorCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editPrice">单价</label>
+                                <input type="number" id="editPrice" step="0.1" min="0" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editPrice">单价</label>
-                        <input type="number" id="editPrice" step="0.1" min="0" required>
+                    <div class="modal-footer">
+                        <button onclick="closeSpecEditModal()">取消</button>
+                        <button onclick="saveSpecEdit()">保存</button>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button onclick="closeSpecEditModal()">取消</button>
-                <button onclick="saveSpecEdit()">保存</button>
             </div>
         </div>
     </div>
@@ -3681,16 +3249,8 @@
         
         // 搜索订单
         function searchOrders() {
-            const searchInput = document.getElementById('searchInput');
-            const searchFieldSelect = document.getElementById('searchField');
-            
-            if (!searchInput || !searchFieldSelect) {
-                showNotification('notification', '搜索元素不存在', 'error');
-                return;
-            }
-            
-            const searchQuery = searchInput.value.trim();
-            const searchField = searchFieldSelect.value;
+            const searchQuery = document.getElementById('searchInput').value.trim();
+            const searchField = document.getElementById('searchField').value;
             
             if (!searchQuery) {
                 showNotification('notification', '请输入搜索关键词', 'error');
@@ -3707,29 +3267,19 @@
             const filteredOrders = orders.filter(order => {
                 if (searchField === 'all') {
                     return (
-                        (order.platformOrderId || '').includes(searchQuery) ||
-                        (order.recipientName || '').includes(searchQuery) ||
-                        (order.recipientPhone || '').includes(searchQuery) ||
-                        (order.distributorCode || '').includes(searchQuery) ||
-                        (order.shop || '').includes(searchQuery)
+                        order.orderNumber?.includes(searchQuery) ||
+                        order.customerName?.includes(searchQuery) ||
+                        order.customerPhone?.includes(searchQuery) ||
+                        order.productName?.includes(searchQuery) ||
+                        order.platformOrderNumber?.includes(searchQuery)
                     );
-                } else if (searchField === 'orderId') {
-                    return (order.platformOrderId || '').includes(searchQuery);
-                } else if (searchField === 'customerName') {
-                    return (order.recipientName || '').includes(searchQuery);
-                } else if (searchField === 'customerPhone') {
-                    return (order.recipientPhone || '').includes(searchQuery);
-                } else if (searchField === 'productCode') {
-                    return (order.distributorCode || '').includes(searchQuery);
-                } else if (searchField === 'shop') {
-                    return (order.shop || '').includes(searchQuery);
+                } else {
+                    return order[searchField]?.includes(searchQuery);
                 }
-                return false;
             });
             
             // 渲染搜索结果
             renderOrderForms(filteredOrders);
-            renderOrdersTable(filteredOrders);
             
             if (filteredOrders.length === 0) {
                 showNotification('notification', '没有找到匹配的订单', 'warning');
@@ -3789,7 +3339,6 @@
             
             // 渲染筛选结果
             renderOrderForms(filteredOrders);
-            renderOrdersTable(filteredOrders);
             
             if (filteredOrders.length === 0) {
                 showNotification('notification', '没有找到匹配的订单', 'warning');
@@ -3809,7 +3358,6 @@
             
             // 重新渲染所有订单
             renderOrderForms(orders);
-            renderOrdersTable(orders);
             showNotification('notification', '筛选条件已重置', 'success');
         }
         
@@ -3826,7 +3374,6 @@
             
             // 重新渲染所有订单
             renderOrderForms(orders);
-            renderOrdersTable(orders);
             showNotification('notification', '搜索已清空', 'success');
         }
         
@@ -4833,7 +4380,7 @@
             // 实现下拉刷新功能
             console.log('下拉刷新');
             // 重新加载订单数据
-            loadOrdersFromStorage();
+            loadOrders();
             // 更新仪表板
             updateDashboard();
             // 显示刷新成功提示
@@ -4852,8 +4399,6 @@
             window.addEventListener('resize', handleResize);
             // 加载用户数据
             loadUsers();
-            // 加载店铺数据
-            loadShops();
             // 加载提取统计数据
             loadExtractStats();
             // 初始化图表
@@ -4864,20 +4409,12 @@
             initBatchOperations();
             // 初始化加载订单弹窗
             initLoadOrdersModal();
-            // 初始化搜索和筛选功能
-            initSearchAndFilter();
             // 初始化自动保存机制
             watchOrderChanges();
             // 启动实时数据更新
             startRealTimeUpdates();
             // 启动定时自动拉取任务
             startAutoFetchTask();
-            // 初始化店铺管理功能
-            initShopManagement();
-            // 初始化店铺配置管理功能
-            initShopConfig();
-            // 初始化用户管理功能
-            initUserManagement();
             // 渲染订单表单，显示默认订单数据
             console.log('初始化完成，开始渲染订单表单');
             renderOrderForms();
@@ -4886,262 +4423,6 @@
             // 更新仪表板
             updateDashboard();
             console.log('系统初始化完成');
-        }
-        
-        // 初始化店铺管理功能
-        function initShopManagement() {
-            // 绑定店铺管理按钮事件
-            const shopsLink = document.getElementById('shopsLink');
-            if (shopsLink) {
-                shopsLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openShopManagement();
-                });
-            }
-            
-            // 绑定添加店铺按钮事件
-            const addShopButton = document.getElementById('addShopButton');
-            if (addShopButton) {
-                addShopButton.addEventListener('click', addShop);
-            }
-            
-            // 绑定店铺管理模态框关闭按钮事件
-            const shopModal = document.getElementById('shopManagementModal');
-            if (shopModal) {
-                const closeButtons = shopModal.querySelectorAll('.close-button');
-                closeButtons.forEach(button => {
-                    button.addEventListener('click', closeShopManagement);
-                });
-            }
-            
-            // 绑定编辑店铺模态框关闭按钮事件
-            const editShopModal = document.getElementById('editShopModal');
-            if (editShopModal) {
-                const closeButtons = editShopModal.querySelectorAll('.close-button');
-                closeButtons.forEach(button => {
-                    button.addEventListener('click', closeEditShopModal);
-                });
-            }
-            
-            // 绑定保存店铺编辑按钮事件
-            const saveShopEditButton = document.getElementById('saveShopEditButton');
-            if (saveShopEditButton) {
-                saveShopEditButton.addEventListener('click', saveShopEdit);
-            }
-        }
-        
-        // 初始化店铺配置管理功能
-        function initShopConfig() {
-            // 加载店铺配置
-            loadShopConfig();
-            
-            // 绑定配置保存事件
-            const saveConfigButton = document.getElementById('saveShopConfig');
-            if (saveConfigButton) {
-                saveConfigButton.addEventListener('click', saveShopConfig);
-            }
-            
-            // 绑定配置加载事件
-            const loadConfigButton = document.getElementById('loadShopConfig');
-            if (loadConfigButton) {
-                loadConfigButton.addEventListener('click', loadShopConfig);
-            }
-        }
-        
-        // 加载店铺配置
-        function loadShopConfig() {
-            try {
-                const savedConfig = localStorage.getItem('shopConfig');
-                if (savedConfig) {
-                    const config = JSON.parse(savedConfig);
-                    // 填充配置表单
-                    const shopApiVersion = document.getElementById('shopApiVersion');
-                    if (shopApiVersion) shopApiVersion.value = config.apiVersion || 'v1';
-                    const shopEnvironment = document.getElementById('shopEnvironment');
-                    if (shopEnvironment) shopEnvironment.value = config.environment || 'production';
-                    const shopRetryCount = document.getElementById('shopRetryCount');
-                    if (shopRetryCount) shopRetryCount.value = config.retryCount || '3';
-                    const shopTimeout = document.getElementById('shopTimeout');
-                    if (shopTimeout) shopTimeout.value = config.timeout || '30000';
-                    const shopLogLevel = document.getElementById('shopLogLevel');
-                    if (shopLogLevel) shopLogLevel.value = config.logLevel || 'info';
-                    
-                    showNotification('notification', '店铺配置加载成功', 'success');
-                } else {
-                    showNotification('notification', '没有找到保存的店铺配置', 'info');
-                }
-            } catch (error) {
-                console.error('加载店铺配置失败:', error);
-                showNotification('notification', '加载店铺配置失败', 'error');
-            }
-        }
-        
-        // 保存店铺配置
-        function saveShopConfig() {
-            try {
-                const config = {
-                    apiVersion: document.getElementById('shopApiVersion')?.value || 'v1',
-                    environment: document.getElementById('shopEnvironment')?.value || 'production',
-                    retryCount: document.getElementById('shopRetryCount')?.value || '3',
-                    timeout: document.getElementById('shopTimeout')?.value || '30000',
-                    logLevel: document.getElementById('shopLogLevel')?.value || 'info'
-                };
-                
-                localStorage.setItem('shopConfig', JSON.stringify(config));
-                showNotification('notification', '店铺配置保存成功', 'success');
-            } catch (error) {
-                console.error('保存店铺配置失败:', error);
-                showNotification('notification', '保存店铺配置失败', 'error');
-            }
-        }
-        
-        // 获取店铺配置
-        function getShopConfig() {
-            try {
-                const savedConfig = localStorage.getItem('shopConfig');
-                return savedConfig ? JSON.parse(savedConfig) : {
-                    apiVersion: 'v1',
-                    environment: 'production',
-                    retryCount: '3',
-                    timeout: '30000',
-                    logLevel: 'info'
-                };
-            } catch (error) {
-                console.error('获取店铺配置失败:', error);
-                return {
-                    apiVersion: 'v1',
-                    environment: 'production',
-                    retryCount: '3',
-                    timeout: '30000',
-                    logLevel: 'info'
-                };
-            }
-        }
-        
-        // 根据环境获取API地址
-        function getApiUrl(platform, environment) {
-            const apiUrls = {
-                production: {
-                    taobao: 'https://eco.taobao.com/router/rest',
-                    jd: 'https://api.jd.com/routerjson',
-                    pdd: 'https://gw-api.pinduoduo.com/api/router',
-                    xhs: 'https://api.xiaohongshu.com'
-                },
-                sandbox: {
-                    taobao: 'https://gw-api.tbsandbox.com/router/rest',
-                    jd: 'https://api.sandbox.jd.com/routerjson',
-                    pdd: 'https://gw-api-sandbox.pinduoduo.com/api/router',
-                    xhs: 'https://api-sandbox.xiaohongshu.com'
-                }
-            };
-            
-            return apiUrls[environment]?.[platform] || apiUrls.production[platform];
-        }
-        
-        // 切换店铺管理标签页
-        function switchShopTab(tabId) {
-            // 隐藏所有标签页内容
-            const tabContents = document.querySelectorAll('.shop-tab-content');
-            tabContents.forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // 重置所有标签页按钮样式
-            const tabButtons = document.querySelectorAll('.shop-tab-button');
-            tabButtons.forEach(button => {
-                button.style.background = '#f5f5f5';
-                button.style.color = '#333';
-                button.classList.remove('active');
-            });
-            
-            // 显示选中的标签页内容
-            let targetTabId;
-            switch(tabId) {
-                case 'add':
-                    targetTabId = 'shopAddTab';
-                    break;
-                case 'list':
-                    targetTabId = 'shopListTab';
-                    break;
-                case 'config':
-                    targetTabId = 'shopConfigTab';
-                    break;
-                default:
-                    targetTabId = 'shopAddTab';
-            }
-            
-            const targetTab = document.getElementById(targetTabId);
-            if (targetTab) {
-                targetTab.style.display = 'block';
-            }
-            
-            // 更新选中标签页按钮的样式
-            const activeButton = document.querySelector(`button[onclick="switchShopTab('${tabId}')"]`);
-            if (activeButton) {
-                activeButton.style.background = '#2196f3';
-                activeButton.style.color = 'white';
-                activeButton.classList.add('active');
-            }
-        }
-        
-        // 初始化用户管理功能
-        function initUserManagement() {
-            // 绑定用户管理按钮事件
-            const userManagementButton = document.getElementById('userManagementButton');
-            if (userManagementButton) {
-                userManagementButton.addEventListener('click', openUserManagement);
-            }
-            
-            // 绑定添加用户按钮事件
-            const addUserButton = document.getElementById('addUserButton');
-            if (addUserButton) {
-                addUserButton.addEventListener('click', addUser);
-            }
-            
-            // 绑定用户管理模态框关闭按钮事件
-            const userModal = document.getElementById('userManagementModal');
-            if (userModal) {
-                const closeButtons = userModal.querySelectorAll('.close-button');
-                closeButtons.forEach(button => {
-                    button.addEventListener('click', closeUserManagement);
-                });
-            }
-            
-            // 绑定编辑用户模态框关闭按钮事件
-            const editUserModal = document.getElementById('editUserModal');
-            if (editUserModal) {
-                const closeButtons = editUserModal.querySelectorAll('.close-button');
-                closeButtons.forEach(button => {
-                    button.addEventListener('click', closeEditUserModal);
-                });
-            }
-            
-            // 绑定保存用户编辑按钮事件
-            const saveEditButton = document.getElementById('saveEditButton');
-            if (saveEditButton) {
-                saveEditButton.addEventListener('click', saveEdit);
-            }
-            
-            // 绑定GitHub相关按钮事件
-            const saveGitHubSettingsButton = document.getElementById('saveGitHubSettings');
-            if (saveGitHubSettingsButton) {
-                saveGitHubSettingsButton.addEventListener('click', saveGitHubSettings);
-            }
-            
-            const loadGitHubSettingsButton = document.getElementById('loadGitHubSettings');
-            if (loadGitHubSettingsButton) {
-                loadGitHubSettingsButton.addEventListener('click', loadGitHubSettings);
-            }
-            
-            const pullFromGitHubButton = document.getElementById('pullFromGitHubButton');
-            if (pullFromGitHubButton) {
-                pullFromGitHubButton.addEventListener('click', pullFromGitHub);
-            }
-            
-            const syncToGitHubButton = document.getElementById('syncToGitHubButton');
-            if (syncToGitHubButton) {
-                syncToGitHubButton.addEventListener('click', syncToGitHub);
-            }
         }
         
         // 初始化批量操作按钮事件监听器
@@ -5176,36 +4457,8 @@
             // 加载按钮
             const loadButton = document.getElementById('loadButton');
             if (loadButton) {
-                loadButton.addEventListener('click', (event) => {
-                    const modal = document.getElementById('loadOrdersModal');
-                    const modalContent = modal.querySelector('.modal-content');
-                    
-                    // 获取按钮位置信息
-                    const rect = event.currentTarget.getBoundingClientRect();
-                    const buttonTop = rect.top;
-                    const buttonLeft = rect.left;
-                    const buttonWidth = rect.width;
-                    const buttonHeight = rect.height;
-                    
-                    // 计算弹窗位置（显示在按钮下方，水平居中对齐按钮）
-                    const modalWidth = modalContent.offsetWidth || 600; // 弹窗宽度
-                    const modalHeight = modalContent.offsetHeight || 400; // 弹窗高度
-                    const top = buttonTop + buttonHeight + 10; // 按钮下方10px
-                    const left = buttonLeft + (buttonWidth / 2) - (modalWidth / 2); // 水平居中对齐按钮
-                    
-                    // 边界检查：确保弹窗不超出屏幕
-                    const finalTop = Math.max(10, Math.min(top, window.innerHeight - modalHeight - 10));
-                    const finalLeft = Math.max(10, Math.min(left, window.innerWidth - modalWidth - 10));
-                    
-                    // 设置弹窗位置
-                    modal.style.setProperty('--modal-top', `${finalTop}px`);
-                    modal.style.setProperty('--modal-left', `${finalLeft}px`);
-                    modal.style.setProperty('--modal-transform', 'translate(0, 0)');
-                    
-                    // 添加定位类
-                    modal.classList.add('show', 'positioned');
-                    modalContent.classList.add('positioned');
-                    
+                loadButton.addEventListener('click', () => {
+                    document.getElementById('loadOrdersModal').classList.add('show');
                     // 当弹窗显示时，更新本地数据选择框
                     updateLocalDataSelect();
                 });
@@ -5215,10 +4468,7 @@
             const closeButton = document.querySelector('#loadOrdersModal .close-button');
             if (closeButton) {
                 closeButton.addEventListener('click', () => {
-                    const modal = document.getElementById('loadOrdersModal');
-                    const modalContent = modal.querySelector('.modal-content');
-                    modal.classList.remove('show', 'positioned');
-                    modalContent.classList.remove('positioned');
+                    document.getElementById('loadOrdersModal').classList.remove('show');
                 });
             }
             
@@ -5226,10 +4476,7 @@
             const cancelLoadButton = document.getElementById('cancelLoadButton');
             if (cancelLoadButton) {
                 cancelLoadButton.addEventListener('click', () => {
-                    const modal = document.getElementById('loadOrdersModal');
-                    const modalContent = modal.querySelector('.modal-content');
-                    modal.classList.remove('show', 'positioned');
-                    modalContent.classList.remove('positioned');
+                    document.getElementById('loadOrdersModal').classList.remove('show');
                 });
             }
             
@@ -5610,6 +4857,25 @@
                     return;
                 }
                 
+                // 更新全局订单数组
+                console.log('4. 更新全局订单数组');
+                orders = loadedOrders;
+                console.log('全局订单数组更新完成，订单数量:', orders.length);
+                
+                // 保存订单数据到本地存储（使用固定的键名erpOrders）
+                console.log('5. 保存订单数据到本地存储');
+                try {
+                    const orderData = {
+                        orders: orders,
+                        timestamp: new Date().toISOString()
+                    };
+                    localStorage.setItem('erpOrders', JSON.stringify(orderData));
+                    console.log('订单数据保存完成');
+                } catch (e) {
+                    console.error('保存订单数据到本地存储失败:', e);
+                    // 继续执行，不中断流程
+                }
+                
                 // 关闭弹窗
                 console.log('6. 关闭弹窗');
                 if (modal) {
@@ -5619,215 +4885,20 @@
                     console.log('弹窗元素不存在');
                 }
                 
-                // 显示加载预览弹窗
-                console.log('7. 显示加载预览弹窗');
+                // 重新渲染订单表格
+                console.log('7. 重新渲染订单表格');
                 try {
-                    // 检查并移除已存在的预览弹窗
-                    const existingPreviewModal = document.getElementById('loadPreviewModal');
-                    if (existingPreviewModal) {
-                        try {
-                            document.body.removeChild(existingPreviewModal);
-                            console.log('已移除已存在的预览弹窗');
-                        } catch (e) {
-                            console.error('移除已存在的预览弹窗失败:', e);
-                        }
-                    }
-                    
-                    // 创建预览弹窗
-                    const previewModal = document.createElement('div');
-                    previewModal.id = 'loadPreviewModal';
-                    previewModal.className = 'modal show';
-                    
-                    // 创建预览内容
-                    const previewContent = document.createElement('div');
-                    previewContent.className = 'modal-content';
-                    
-                    // 获取触发点位置（这里使用确认加载按钮的位置）
-                    const confirmLoadButton = document.getElementById('confirmLoadButton');
-                    if (confirmLoadButton) {
-                        const rect = confirmLoadButton.getBoundingClientRect();
-                        const buttonTop = rect.top;
-                        const buttonLeft = rect.left;
-                        const buttonWidth = rect.width;
-                        const buttonHeight = rect.height;
-                        
-                        // 计算预览弹窗位置（显示在按钮下方，水平居中对齐按钮）
-                        const previewWidth = 800; // 预览弹窗宽度
-                        const previewHeight = 500; // 预览弹窗高度
-                        const top = buttonTop + buttonHeight + 10; // 按钮下方10px
-                        const left = buttonLeft + (buttonWidth / 2) - (previewWidth / 2); // 水平居中对齐按钮
-                        
-                        // 边界检查：确保弹窗不超出屏幕
-                        const finalTop = Math.max(10, Math.min(top, window.innerHeight - previewHeight - 10));
-                        const finalLeft = Math.max(10, Math.min(left, window.innerWidth - previewWidth - 10));
-                        
-                        // 设置弹窗位置
-                        previewModal.style.setProperty('--modal-top', `${finalTop}px`);
-                        previewModal.style.setProperty('--modal-left', `${finalLeft}px`);
-                        previewModal.style.setProperty('--modal-transform', 'translate(0, 0)');
-                        
-                        // 添加定位类
-                        previewModal.classList.add('positioned');
-                        previewContent.classList.add('positioned');
-                    }
-                    
-                    // 创建预览标题
-                    const previewHeader = document.createElement('div');
-                    previewHeader.className = 'modal-header';
-                    
-                    const previewTitle = document.createElement('h2');
-                    previewTitle.textContent = '订单加载预览';
-                    
-                    const closeButton = document.createElement('button');
-                    closeButton.className = 'close-button';
-                    closeButton.textContent = '×';
-                    
-                    // 添加关闭事件
-                    closeButton.onclick = function(event) {
-                        event.stopPropagation(); // 阻止事件冒泡
-                        try {
-                            document.body.removeChild(previewModal);
-                        } catch (e) {
-                            console.error('移除预览弹窗失败:', e);
-                        }
-                    };
-                    
-                    previewHeader.appendChild(previewTitle);
-                    previewHeader.appendChild(closeButton);
-                    
-                    // 创建预览数据
-                    const previewBody = document.createElement('div');
-                    previewBody.className = 'modal-body';
-                    
-                    const previewData = document.createElement('div');
-                    previewData.innerHTML = `
-                        <h3 style="color: #e0e0e0; margin-bottom: 16px;">加载结果</h3>
-                        <p style="color: #e0e0e0; margin-bottom: 20px;">即将加载 <strong style="color: #2196f3;">${loadedOrders.length}</strong> 个订单</p>
-                        <h3 style="color: #e0e0e0; margin-bottom: 16px;">订单详情</h3>
-                        <div style="overflow-x: auto;">
-                            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; background-color: rgba(255, 255, 255, 0.02); border-radius: 6px; overflow: hidden;">
-                                <thead>
-                                    <tr style="background-color: rgba(33, 150, 243, 0.2);">
-                                        <th style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; text-align: left; color: #2196f3;">平台订单号</th>
-                                        <th style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; text-align: left; color: #2196f3;">收件人</th>
-                                        <th style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; text-align: left; color: #2196f3;">地址</th>
-                                        <th style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; text-align: left; color: #2196f3;">商品编码</th>
-                                        <th style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; text-align: left; color: #2196f3;">数量</th>
-                                        <th style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; text-align: left; color: #2196f3;">单价</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${loadedOrders.map(order => `
-                                        <tr style="transition: background-color 0.2s ease;">
-                                            <td style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; color: #e0e0e0;">${order.platformOrderId}</td>
-                                            <td style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; color: #e0e0e0;">${order.recipientName}</td>
-                                            <td style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; color: #e0e0e0;">${order.recipientAddress.substring(0, 30)}${order.recipientAddress.length > 30 ? '...' : ''}</td>
-                                            <td style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; color: #e0e0e0;">${order.distributorCode}</td>
-                                            <td style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; color: #e0e0e0;">${order.productQuantity}</td>
-                                            <td style="border: 1px solid rgba(33, 150, 243, 0.2); padding: 10px; color: #e0e0e0;">${order.productPrice}</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        </div>
-                    `;
-                    
-                    // 创建预览底部
-                    const previewFooter = document.createElement('div');
-                    previewFooter.className = 'modal-footer';
-                    
-                    const cancelBtn = document.createElement('button');
-                    cancelBtn.className = 'secondary-button';
-                    cancelBtn.textContent = '取消';
-                    
-                    // 添加取消事件
-                    cancelBtn.onclick = function(event) {
-                        event.stopPropagation(); // 阻止事件冒泡
-                        try {
-                            document.body.removeChild(previewModal);
-                        } catch (e) {
-                            console.error('移除预览弹窗失败:', e);
-                        }
-                    };
-                    
-                    const confirmBtn = document.createElement('button');
-                    confirmBtn.className = 'primary-button';
-                    confirmBtn.textContent = '确认加载';
-                    
-                    // 添加确认事件
-                    confirmBtn.onclick = function(event) {
-                        event.stopPropagation(); // 阻止事件冒泡
-                        // 更新全局订单数组
-                        console.log('4. 更新全局订单数组');
-                        orders = loadedOrders;
-                        console.log('全局订单数组更新完成，订单数量:', orders.length);
-                        
-                        // 保存订单数据到本地存储（使用固定的键名erpOrders）
-                        console.log('5. 保存订单数据到本地存储');
-                        try {
-                            const orderData = {
-                                orders: orders,
-                                timestamp: new Date().toISOString()
-                            };
-                            localStorage.setItem('erpOrders', JSON.stringify(orderData));
-                            console.log('订单数据保存完成');
-                        } catch (e) {
-                            console.error('保存订单数据到本地存储失败:', e);
-                            // 继续执行，不中断流程
-                        }
-                        
-                        // 重新渲染订单表格
-                        console.log('8. 重新渲染订单表格');
-                        try {
-                            renderOrdersTable();
-                            console.log('订单表格渲染完成');
-                        } catch (e) {
-                            console.error('渲染订单表格失败:', e);
-                            alert('渲染订单表格失败，请重试');
-                        }
-                        
-                        // 显示成功提示
-                        console.log('9. 显示成功提示');
-                        showNotification('notification', `成功加载 ${orders.length} 个订单`, 'success');
-                        console.log('成功提示显示完成');
-                        
-                        // 关闭预览弹窗
-                        try {
-                            document.body.removeChild(previewModal);
-                        } catch (e) {
-                            console.error('移除预览弹窗失败:', e);
-                        }
-                        
-                        console.log('=== loadOrders函数执行完成 ===');
-                    };
-                    
-                    previewFooter.appendChild(cancelBtn);
-                    previewFooter.appendChild(confirmBtn);
-                    
-                    // 点击弹窗外部关闭
-                    previewModal.onclick = function(event) {
-                        if (event.target === previewModal) {
-                            try {
-                                document.body.removeChild(previewModal);
-                            } catch (e) {
-                                console.error('移除预览弹窗失败:', e);
-                            }
-                        }
-                    };
-                    
-                    // 组装DOM结构
-                    previewBody.appendChild(previewData);
-                    previewContent.appendChild(previewHeader);
-                    previewContent.appendChild(previewBody);
-                    previewContent.appendChild(previewFooter);
-                    previewModal.appendChild(previewContent);
-                    document.body.appendChild(previewModal);
-                    
-                    console.log('加载预览弹窗显示完成');
-                } catch (error) {
-                    console.error('显示加载预览失败:', error);
+                    renderOrdersTable();
+                    console.log('订单表格渲染完成');
+                } catch (e) {
+                    console.error('渲染订单表格失败:', e);
+                    alert('渲染订单表格失败，请重试');
                 }
                 
+                // 显示成功提示
+                console.log('8. 显示成功提示');
+                alert(`成功加载 ${orders.length} 个订单`);
+                console.log('成功提示显示完成');
                 console.log('=== loadOrders函数执行完成 ===');
             } catch (error) {
                 console.error('加载订单失败:', error);
@@ -5875,7 +4946,7 @@
                     const orderData = JSON.parse(savedData);
                     if (orderData.orders && orderData.orders.length !== orders.length) {
                         // 数据有变化，重新加载
-                        loadOrdersFromStorage();
+                        loadOrders();
                         showNotification('notification', '数据已更新', 'success');
                     }
                 }
@@ -5967,7 +5038,6 @@
                     if (currentOrdersString === savedOrdersString) {
                         // 订单数据没有变化，不保存
                         console.log('订单数据没有变化，不需要保存');
-                        showNotification('notification', '订单数据没有变化，不需要保存', 'info');
                         return;
                     }
                 }
@@ -5976,10 +5046,7 @@
                 localStorage.setItem(storageKey, JSON.stringify(orderData));
                 // 更新orders数组，添加orderDate字段
                 orders = ordersWithDate;
-                
-                // 显示详细的保存成功弹窗
-                showSaveSuccessModal(orders.length, storageKey);
-                
+                showNotification('notification', `成功保存 ${orders.length} 个订单到本地存储`, 'success');
                 document.getElementById('dataStatus').textContent = '已保存';
             } catch (error) {
                 console.error('保存订单失败:', error);
@@ -5987,197 +5054,8 @@
             }
         }
         
-        // 显示保存成功弹窗
-        function showSaveSuccessModal(orderCount, storageKey) {
-            // 检查并移除已存在的保存成功弹窗
-            const existingModal = document.getElementById('saveSuccessModal');
-            if (existingModal) {
-                try {
-                    document.body.removeChild(existingModal);
-                } catch (e) {
-                    console.error('移除已存在的保存成功弹窗失败:', e);
-                }
-            }
-            
-            // 创建保存成功弹窗
-            const modal = document.createElement('div');
-            modal.id = 'saveSuccessModal';
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                animation: fadeIn 0.3s ease-out;
-            `;
-            
-            // 创建弹窗内容
-            const modalContent = document.createElement('div');
-            modalContent.style.cssText = `
-                background-color: #1a1f2e;
-                padding: 32px;
-                border: 1px solid rgba(33, 150, 243, 0.3);
-                border-radius: 12px;
-                width: 90%;
-                max-width: 600px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-                animation: slideInUp 0.3s ease-out;
-                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            `;
-            
-            // 创建弹窗标题
-            const modalHeader = document.createElement('div');
-            modalHeader.style.cssText = `
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 24px;
-                padding-bottom: 20px;
-                border-bottom: 1px solid rgba(33, 150, 243, 0.3);
-            `;
-            
-            const modalTitle = document.createElement('h2');
-            modalTitle.textContent = '保存成功';
-            modalTitle.style.cssText = `
-                margin: 0;
-                color: #2196f3;
-                font-size: 22px;
-                font-weight: 700;
-            `;
-            
-            const closeButton = document.createElement('button');
-            closeButton.textContent = '×';
-            closeButton.style.cssText = `
-                background: none;
-                border: none;
-                color: #999;
-                font-size: 28px;
-                cursor: pointer;
-                padding: 0;
-                width: 36px;
-                height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                transition: all 0.2s ease;
-            `;
-            
-            closeButton.addEventListener('mouseover', function() {
-                closeButton.style.color = '#fff';
-                closeButton.style.backgroundColor = 'rgba(255,255,255,0.1)';
-            });
-            
-            closeButton.addEventListener('mouseout', function() {
-                closeButton.style.color = '#999';
-                closeButton.style.backgroundColor = 'transparent';
-            });
-            
-            closeButton.addEventListener('click', function() {
-                document.body.removeChild(modal);
-            });
-            
-            modalHeader.appendChild(modalTitle);
-            modalHeader.appendChild(closeButton);
-            
-            // 创建弹窗内容
-            const modalBody = document.createElement('div');
-            modalBody.style.cssText = `
-                margin-bottom: 24px;
-                color: #e0e0e0;
-                line-height: 1.6;
-            `;
-            
-            const successMessage = document.createElement('div');
-            successMessage.innerHTML = `
-                <p style="font-size: 16px; margin-bottom: 20px;">成功保存 <strong>${orderCount}</strong> 个订单</p>
-                
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #2196f3; font-size: 16px; font-weight: 600; margin-bottom: 12px;">保存详情</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><strong>保存位置：</strong>本地存储 (Local Storage)</li>
-                        <li style="margin-bottom: 8px;"><strong>数据类型：</strong>订单数据</li>
-                        <li style="margin-bottom: 8px;"><strong>存储键名：</strong>${storageKey}</li>
-                        <li style="margin-bottom: 8px;"><strong>保存时间：</strong>${new Date().toLocaleString()}</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 style="color: #2196f3; font-size: 16px; font-weight: 600; margin-bottom: 12px;">访问方式</h3>
-                    <ol style="margin: 0; padding-left: 20px;">
-                        <li style="margin-bottom: 6px;">刷新页面后自动加载</li>
-                        <li style="margin-bottom: 6px;">通过"从本地存储加载订单"按钮手动加载</li>
-                        <li style="margin-bottom: 6px;">在浏览器开发者工具中查看Application/Storage → Local Storage</li>
-                    </ol>
-                </div>
-            `;
-            
-            modalBody.appendChild(successMessage);
-            
-            // 创建弹窗底部
-            const modalFooter = document.createElement('div');
-            modalFooter.style.cssText = `
-                display: flex;
-                justify-content: flex-end;
-                gap: 12px;
-                padding-top: 20px;
-                border-top: 1px solid rgba(33, 150, 243, 0.2);
-            `;
-            
-            const okButton = document.createElement('button');
-            okButton.textContent = '确定';
-            okButton.style.cssText = `
-                background-color: #2196f3;
-                color: white;
-                border: none;
-                padding: 12px 24px;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: 600;
-                transition: all 0.3s ease;
-            `;
-            
-            okButton.addEventListener('mouseover', function() {
-                okButton.style.backgroundColor = '#1976d2';
-                okButton.style.boxShadow = '0 4px 12px rgba(33, 150, 243, 0.4)';
-            });
-            
-            okButton.addEventListener('mouseout', function() {
-                okButton.style.backgroundColor = '#2196f3';
-                okButton.style.boxShadow = 'none';
-            });
-            
-            okButton.addEventListener('click', function() {
-                document.body.removeChild(modal);
-            });
-            
-            modalFooter.appendChild(okButton);
-            
-            // 组装弹窗
-            modalContent.appendChild(modalHeader);
-            modalContent.appendChild(modalBody);
-            modalContent.appendChild(modalFooter);
-            modal.appendChild(modalContent);
-            
-            // 添加到页面
-            document.body.appendChild(modal);
-            
-            // 点击弹窗外部关闭
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            });
-        }
-        
         // 从本地存储加载订单
-        function loadOrdersFromStorage() {
+        function loadOrders() {
             try {
                 const savedData = localStorage.getItem('erpOrders');
                 if (savedData) {
@@ -6282,13 +5160,52 @@
             }
         }
         
-        // 取消自动保存机制
-        // 移除了所有自动保存相关的代码，改为手动保存
+        // 自动保存机制
+        let autoSaveTimer = null;
         
-        // 监听订单数据变更（仅用于其他目的，不再触发自动保存）
+        // 触发自动保存
+        function triggerAutoSave() {
+            // 清除之前的定时器
+            if (autoSaveTimer) {
+                clearTimeout(autoSaveTimer);
+            }
+            
+            // 设置新的定时器，2秒后自动保存
+            autoSaveTimer = setTimeout(() => {
+                if (orders.length > 0) {
+                    saveOrders();
+                }
+            }, 2000);
+        }
+        
+        // 监听订单数据变更，触发自动保存
         function watchOrderChanges() {
-            // 此处仅保留函数结构，不再触发自动保存
-            console.log('订单数据变更监听已启用（仅用于手动保存模式）');
+            // 监听粘贴区域变化
+            const pasteArea = document.getElementById('pasteArea');
+            if (pasteArea) {
+                pasteArea.addEventListener('input', triggerAutoSave);
+            }
+            
+            // 监听订单表单输入变化
+            document.addEventListener('input', function(e) {
+                if (e.target.name && (e.target.name.includes('recipient') || 
+                    e.target.name.includes('product') || 
+                    e.target.name.includes('platformOrderId') ||
+                    e.target.name.includes('distributorCode') ||
+                    e.target.name.includes('barcode') ||
+                    e.target.name.includes('shop'))) {
+                    triggerAutoSave();
+                }
+            });
+            
+            // 监听添加/删除订单操作
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('delete-btn') || 
+                    e.target.id === 'addOrderButton' ||
+                    e.target.id === 'batchDeleteButton') {
+                    triggerAutoSave();
+                }
+            });
         }
         
         // 更新仪表板
@@ -7021,21 +5938,18 @@
                     position: fixed;
                     top: 20px;
                     right: 20px;
-                    padding: 20px 24px;
+                    padding: 15px 20px;
                     border-radius: 8px;
                     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
                     z-index: 10000;
-                    max-width: 500px;
-                    text-align: left;
-                    line-height: 1.6;
-                    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                    font-size: 14px;
+                    max-width: 300px;
+                    text-align: center;
                 `;
                 document.body.appendChild(notification);
             }
             
             // 设置通知内容和样式
-            notification.innerHTML = message.replace(/\n/g, '<br>');
+            notification.textContent = message;
             notification.className = `notification ${type}`;
             notification.style.display = 'block';
             notification.style.opacity = '1';
@@ -7043,13 +5957,13 @@
             
             console.log('显示通知:', { elementId, message, type });
             
-            // 5秒后隐藏（增加时间以便用户阅读完整信息）
+            // 3秒后隐藏
             setTimeout(() => {
                 notification.style.opacity = '0';
                 setTimeout(() => {
                     notification.style.display = 'none';
                 }, 300);
-            }, 5000);
+            }, 3000);
         }
         
         // 登录功能
@@ -7319,190 +6233,6 @@
             document.getElementById('loginForm').reset();
         }
         
-        // 店铺管理相关函数
-        
-        // 打开店铺管理模态框
-        function openShopManagement() {
-            try {
-                const modal = document.getElementById('shopManagementModal');
-                if (!modal) {
-                    console.error('shopManagementModal元素未找到');
-                    return;
-                }
-                modal.style.display = 'block';
-                renderShopList();
-            } catch (error) {
-                console.error('打开店铺管理模态框失败:', error);
-            }
-        }
-        
-        // 关闭店铺管理模态框
-        function closeShopManagement() {
-            const modal = document.getElementById('shopManagementModal');
-            modal.style.display = 'none';
-        }
-        
-        // 添加店铺
-        function addShop() {
-            const shopName = document.getElementById('shopName').value;
-            const shopCode = document.getElementById('shopCode').value;
-            const platform = document.getElementById('platform').value;
-            const status = document.getElementById('shopStatus').value;
-            
-            if (!shopName || !shopCode) {
-                showNotification('shopManagementNotification', '请输入店铺名称和店铺编码', 'error');
-                return;
-            }
-            
-            // 检查店铺编码是否已存在
-            if (shops.some(shop => shop.code === shopCode)) {
-                showNotification('shopManagementNotification', '店铺编码已存在', 'error');
-                return;
-            }
-            
-            shops.push({ 
-                id: Date.now(), 
-                name: shopName, 
-                code: shopCode, 
-                platform: platform, 
-                status: status 
-            });
-            saveShops();
-            renderShopList();
-            
-            // 清空表单
-            document.getElementById('shopName').value = '';
-            document.getElementById('shopCode').value = '';
-            
-            showNotification('shopManagementNotification', '店铺添加成功', 'success');
-        }
-        
-        // 删除店铺
-        function deleteShop(shopId) {
-            shops = shops.filter(shop => shop.id !== shopId);
-            saveShops();
-            renderShopList();
-            showNotification('shopManagementNotification', '店铺已删除', 'success');
-        }
-        
-        // 打开编辑店铺模态框
-        function editShop(shopId) {
-            const shop = shops.find(s => s.id === shopId);
-            if (!shop) {
-                showNotification('shopManagementNotification', '店铺不存在', 'error');
-                return;
-            }
-            
-            document.getElementById('editShopName').value = shop.name;
-            document.getElementById('editShopCode').value = shop.code;
-            document.getElementById('editPlatform').value = shop.platform;
-            document.getElementById('editShopStatus').value = shop.status;
-            
-            const modal = document.getElementById('editShopModal');
-            modal.style.display = 'block';
-            modal.dataset.shopId = shopId;
-        }
-        
-        // 关闭编辑店铺模态框
-        function closeEditShopModal() {
-            const modal = document.getElementById('editShopModal');
-            modal.style.display = 'none';
-        }
-        
-        // 保存店铺修改
-        function saveShopEdit() {
-            const modal = document.getElementById('editShopModal');
-            const shopId = parseInt(modal.dataset.shopId);
-            const newShopName = document.getElementById('editShopName').value;
-            const newShopCode = document.getElementById('editShopCode').value;
-            const newPlatform = document.getElementById('editPlatform').value;
-            const newStatus = document.getElementById('editShopStatus').value;
-            
-            if (!newShopName || !newShopCode) {
-                showNotification('shopManagementNotification', '店铺名称和编码不能为空', 'error');
-                return;
-            }
-            
-            const shopIndex = shops.findIndex(s => s.id === shopId);
-            if (shopIndex === -1) {
-                showNotification('shopManagementNotification', '店铺不存在', 'error');
-                return;
-            }
-            
-            // 检查店铺编码是否已被其他店铺使用
-            if (shops.some(shop => shop.code === newShopCode && shop.id !== shopId)) {
-                showNotification('shopManagementNotification', '店铺编码已存在', 'error');
-                return;
-            }
-            
-            // 更新店铺信息
-            shops[shopIndex].name = newShopName;
-            shops[shopIndex].code = newShopCode;
-            shops[shopIndex].platform = newPlatform;
-            shops[shopIndex].status = newStatus;
-            
-            saveShops();
-            renderShopList();
-            closeEditShopModal();
-            showNotification('shopManagementNotification', '店铺修改成功', 'success');
-        }
-        
-        // 渲染店铺列表
-        function renderShopList() {
-            try {
-                const tableBody = document.getElementById('shopsTableBody');
-                if (!tableBody) {
-                    console.error('shopsTableBody元素未找到');
-                    return;
-                }
-                tableBody.innerHTML = '';
-                
-                shops.forEach(shop => {
-                    const row = document.createElement('tr');
-                    const statusText = shop.status === 'active' ? '启用' : '禁用';
-                    const statusClass = shop.status === 'active' ? 'active' : 'inactive';
-                    row.innerHTML = `
-                        <td>${shop.name}</td>
-                        <td>${shop.code}</td>
-                        <td>${shop.platform}</td>
-                        <td class="status-${statusClass}">${statusText}</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="edit-btn" onclick="editShop(${shop.id})">修改</button>
-                                <button class="delete-btn" onclick="deleteShop(${shop.id})">删除</button>
-                            </div>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            } catch (error) {
-                console.error('渲染店铺列表失败:', error);
-            }
-        }
-        
-        // 保存店铺数据到本地存储
-        function saveShops() {
-            try {
-                localStorage.setItem('erpShops', JSON.stringify(shops));
-                console.log('店铺数据保存成功:', shops);
-            } catch (error) {
-                console.error('保存店铺数据失败:', error);
-            }
-        }
-        
-        // 从本地存储加载店铺数据
-        function loadShops() {
-            try {
-                const savedShops = localStorage.getItem('erpShops');
-                if (savedShops) {
-                    shops = JSON.parse(savedShops);
-                    console.log('从本地存储加载店铺数据:', shops);
-                }
-            } catch (error) {
-                console.error('加载店铺数据失败:', error);
-            }
-        }
-        
         // 提取分机号
         function extractExtension(text) {
             const extensionMatch = text.match(/\[(\d+)\]/);
@@ -7522,7 +6252,9 @@
             }
             
             // 淘宝订单格式："赵宝蓝, 17836618347-4726, 内蒙古自治区 通辽市 科尔沁左翼中旗 架玛吐镇 敖日布告嘎查二组 1单2盒小果"
-            if (/^[^,]+,\s*1[3-9]\d{9}-\d+,\s+[^,]+/.test(orderText)) {
+            // 或空格分隔格式："赵翼帆 15781062284-6586 上海市上海市松江区九亭镇雪家桥路1弄3号603室"
+            if (/^[^,]+,\s*1[3-9]\d{9}-\d+,\s+[^,]+/.test(orderText) ||
+                /^[^\s]+\s+1[3-9]\d{9}-\d+\s+.+/.test(orderText)) {
                 return '淘宝';
             }
             
@@ -7622,19 +6354,33 @@
                 } else {
                     // 处理传统格式：尝试智能提取
                     
-                    // 1. 提取手机号（11位数字）
-                    const phoneMatch = fullText.match(/1[3-9]\d{9}/);
+                    // 1. 提取手机号（11位数字，可能带分机号如 15781062284-6586）
+                    const phoneMatch = fullText.match(/1[3-9]\d{9}(-\d+)?/);
                     if (phoneMatch) {
-                        recipientPhone = phoneMatch[0];
+                        const phoneWithExtension = phoneMatch[0];
+                        
+                        // 检查是否有分机号
+                        if (phoneWithExtension.includes('-')) {
+                            const phoneParts = phoneWithExtension.split('-');
+                            recipientPhone = phoneParts[0].trim(); // 主手机号
+                            const extension = phoneParts[1].trim(); // 分机号
+                        } else {
+                            recipientPhone = phoneWithExtension;
+                        }
                         
                         // 提取姓名（手机号前面的部分）
-                        const phoneIndex = fullText.indexOf(recipientPhone);
+                        const phoneIndex = fullText.indexOf(phoneWithExtension);
                         if (phoneIndex > 0) {
                             recipientName = fullText.substring(0, phoneIndex).trim();
+                            // 如果有分机号，添加到姓名后面
+                            if (phoneWithExtension.includes('-')) {
+                                const extension = phoneWithExtension.split('-')[1].trim();
+                                recipientName = `${recipientName}[${extension}]`;
+                            }
                         }
                         
                         // 提取地址和规格（手机号后面的部分）
-                        const addressAndSpecs = fullText.substring(phoneIndex + recipientPhone.length).trim();
+                        const addressAndSpecs = fullText.substring(phoneIndex + phoneWithExtension.length).trim();
                         
                         // 从地址和规格中分离出规格（包含"单"或"盒"的部分）
                         // 使用改进的正则表达式：只匹配真正的规格模式（如"1单2盒小果"），忽略地址中的"单元"等包含"单"字的词汇
@@ -8270,7 +7016,7 @@
             
             // 打开模态弹窗
             const modal = document.getElementById('orderModal');
-            modal.style.display = 'block';
+            modal.classList.add('show');
             
             // 绑定保存按钮事件
             const saveButton = document.getElementById('saveModalButton');
@@ -8282,14 +7028,14 @@
             const closeButtons = document.querySelectorAll('#closeModalButton, #closeModalFooterButton');
             closeButtons.forEach(button => {
                 button.onclick = function() {
-                    modal.style.display = 'none';
+                    modal.classList.remove('show');
                 };
             });
             
             // 点击弹窗外部关闭
             window.onclick = function(event) {
                 if (event.target === modal) {
-                    modal.style.display = 'none';
+                    modal.classList.remove('show');
                 }
             };
         }
@@ -8347,7 +7093,7 @@
             
             // 关闭模态弹窗
             const modal = document.getElementById('orderModal');
-            modal.style.display = 'none';
+            modal.classList.remove('show');
             
             // 显示保存成功的通知
             showNotification('notification', '订单修改保存成功', 'success');
@@ -8412,22 +7158,19 @@
         }
         
         // 渲染订单表格
-        function renderOrdersTable(orderArray) {
+        function renderOrdersTable() {
             const ordersTableBody = document.getElementById('ordersTableBody');
             
-            // 使用传入的订单数组或默认的orders数组
-            const ordersToRender = orderArray || orders;
-            
             console.log('渲染订单表格，ordersTableBody元素:', ordersTableBody);
-            console.log('当前订单数组长度:', ordersToRender.length);
+            console.log('当前orders数组:', orders);
             
             if (!ordersTableBody) {
                 console.error('ordersTableBody元素不存在');
                 return;
             }
             
-            if (ordersToRender.length === 0) {
-                ordersTableBody.innerHTML = '<tr><td colspan="15" style="text-align: center; padding: 20px;">暂无订单数据</td></tr>';
+            if (orders.length === 0) {
+                ordersTableBody.innerHTML = '<tr><td colspan="13" style="text-align: center; padding: 20px;">暂无订单数据</td></tr>';
                 console.log('订单数组为空，显示暂无订单数据');
                 return;
             }
@@ -8450,7 +7193,7 @@
             // 创建文档片段，减少DOM操作次数
             const fragment = document.createDocumentFragment();
             
-            ordersToRender.forEach((order, index) => {
+            orders.forEach((order, index) => {
                 // 根据商品编码获取规格名称
                 const spec = specsMap[order.distributorCode] || '未知规格';
                 
@@ -8461,7 +7204,6 @@
                 
                 // 设置表格行内容
                 row.innerHTML = `
-                    <td><input type="checkbox" class="order-checkbox" data-id="${order.id}" onclick="toggleOrderSelection()" style="margin: 0;"></td>
                     <td>${index + 1}</td>
                     <td>${order.platformOrderId}</td>
                     <td>${order.recipientName}</td>
@@ -8475,13 +7217,9 @@
                     <td>${order.shippingFee}</td>
                     <td>${order.shop}</td>
                     <td>
-                        <span style="padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; ${order.status === '已完成' ? 'background: #4caf50; color: white;' : order.status === '待处理' ? 'background: #ff9800; color: white;' : order.status === '已取消' ? 'background: #f44336; color: white;' : 'background: #2196f3; color: white;'}">${order.status || '待处理'}</span>
-                    </td>
-                    <td>
                         <div style="display: flex; gap: 8px;">
                             <button onclick="showOrderDetails(${order.id})" style="padding: 4px 8px; background: #2196f3; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">修改</button>
                             <button onclick="removeOrder(${order.id})" style="padding: 4px 8px; background: #f44336; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">删除</button>
-                            <button onclick="changeOrderStatus(${order.id})" style="padding: 4px 8px; background: #ff9800; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">改状态</button>
                         </div>
                     </td>
                 `;
@@ -8494,10 +7232,7 @@
             ordersTableBody.innerHTML = '';
             ordersTableBody.appendChild(fragment);
             
-            console.log('订单表格渲染完成，共', ordersToRender.length, '个订单');
-            
-            // 更新批量操作按钮状态
-            updateBatchOperations();
+            console.log('订单表格渲染完成，共', orders.length, '个订单');
         }
         
         // 全选/取消全选订单
@@ -8596,39 +7331,6 @@
             updateBatchOperations();
         }
         
-        // 修改单个订单状态
-        function changeOrderStatus(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (!order) {
-                showNotification('notification', '订单不存在', 'error');
-                return;
-            }
-            
-            // 显示状态选择对话框
-            const statusOptions = ['待处理', '处理中', '已完成', '已取消', '已退款'];
-            const statusSelect = document.createElement('select');
-            statusOptions.forEach(status => {
-                const option = document.createElement('option');
-                option.value = status;
-                option.textContent = status;
-                if (option.value === (order.status || '待处理')) {
-                    option.selected = true;
-                }
-                statusSelect.appendChild(option);
-            });
-            
-            if (confirm('请选择新的订单状态:')) {
-                const newStatus = prompt('请输入新的订单状态:\n可选状态: 待处理, 处理中, 已完成, 已取消, 已退款', order.status || '待处理');
-                if (newStatus && statusOptions.includes(newStatus)) {
-                    order.status = newStatus;
-                    renderOrdersTable();
-                    showNotification('notification', '订单状态已更新', 'success');
-                } else if (newStatus) {
-                    showNotification('notification', '无效的状态值', 'error');
-                }
-            }
-        }
-        
         // 检查密码强度
         function checkPasswordStrength(password) {
             const strengthIndicator = document.getElementById('passwordStrength');
@@ -8710,67 +7412,67 @@
                     excelFields.forEach(field => {
                         let value = '';
                         
-                        // 直接使用order对象的属性，而不是从DOM中获取
+                        // 根据字段名获取对应输入框的值
                         switch(field) {
                             case '平台订单号':
-                                value = order.platformOrderId || '';
+                                value = document.getElementById(`platformOrderId_${order.id}`)?.value || '';
                                 break;
                             case '收件人姓名':
-                                value = order.recipientName || '';
+                                value = document.getElementById(`recipientName_${order.id}`)?.value || '';
                                 break;
                             case '收件人手机号/电话':
-                                value = order.recipientPhone || '';
+                                value = document.getElementById(`recipientPhone_${order.id}`)?.value || '';
                                 break;
                             case '收件人地址':
-                                value = order.recipientAddress || '';
+                                value = document.getElementById(`recipientAddress_${order.id}`)?.value || '';
                                 break;
                             case '分销商家编码':
-                                value = order.distributorCode || '';
+                                value = document.getElementById(`distributorCode_${order.id}`)?.value || '';
                                 break;
                             case '条形码':
-                                value = order.barcode || '';
+                                value = document.getElementById(`barcode_${order.id}`)?.value || '';
                                 break;
                             case '货品数量':
-                                value = order.productQuantity || '';
+                                value = document.getElementById(`productQuantity_${order.id}`)?.value || '';
                                 break;
                             case '货品单价':
-                                value = order.productPrice || '';
+                                value = document.getElementById(`productPrice_${order.id}`)?.value || '';
                                 break;
                             case '金额小计':
-                                value = order.subtotal || '';
+                                value = document.getElementById(`subtotal_${order.id}`)?.value || '';
                                 break;
                             case '邮费收入':
-                                value = order.shippingFee || '';
+                                value = document.getElementById(`shippingFee_${order.id}`)?.value || '';
                                 break;
                             case '店铺':
-                                value = order.shop || '';
+                                value = document.getElementById(`shop_${order.id}`)?.value || '';
                                 break;
                             case '买家留言':
-                                value = order.buyerMessage || '';
+                                value = document.getElementById(`buyerMessage_${order.id}`)?.value || '';
                                 break;
                             case '客服备注':
-                                value = order.customerServiceNote || '';
+                                value = document.getElementById(`customerServiceNote_${order.id}`)?.value || '';
                                 break;
                             case '买家昵称':
-                                value = order.buyerNickname || '';
+                                value = document.getElementById(`buyerNickname_${order.id}`)?.value || '';
                                 break;
                             case '主播ID':
-                                value = order.anchorId || '';
+                                value = document.getElementById(`anchorId_${order.id}`)?.value || '';
                                 break;
                             case '主播名称':
-                                value = order.anchorName || '';
+                                value = document.getElementById(`anchorName_${order.id}`)?.value || '';
                                 break;
                             case '业务员':
-                                value = order.salesperson || '';
+                                value = document.getElementById(`salesperson_${order.id}`)?.value || '';
                                 break;
                             case '付款类型':
-                                value = order.paymentType || '';
+                                value = document.getElementById(`paymentType_${order.id}`)?.value || '';
                                 break;
                             case '代收金额':
-                                value = order.collectionAmount || '';
+                                value = document.getElementById(`collectionAmount_${order.id}`)?.value || '';
                                 break;
                             case '供销商快递':
-                                value = order.supplierExpress || '';
+                                value = document.getElementById(`supplierExpress_${order.id}`)?.value || '';
                                 break;
                             default:
                                 value = '';
@@ -8926,7 +7628,7 @@
                     <td>${spec}</td>
                     <td>${distributorCode}</td>
                     <td>${price}</td>
-                    <td><button type="button" onclick="editSpec('${spec}')" class="edit-button">编辑</button></td>
+                    <td><button onclick="editSpec('${spec}')" class="edit-button">编辑</button></td>
                 `;
                 
                 tableBody.appendChild(row);
@@ -8947,67 +7649,67 @@
                     excelFields.forEach(field => {
                         let value = '';
                         
-                        // 直接使用order对象的属性，而不是从DOM中获取
+                        // 根据字段名获取对应输入框的值
                         switch(field) {
                             case '平台订单号':
-                                value = order.platformOrderId || '';
+                                value = document.getElementById(`platformOrderId_${order.id}`)?.value || '';
                                 break;
                             case '收件人姓名':
-                                value = order.recipientName || '';
+                                value = document.getElementById(`recipientName_${order.id}`)?.value || '';
                                 break;
                             case '收件人手机号/电话':
-                                value = order.recipientPhone || '';
+                                value = document.getElementById(`recipientPhone_${order.id}`)?.value || '';
                                 break;
                             case '收件人地址':
-                                value = order.recipientAddress || '';
+                                value = document.getElementById(`recipientAddress_${order.id}`)?.value || '';
                                 break;
                             case '分销商家编码':
-                                value = order.distributorCode || '';
+                                value = document.getElementById(`distributorCode_${order.id}`)?.value || '';
                                 break;
                             case '条形码':
-                                value = order.barcode || '';
+                                value = document.getElementById(`barcode_${order.id}`)?.value || '';
                                 break;
                             case '货品数量':
-                                value = order.productQuantity || '';
+                                value = document.getElementById(`productQuantity_${order.id}`)?.value || '';
                                 break;
                             case '货品单价':
-                                value = order.productPrice || '';
+                                value = document.getElementById(`productPrice_${order.id}`)?.value || '';
                                 break;
                             case '金额小计':
-                                value = order.subtotal || '';
+                                value = document.getElementById(`subtotal_${order.id}`)?.value || '';
                                 break;
                             case '邮费收入':
-                                value = order.shippingFee || '';
+                                value = document.getElementById(`shippingFee_${order.id}`)?.value || '';
                                 break;
                             case '店铺':
-                                value = order.shop || '';
+                                value = document.getElementById(`shop_${order.id}`)?.value || '';
                                 break;
                             case '买家留言':
-                                value = order.buyerMessage || '';
+                                value = document.getElementById(`buyerMessage_${order.id}`)?.value || '';
                                 break;
                             case '客服备注':
-                                value = order.customerServiceNote || '';
+                                value = document.getElementById(`customerServiceNote_${order.id}`)?.value || '';
                                 break;
                             case '买家昵称':
-                                value = order.buyerNickname || '';
+                                value = document.getElementById(`buyerNickname_${order.id}`)?.value || '';
                                 break;
                             case '主播ID':
-                                value = order.anchorId || '';
+                                value = document.getElementById(`anchorId_${order.id}`)?.value || '';
                                 break;
                             case '主播名称':
-                                value = order.anchorName || '';
+                                value = document.getElementById(`anchorName_${order.id}`)?.value || '';
                                 break;
                             case '业务员':
-                                value = order.salesperson || '';
+                                value = document.getElementById(`salesperson_${order.id}`)?.value || '';
                                 break;
                             case '付款类型':
-                                value = order.paymentType || '';
+                                value = document.getElementById(`paymentType_${order.id}`)?.value || '';
                                 break;
                             case '代收金额':
-                                value = order.collectionAmount || '';
+                                value = document.getElementById(`collectionAmount_${order.id}`)?.value || '';
                                 break;
                             case '供销商快递':
-                                value = order.supplierExpress || '';
+                                value = document.getElementById(`supplierExpress_${order.id}`)?.value || '';
                                 break;
                             default:
                                 value = '';
@@ -9022,9 +7724,11 @@
                 // 创建工作簿
                 const wb = XLSX.utils.book_new();
                 
-                // 直接使用exportData创建工作表，不指定header选项
-                // 这样会自动根据数据对象的键创建表头
-                const ws = XLSX.utils.json_to_sheet(exportData);
+                // 确保按照指定的字段顺序创建工作表
+                const ws = XLSX.utils.json_to_sheet(exportData, {
+                    header: excelFields,
+                    skipHeader: false
+                });
                 
                 // 设置列宽
                 const wscols = [
@@ -9725,14 +8429,9 @@
             try {
                 const settings = {
                     enabled: document.getElementById('autoFetchEnabled').checked,
-                    interval: document.getElementById('autoFetchInterval').value,
-                    autoImport: document.getElementById('autoImportEnabled').checked,
-                    platforms: {
-                        taobao: document.getElementById('fetchTaobao').checked,
-                        jd: document.getElementById('fetchJd').checked,
-                        pdd: document.getElementById('fetchPdd').checked,
-                        xhs: document.getElementById('fetchXhs').checked
-                    }
+                    interval: document.getElementById('fetchInterval').value,
+                    time: document.getElementById('fetchTime').value,
+                    autoImport: document.getElementById('autoImportEnabled').checked
                 };
                 
                 localStorage.setItem('autoFetchSettings', JSON.stringify(settings));
@@ -9759,31 +8458,9 @@
                 if (savedSettings) {
                     const settings = JSON.parse(savedSettings);
                     document.getElementById('autoFetchEnabled').checked = settings.enabled || false;
-                    document.getElementById('autoFetchInterval').value = settings.interval || '30';
+                    document.getElementById('fetchInterval').value = settings.interval || '60';
+                    document.getElementById('fetchTime').value = settings.time || '';
                     document.getElementById('autoImportEnabled').checked = settings.autoImport || false;
-                    
-                    // 加载平台设置
-                    if (settings.platforms) {
-                        document.getElementById('fetchTaobao').checked = settings.platforms.taobao || true;
-                        document.getElementById('fetchJd').checked = settings.platforms.jd || true;
-                        document.getElementById('fetchPdd').checked = settings.platforms.pdd || true;
-                        document.getElementById('fetchXhs').checked = settings.platforms.xhs || true;
-                    } else {
-                        // 默认全部选中
-                        document.getElementById('fetchTaobao').checked = true;
-                        document.getElementById('fetchJd').checked = true;
-                        document.getElementById('fetchPdd').checked = true;
-                        document.getElementById('fetchXhs').checked = true;
-                    }
-                } else {
-                    // 默认设置
-                    document.getElementById('autoFetchEnabled').checked = false;
-                    document.getElementById('autoFetchInterval').value = '30';
-                    document.getElementById('autoImportEnabled').checked = false;
-                    document.getElementById('fetchTaobao').checked = true;
-                    document.getElementById('fetchJd').checked = true;
-                    document.getElementById('fetchPdd').checked = true;
-                    document.getElementById('fetchXhs').checked = true;
                 }
             } catch (error) {
                 console.error('加载自动拉取设置失败:', error);
@@ -9831,27 +8508,8 @@
         // 自动拉取订单
         async function autoFetchOrders() {
             try {
-                // 获取自动拉取设置
-                const autoFetchSettings = localStorage.getItem('autoFetchSettings');
-                if (!autoFetchSettings) {
-                    console.log('没有自动拉取设置');
-                    return;
-                }
-                
-                const settings = JSON.parse(autoFetchSettings);
-                
-                // 获取需要拉取的平台
-                const platforms = [];
-                if (settings.platforms) {
-                    if (settings.platforms.taobao) platforms.push('taobao');
-                    if (settings.platforms.jd) platforms.push('jd');
-                    if (settings.platforms.pdd) platforms.push('pdd');
-                    if (settings.platforms.xhs) platforms.push('xhs');
-                } else {
-                    // 默认拉取所有平台
-                    platforms.push('taobao', 'jd', 'pdd', 'xhs');
-                }
-                
+                // 获取所有已配置的平台
+                const platforms = ['taobao', 'jd', 'pdd', 'xhs'];
                 let successCount = 0;
                 let totalCount = 0;
                 
@@ -9865,29 +8523,26 @@
                     
                     try {
                         // 设置当前平台
-                        const platformSelect = document.getElementById('platformSelect');
-                        if (platformSelect) {
-                            platformSelect.value = platform;
-                        }
+                        document.getElementById('platformSelect').value = platform;
                         
                         // 设置默认日期（最近7天）
                         const endDate = new Date();
                         const startDate = new Date();
                         startDate.setDate(startDate.getDate() - 7);
                         
-                        const startDateInput = document.getElementById('startDate');
-                        const endDateInput = document.getElementById('endDate');
-                        if (startDateInput && endDateInput) {
-                            startDateInput.value = startDate.toISOString().split('T')[0];
-                            endDateInput.value = endDate.toISOString().split('T')[0];
-                        }
+                        document.getElementById('startDate').value = startDate.toISOString().split('T')[0];
+                        document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
                         
                         // 拉取订单
                         await fetchPlatformOrders();
                         
                         // 检查是否需要自动导入
-                        if (settings.autoImport) {
-                            importPlatformOrders();
+                        const autoFetchSettings = localStorage.getItem('autoFetchSettings');
+                        if (autoFetchSettings) {
+                            const settings = JSON.parse(autoFetchSettings);
+                            if (settings.autoImport) {
+                                importPlatformOrders();
+                            }
                         }
                         
                         successCount++;
@@ -10498,7 +9153,7 @@
             // 加载订单
             const loadButton = document.getElementById('loadButton');
             if (loadButton) {
-                loadButton.addEventListener('click', loadOrdersFromStorage);
+                loadButton.addEventListener('click', loadOrders);
             }
             
             // 平台订单
@@ -10514,367 +9169,12 @@
             }
             
             // 旺店通上传
-        const wangdianUploadButton = document.getElementById('wangdianUploadButton');
-        if (wangdianUploadButton) {
-            wangdianUploadButton.addEventListener('click', function() {
-                openWangdianUploadModal();
-            });
-        }
-        
-        // 打开旺店通上传模态框
-        function openWangdianUploadModal() {
-            // 检查并移除已存在的模态框
-            const existingModal = document.getElementById('wangdianUploadModal');
-            if (existingModal) {
-                try {
-                    document.body.removeChild(existingModal);
-                } catch (e) {
-                    console.error('移除已存在的旺店通上传模态框失败:', e);
-                }
-            }
-            
-            // 创建旺店通上传模态框
-            const modal = document.createElement('div');
-            modal.id = 'wangdianUploadModal';
-            modal.className = 'modal show';
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0,0,0,0.5);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 1000;
-            `;
-            
-            // 创建模态框内容
-            const modalContent = document.createElement('div');
-            modalContent.className = 'modal-content';
-            modalContent.style.cssText = `
-                background-color: #1a1f2e;
-                padding: 32px;
-                border: 1px solid rgba(33, 150, 243, 0.3);
-                border-radius: 12px;
-                width: 90%;
-                max-width: 800px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            `;
-            
-            // 创建模态框头部
-            const modalHeader = document.createElement('div');
-            modalHeader.className = 'modal-header';
-            modalHeader.style.cssText = `
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 24px;
-                padding-bottom: 20px;
-                border-bottom: 1px solid rgba(33, 150, 243, 0.3);
-            `;
-            
-            const modalTitle = document.createElement('h2');
-            modalTitle.textContent = '上传订单到旺店通';
-            modalTitle.style.cssText = `
-                margin: 0;
-                color: #2196f3;
-                font-size: 22px;
-                font-weight: 700;
-            `;
-            
-            const closeButton = document.createElement('button');
-            closeButton.className = 'close-button';
-            closeButton.textContent = '×';
-            closeButton.style.cssText = `
-                background: none;
-                border: none;
-                color: #999;
-                font-size: 28px;
-                cursor: pointer;
-                padding: 0;
-                width: 36px;
-                height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                transition: all 0.2s ease;
-            `;
-            
-            closeButton.addEventListener('click', function() {
-                document.body.removeChild(modal);
-            });
-            
-            modalHeader.appendChild(modalTitle);
-            modalHeader.appendChild(closeButton);
-            
-            // 创建模态框内容
-            const modalBody = document.createElement('div');
-            modalBody.className = 'modal-body';
-            modalBody.style.cssText = `
-                margin-bottom: 24px;
-                color: #e0e0e0;
-                line-height: 1.6;
-            `;
-            
-            // 旺店通API配置
-            const apiConfigSection = document.createElement('div');
-            apiConfigSection.style.cssText = `
-                margin-bottom: 24px;
-                padding: 20px;
-                border: 1px solid rgba(33, 150, 243, 0.2);
-                border-radius: 8px;
-                background: rgba(33, 150, 243, 0.05);
-            `;
-            
-            apiConfigSection.innerHTML = `
-                <h3 style="margin-top: 0; color: #2196f3; margin-bottom: 16px;">旺店通API配置</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">API地址:</label>
-                        <input type="text" id="wangdianApiUrl" value="https://api.wangdian.cn" style="width: 100%; padding: 10px; border: 1px solid rgba(33, 150, 243, 0.3); border-radius: 6px; background: rgba(255,255,255,0.05); color: #e0e0e0;">
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">AppKey:</label>
-                        <input type="text" id="wangdianAppKey" style="width: 100%; padding: 10px; border: 1px solid rgba(33, 150, 243, 0.3); border-radius: 6px; background: rgba(255,255,255,0.05); color: #e0e0e0;">
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">AppSecret:</label>
-                        <input type="password" id="wangdianAppSecret" style="width: 100%; padding: 10px; border: 1px solid rgba(33, 150, 243, 0.3); border-radius: 6px; background: rgba(255,255,255,0.05); color: #e0e0e0;">
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">店铺编码:</label>
-                        <input type="text" id="wangdianShopCode" style="width: 100%; padding: 10px; border: 1px solid rgba(33, 150, 243, 0.3); border-radius: 6px; background: rgba(255,255,255,0.05); color: #e0e0e0;">
-                    </div>
-                </div>
-                <div style="margin-top: 12px;">
-                    <button onclick="saveWangdianSettings()" style="padding: 8px 16px; background: #2196f3; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">保存配置</button>
-                    <button onclick="loadWangdianSettings()" style="padding: 8px 16px; background: #666; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-left: 8px;">加载配置</button>
-                </div>
-            `;
-            
-            // 订单选择
-            const orderSelectionSection = document.createElement('div');
-            orderSelectionSection.style.cssText = `
-                margin-bottom: 24px;
-                padding: 20px;
-                border: 1px solid rgba(33, 150, 243, 0.2);
-                border-radius: 8px;
-                background: rgba(33, 150, 243, 0.05);
-            `;
-            
-            orderSelectionSection.innerHTML = `
-                <h3 style="margin-top: 0; color: #2196f3; margin-bottom: 16px;">订单选择</h3>
-                <div>
-                    <label style="margin-right: 16px;">
-                        <input type="radio" name="orderSelection" value="all" checked> 上传所有订单
-                    </label>
-                    <label style="margin-right: 16px;">
-                        <input type="radio" name="orderSelection" value="selected"> 上传选中订单
-                    </label>
-                    <label>
-                        <input type="radio" name="orderSelection" value="range"> 按日期范围上传
-                    </label>
-                </div>
-                <div id="dateRangeSection" style="margin-top: 16px; display: none;">
-                    <label style="display: inline-block; margin-right: 16px;">
-                        开始日期: <input type="date" id="startDateRange" style="padding: 8px; border: 1px solid rgba(33, 150, 243, 0.3); border-radius: 6px; background: rgba(255,255,255,0.05); color: #e0e0e0;">
-                    </label>
-                    <label>
-                        结束日期: <input type="date" id="endDateRange" style="padding: 8px; border: 1px solid rgba(33, 150, 243, 0.3); border-radius: 6px; background: rgba(255,255,255,0.05); color: #e0e0e0;">
-                    </label>
-                </div>
-            `;
-            
-            // 上传结果
-            const uploadResultSection = document.createElement('div');
-            uploadResultSection.style.cssText = `
-                margin-bottom: 24px;
-                padding: 20px;
-                border: 1px solid rgba(33, 150, 243, 0.2);
-                border-radius: 8px;
-                background: rgba(33, 150, 243, 0.05);
-                min-height: 100px;
-            `;
-            
-            uploadResultSection.innerHTML = `
-                <h3 style="margin-top: 0; color: #2196f3; margin-bottom: 16px;">上传结果</h3>
-                <div id="uploadResult" style="white-space: pre-wrap;">准备上传...</div>
-            `;
-            
-            modalBody.appendChild(apiConfigSection);
-            modalBody.appendChild(orderSelectionSection);
-            modalBody.appendChild(uploadResultSection);
-            
-            // 创建模态框底部
-            const modalFooter = document.createElement('div');
-            modalFooter.className = 'modal-footer';
-            modalFooter.style.cssText = `
-                display: flex;
-                justify-content: flex-end;
-                gap: 12px;
-                padding-top: 20px;
-                border-top: 1px solid rgba(33, 150, 243, 0.2);
-            `;
-            
-            const cancelButton = document.createElement('button');
-            cancelButton.textContent = '取消';
-            cancelButton.style.cssText = `
-                padding: 12px 24px;
-                background: rgba(255,255,255,0.1);
-                color: #e0e0e0;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: 600;
-                transition: all 0.3s ease;
-            `;
-            
-            cancelButton.addEventListener('click', function() {
-                document.body.removeChild(modal);
-            });
-            
-            const uploadButton = document.createElement('button');
-            uploadButton.textContent = '开始上传';
-            uploadButton.style.cssText = `
-                padding: 12px 24px;
-                background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
-                color: white;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: 600;
-                transition: all 0.3s ease;
-            `;
-            
-            uploadButton.addEventListener('click', function() {
-                uploadToWangdian();
-            });
-            
-            modalFooter.appendChild(cancelButton);
-            modalFooter.appendChild(uploadButton);
-            
-            // 组装模态框
-            modalContent.appendChild(modalHeader);
-            modalContent.appendChild(modalBody);
-            modalContent.appendChild(modalFooter);
-            modal.appendChild(modalContent);
-            
-            // 添加到页面
-            document.body.appendChild(modal);
-            
-            // 绑定事件
-            const orderSelectionRadios = modalBody.querySelectorAll('input[name="orderSelection"]');
-            orderSelectionRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const dateRangeSection = document.getElementById('dateRangeSection');
-                    if (this.value === 'range' && dateRangeSection) {
-                        dateRangeSection.style.display = 'block';
-                    } else if (dateRangeSection) {
-                        dateRangeSection.style.display = 'none';
-                    }
+            const wangdianUploadButton = document.getElementById('wangdianUploadButton');
+            if (wangdianUploadButton) {
+                wangdianUploadButton.addEventListener('click', function() {
+                    window.open('https://erp.huice.com/#/app/order/fenxiao/pending-order', '_blank');
                 });
-            });
-        }
-        
-        // 保存旺店通设置
-        function saveWangdianSettings() {
-            try {
-                const settings = {
-                    apiUrl: document.getElementById('wangdianApiUrl').value,
-                    appKey: document.getElementById('wangdianAppKey').value,
-                    appSecret: document.getElementById('wangdianAppSecret').value,
-                    shopCode: document.getElementById('wangdianShopCode').value
-                };
-                
-                localStorage.setItem('wangdianSettings', JSON.stringify(settings));
-                showNotification('notification', '旺店通设置保存成功', 'success');
-            } catch (error) {
-                console.error('保存旺店通设置失败:', error);
-                showNotification('notification', '保存旺店通设置失败', 'error');
             }
-        }
-        
-        // 加载旺店通设置
-        function loadWangdianSettings() {
-            try {
-                const savedSettings = localStorage.getItem('wangdianSettings');
-                if (savedSettings) {
-                    const settings = JSON.parse(savedSettings);
-                    document.getElementById('wangdianApiUrl').value = settings.apiUrl || 'https://api.wangdian.cn';
-                    document.getElementById('wangdianAppKey').value = settings.appKey || '';
-                    document.getElementById('wangdianAppSecret').value = settings.appSecret || '';
-                    document.getElementById('wangdianShopCode').value = settings.shopCode || '';
-                    showNotification('notification', '旺店通设置加载成功', 'success');
-                }
-            } catch (error) {
-                console.error('加载旺店通设置失败:', error);
-                showNotification('notification', '加载旺店通设置失败', 'error');
-            }
-        }
-        
-        // 上传订单到旺店通
-        function uploadToWangdian() {
-            try {
-                const uploadResult = document.getElementById('uploadResult');
-                uploadResult.textContent = '正在准备上传...';
-                
-                // 获取订单选择方式
-                const orderSelection = document.querySelector('input[name="orderSelection"]:checked').value;
-                let ordersToUpload = [];
-                
-                switch (orderSelection) {
-                    case 'all':
-                        ordersToUpload = orders;
-                        break;
-                    case 'selected':
-                        const checkboxes = document.querySelectorAll('.order-checkbox:checked');
-                        const selectedIds = Array.from(checkboxes).map(cb => parseInt(cb.dataset.id));
-                        ordersToUpload = orders.filter(order => selectedIds.includes(order.id));
-                        break;
-                    case 'range':
-                        const startDate = document.getElementById('startDateRange').value;
-                        const endDate = document.getElementById('endDateRange').value;
-                        if (!startDate || !endDate) {
-                            uploadResult.textContent = '请选择日期范围';
-                            return;
-                        }
-                        ordersToUpload = orders.filter(order => {
-                            const orderDate = new Date(order.orderDate || new Date());
-                            const start = new Date(startDate);
-                            const end = new Date(endDate);
-                            return orderDate >= start && orderDate <= end;
-                        });
-                        break;
-                }
-                
-                if (ordersToUpload.length === 0) {
-                    uploadResult.textContent = '没有订单需要上传';
-                    return;
-                }
-                
-                uploadResult.textContent = `准备上传 ${ordersToUpload.length} 个订单...`;
-                
-                // 模拟上传过程
-                setTimeout(() => {
-                    // 这里应该实现实际的旺店通API调用
-                    // 由于没有真实的API密钥，这里只是模拟上传成功
-                    uploadResult.textContent = `成功上传 ${ordersToUpload.length} 个订单到旺店通`;
-                    showNotification('notification', `成功上传 ${ordersToUpload.length} 个订单到旺店通`, 'success');
-                }, 2000);
-                
-            } catch (error) {
-                console.error('上传到旺店通失败:', error);
-                const uploadResult = document.getElementById('uploadResult');
-                uploadResult.textContent = '上传失败: ' + error.message;
-                showNotification('notification', '上传到旺店通失败', 'error');
-            }
-        }
             
             // 导航栏链接功能
             const dashboardLink = document.getElementById('dashboardLink');
@@ -11089,11 +9389,6 @@
                 const platformModal = document.getElementById('platformOrdersModal');
                 if (event.target === platformModal) {
                     closePlatformOrdersModal();
-                }
-                
-                const autoModal = document.getElementById('autoFetchModal');
-                if (autoModal && event.target === autoModal) {
-                    closeAutoFetchModal();
                 }
                 
                 const exportModal = document.getElementById('exportPreviewModal');
